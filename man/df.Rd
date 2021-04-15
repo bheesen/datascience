@@ -3,7 +3,7 @@
 \docType{data}
 \name{df}
 \alias{df}
-\title{Fictitious group of friends with attributes}
+\title{Group of friends with attributes}
 \format{
 A data frame with 5 rows and 5 variables:
 \describe{

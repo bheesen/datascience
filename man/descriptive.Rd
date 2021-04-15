@@ -2,7 +2,7 @@
 % Please edit documentation in R/descriptive.R
 \name{descriptive}
 \alias{descriptive}
-\title{Function to calculate descriptive statistics for a vector variable}
+\title{Function to calculate descriptive statistics for a variable}
 \usage{
 descriptive(variable, name)
 }
@@ -15,7 +15,7 @@ descriptive(variable, name)
 a vector with a list of descriptive statistics
 }
 \description{
-Function to calculate descriptive statistics for a vector variable
+Function to calculate descriptive statistics for a variable
 }
 \keyword{descriptive,}
 \keyword{statistics}

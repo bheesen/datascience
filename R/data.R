@@ -65,7 +65,7 @@
 "bundesliga"
 
 
-#' Fictitious group of friends with attributes
+#' Group of friends with attributes
 #'
 #' The dataset was created fictitiously.
 #'
@@ -147,3 +147,46 @@
 #'   \item{Preis}{price}
 #' }
 "kfz"
+
+#' Students data from 2020
+#'
+#' The dataset was created from student data.
+#'
+#' @format A data frame with 357 rows and 22 variables
+#' \describe{
+#'   \item{Gruppe}{group}
+#'   \item{Geschlecht}{gender}
+#'   \item{Geburtsjahr}{year of birth}
+#'   \item{Geburtsmonat}{month of birth}
+#'   \item{Größe}{height}
+#'   \item{Einwohner}{citicens of city of origin}
+#'   \item{Distanz}{distance of residence to university}
+#'   \item{DistanzEltern}{distance of residence of parents to university}
+#'   \item{Buchstaben}{length of first name}
+#'   \item{Fußball}{like or dislike of soccer}
+#'   \item{Schuhe}{pairs of shoes in posession}
+#'   \item{Intelligenz}{intelligence}
+#'   \item{Attraktivität}{attractiveness}
+#'   \item{Lieblingsfarbe}{preferred colour}
+#'   \item{Hobby}{hobby}
+#'   \item{IntLeadership}{interest in leadership}
+#'   \item{IntMgmt}{interest in management}
+#'   \item{HSAnsbach1}{Ansbach first choice}
+#'   \item{AlternativeHS}{name of alternative university}
+#'   \item{AlternativerStg}{name of alternative program}
+#'   \item{DistanzElternhaus}{distance of residence to residence of parents}
+#'   \item{Note}{expected grade}
+#' }
+"studierende"
+
+#' Average student grades by gender and age
+#'
+#' The dataset was created was created fictitiously.
+#'
+#' @format A data frame with 49999 rows and 5 variables
+#' \describe{
+#'   \item{Note}{grade}
+#'   \item{Geschlecht}{gender}
+#'   \item{Alter}{age}
+#' }
+"durchschnittsnoten"

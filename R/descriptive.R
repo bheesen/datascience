@@ -5,12 +5,13 @@
 ##---Functions---------------------------------------------------------------------------------
 
 # Descriptive statistics function
-#' Function to calculate descriptive statistics for a vector variable
+#' Function to calculate descriptive statistics for a variable
 #'
 #' @param variable is a vector of the variable
 #' @param name is the name of the variable
 #' @keywords descriptive, statistics
 #' @return a vector with a list of descriptive statistics
+#' @example descriptive(studierende$Groesse, "Koerpergroesse (in cm)")
   descriptive <- function(variable, name) {
     var       <- as.data.frame(table(variable))
     var.n     <- length(variable)
