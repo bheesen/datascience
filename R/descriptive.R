@@ -4,7 +4,7 @@
 #' @param name is the name of the variable
 #' @keywords descriptive, statistics
 #' @return a vector with a list of descriptive statistics
-#' @example descriptive(studierende$Groesse, "Koerpergroesse (in cm)")
+#' @example descriptive(studierende$Größe, "Körpergroesse (in cm)")
 #' @export
 descriptive <- 
 function(variable, name) {
@@ -23,7 +23,7 @@ function(variable, name) {
     var.sd    <- ifelse(is.numeric(variable), stats::sd(variable),NA)
     var.gesamt <- rbind(var.n,var.na,var.maxanzahl,var.modus,var.median,var.mean,var.spannweite,var.min,var.max,var.var,var.sd)
     if (is.numeric(variable)){
-      graphics::hist(variable, xlab="",ylab="Haeufigkeit",main=name)
+      graphics::hist(variable, xlab="",ylab="Häufigkeit",main=name)
       graphics::abline(v=c(var.mean,var.median,var.modus),col=(c("red","blue","darkgreen")), lwd=2)
       graphics::boxplot(variable,data=variable,main=name,xlab="",ylab="")
     } else {
