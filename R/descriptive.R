@@ -5,6 +5,7 @@
 #' @keywords descriptive, statistics
 #' @return a vector with a list of descriptive statistics
 #' @example descriptive(studierende$Groesse, "Koerpergroesse (in cm)")
+#' @export
 descriptive <- 
 function(variable, name) {
     var       <- as.data.frame(table(variable))

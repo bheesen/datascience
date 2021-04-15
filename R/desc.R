@@ -4,7 +4,7 @@
 #' @param name is the name of the variable
 #' @keywords descriptive, statistics
 #' @return a vector with a list of descriptive statistics
-#' @example desc(studierende$Groesse, "Koerpergroesse (in cm)")
+#' @export
 desc <- function(variable, name) {
   var       <- as.data.frame(table(variable))
   var.n     <- length(variable)
