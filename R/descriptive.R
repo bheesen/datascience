@@ -29,7 +29,7 @@ function(variable, name) {
     } else {
       graphics::par(oma=c(2,0,0,0))                                 # Platz für Labels
       graphics::barplot(table(variable), space = 0,                 # Space zwischen Balken
-              ylab = "Haeufigkeit", main = name,
+              ylab = "Häufigkeit", main = name,
               border="black", col="grey",las=2)
       graphics::abline(v=c(var.mean,var.median,var.modus),col=(c("red","blue","darkgreen")), lwd=2)
     }

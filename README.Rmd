@@ -40,7 +40,7 @@ library(datascience)
 What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
 
 ```{r studierende}
-descriptive(studierende$Größe, "Koerpergröße (in cm)")
+descriptive(studierende$Größe, "Körpergröße (in cm)")
 ```
 
 The `README.Rmd` file was used to create this `README.md` file using the function `devtools::build_readme()`.
