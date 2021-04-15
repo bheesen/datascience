@@ -1,0 +1,20 @@
+Package: datascience
+Type: Package
+Title: Functions and Data related to the book "Data Science und Statistik"
+Version: 0.0.1
+Author: Bernd Heesen
+Maintainer: The package maintainer is: <bernd.heesen@hs-ansbach.de>
+Description: This package contains source code examples and datasets contained in the book
+   "Data Science und Statistik".
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Depends:
+    R (>= 2.10)
+URL: https://github.com/bheesen/datascience
+BugReports: https://github.com/bheesen/datascience/issues
+Imports: 
+    stats,
+    graphics,
+    dplyr
