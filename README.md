@@ -34,8 +34,23 @@ What is special about using `README.Rmd` instead of just `README.md`?
 You can include R chunks like so:
 
 ``` r
-#descriptive(studierende$Größe, "Koerpergröße (in cm)")
+descriptive(studierende$Größe, "Koerpergröße (in cm)")
 ```
+
+<img src="man/figures/README-studierende-1.png" width="100%" /><img src="man/figures/README-studierende-2.png" width="100%" />
+
+    #>                [,1]              
+    #> var.n          "357"             
+    #> var.na         "0"               
+    #> var.maxanzahl  "42"              
+    #> var.modus      "170"             
+    #> var.median     "170"             
+    #> var.mean       "172.039215686275"
+    #> var.spannweite "54"              
+    #> var.min        "150"             
+    #> var.max        "204"             
+    #> var.var        "82.6613791584049"
+    #> var.sd         "9.09183035248706"
 
 The `README.Rmd` file was used to create this `README.md` file using the
 function `devtools::build_readme()`.
