@@ -15,8 +15,10 @@ library(dygraphs)
 flights_jan <- 
   nycflights13::flights %>% 
   dplyr::filter(month == 2)
-dir.create("data",  showWarnings = TRUE)
-write_csv(flights_jan, "data/flights-jan.csv")
+path<-getwd()
+path<-file.path(path, "data/flights-jan.csv")
+#dir.create("data",  showWarnings = TRUE)
+write_csv(flights_jan, path)
 ```
 
 
@@ -117,7 +119,8 @@ head(mtcars,5)
 ## Data Files
 
 ```{r read-flights, exercise=TRUE}
-flights<-read_csv("data/flights_jan.csv", show_col_types = FALSE)
+path
+flights<-read_csv(path, show_col_types = FALSE)
 ```
 
 ## Quiz
