@@ -19,4 +19,5 @@ Modify the dyOptions to customize the graph's appearance from Bernd:
 ```{r dygraph-options, exercise=TRUE, exercise.eval=TRUE, fig.height=5.5}
 dygraph(ldeaths) %>%
   dyOptions(fillGraph = FALSE, drawGrid = TRUE)
+knitr::include_graphics("images/transform-logical.png")
 ```
