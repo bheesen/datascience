@@ -2,7 +2,10 @@
 title: "Name"
 author: "Bernd Heesen"
 date: "October 5th, 2021"
-output: learnr::tutorial
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
 runtime: shiny_prerendered
 ---
 
@@ -12,6 +15,7 @@ library(tidyverse)
 library(readr)
 knitr::opts_chunk$set(echo = FALSE)
 library(dygraphs)
+gradethis::gradethis_setup()
 flights_jan <- 
   nycflights13::flights %>% 
   dplyr::filter(month == 2)
@@ -82,7 +86,7 @@ add <- function() {
 }
 ```
 
-### Exercise with Hint
+### Exercise with Hint & Solution
 
 *Here's an exercise where the chunk is pre-evaulated via the `exercise.eval` option (so the user can see the default output we'd like them to customize). We also add a "hint" to the correct solution via the chunk immediate below labeled `print-limit-hint`.*
 
@@ -102,8 +106,7 @@ exercise.reveal_solution	Whether or not the solution should be revealed to the u
 
 The exercise.setup can be used prior to an exercise to prepare the data
 
-```{r filter, exercise.setup = "cars", echo=FALSE}
-# Filter only cars with weight > 2000
+```{r filter, exercise=TRUE, exercise.setup = "cars", echo=FALSE}
 mtcars<-dplyr::filter(mtcars, wt > 2000)
 ```
 
@@ -112,9 +115,14 @@ Modify the following code to limit the number of rows printed to 5:
 ```{r cars, exercise=TRUE, exercise.eval=TRUE, exercise.timelimit = 60}
 mtcars
 ```
-
 ```{r cars-hint}
-head(mtcars,5)
+<div id="cars-hint-1">
+**Hint:** You may want to use the "head" function.
+</div>
+head(mtcars, n = ?)
+
+```{r cars-hint-2}
+head(mtcars, n = 5)
 ```
 ## Data Files
 
@@ -154,3 +162,71 @@ Modify the dyOptions to customize the graph's appearance:
 dygraph(ldeaths) %>%
   dyOptions(fillGraph = FALSE, drawGrid = TRUE)
 ```
+
+## Grading
+
+* Submit `1+1` to receive a correct grade. (graded based on result)
+
+```{r ex1, exercise = TRUE}
+
+```
+
+```{r ex1-solution}
+1+1
+```
+ 
+```{r ex1-check}
+grade_result(pass_if(~identical(.result, 2))
+)
+```
+
+* Submit `1+1` to receive a correct grade (graded bases on code).
+
+```{r ex2, exercise = TRUE}
+
+```
+
+```{r ex2-solution}
+1+1
+```
+ 
+```{r ex2-code-check}
+grade_code()
+)
+```
+
+Additional options:
+Custom Checking
+If you need custom exercise checking logic that isn’t already provided grading packages like gradethis, then you may want to write your own exercise.checker function. This function is called on exercise submission whenever *-check or *-code-check chunks exist. When called, this function receives all the information that learnr knows about the exercise at the time of the checking, including the user_code, solution_code, check_code, exercise environments, and the last_value (if any). Checking can be performed at three different time points, so the values supplied can differ depending on the time point:
+
+Before exercise evaluation, at this stage:
+check_code contains *-code-check chunk code.
+envir_result, evaluate_result, and last_value are all NULL.
+During evaluation, when an error occurs:
+check_code contains *-error-check chunk code.
+last_value contains the error condition object.
+After exercise evaluation, at this stage:
+check_code contains *-check chunk code.
+last_value contains the last printed value.
+If, at any one of these stages, feedback should be provided, then exercise.checker should return an R list with, at the very least, a correct flag and feedback message:
+
+Field	Description
+message	Feedback message. Can be a plain character vector or can HTML produced via the htmltools package.
+correct	TRUE/FALSE logical value indicating whether the submitted answer was correct.
+type	Feedback type (visual presentation style). Can be “auto”, “success”, “info”, “warning”, “error”, or “custom”. Note that “custom” implies that the “message” field is custom HTML rather than a character vector.
+location	Location for feedback (“append”, “prepend”, or “replace”).
+Below is a rough sketch of how one might implement an exercise.checker function. Notice how the presence of envir_result may be used to determine which type of check is being done (i.e., code or result check).
+
+See the table below for a full description of all the arguments supplied to exercise.checker.
+
+Argument	Description
+label	Label for exercise chunk.
+user_code	R code submitted by the user.
+solution_code	Code provided within the “-solution” chunk for the exercise.
+check_code	Code provided within the “-check” chunk for the exercise.
+envir_result	The R environment after the execution of the chunk.
+evaluate_result	The return value from the evaluate::evaluate function.
+envir_prep	A copy of the R environment before the execution of the chunk.
+last_value	The last value of the evaluated chunk.
+engine	The engine value of the evaluated chunk.
+…	Unused (include for compatibility with parameters to be added in the future
