@@ -8,8 +8,8 @@
 <!-- badges: end -->
 
 The goal of the package datascience is to support the readers of the
-book “Data Science und Statistik” with samples and functions described
-in the book.
+book “Data Science und Statistik mit R” with samples, functions and tutorials
+as described in the book.
 
 ## Installation
 
@@ -19,15 +19,15 @@ You can install the released version of datascience from
 ``` r
 # install.packages("devtools")
 devtools::install_github("bheesen/datascience")
+library(datascience)
 ```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to call one of the tutorials:
 
 ``` r
-library(datascience)
-## basic example code
+datascience::tutorial.heesen(name = "Tutorial-R-1")
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`?
