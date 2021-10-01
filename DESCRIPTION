@@ -17,4 +17,5 @@ BugReports: https://github.com/bheesen/datascience/issues
 Imports: 
     stats,
     graphics,
-    dplyr
+    dplyr,
+    learnr
