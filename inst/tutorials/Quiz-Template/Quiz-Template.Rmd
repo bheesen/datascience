@@ -1,5 +1,5 @@
 ---
-title: "Name"
+title: "Quiz-Template"
 author: "Bernd Heesen"
 date: "October 5th, 2021"
 output: 
@@ -166,7 +166,7 @@ quiz(
   answer("14"),
   answer("1", correct = TRUE),
   answer("23"),
-  allow_retry = TRUE
+  allow_retry = TRUE,
   try_again = "Versuchen Sie es ruhig erneut!"
 )
 )
