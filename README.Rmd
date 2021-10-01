@@ -34,7 +34,7 @@ library(datascience)
 This is a basic example which shows you how to call one of the tutorials:
 
 ```{r tutorial}
-tutorial(name = "Tutorial-R-1")
+tutorial.heesen(name = "Tutorial-R-1")
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:

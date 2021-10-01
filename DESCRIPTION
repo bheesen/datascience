@@ -1,11 +1,11 @@
 Package: datascience
 Type: Package
-Title: Functions and Data related to the book "Data Science und Statistik"
+Title: Functions and Data related to the book "Data Science und Statistik mit R"
 Version: 0.0.1
 Author: Bernd Heesen
 Maintainer: The package maintainer is: <bernd.heesen@hs-ansbach.de>
-Description: This package contains source code examples and datasets contained in the book
-   "Data Science und Statistik".
+Description: This package contains source code examples, tutorials and datasets contained in the book
+   "Data Science und Statistik mit R".
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
