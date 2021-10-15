@@ -1,0 +1,89 @@
+---
+title: "Syntax"
+author: "Professor Bernd Heesen"
+date: "15.10.2021"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(learnr)
+```
+
+
+## Willkommen
+
+Dieses Tutorial ergänzt die Inhalte des Buches "Data Science und Statistik mit R" https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1.
+
+### Syntax
+
+Das Kapitel 3.3 im Buch beschreibt die Syntax von R. Kreuzen Sie an, mit welchen der Themen Sie noch nicht vertraut sind:
+
+* Wertzuweisungen
+* Kommentare
+* Codeblocks
+* Funktionsaufrufe
+
+```{r quiz1, echo = FALSE}
+question("Mit welchen der Themen sind Sie noch nicht vertraut?",
+  answer("Wertzuweisungen", message = "Lernen Sie hier etwas über Wertzuweisungen."),
+  answer("Kommentare", message = "Verstehen Sie die Verwendung von Kommentaren."),
+  answer("Codeblocks", message = "Üben Sie die Ausführung von Codeblocks."),
+  answer("Funktionsaufrufe", message = "Lernen Sie hier wie Sie Funktionen aufrufen können."),
+  answer("Ich bin bereits mit allen genannten Themen vertraut.", correct = TRUE, message = "Sie können dieses Tutorial überspringen!"),
+  type = "multiple",
+  incorrect = "Machen Sie sich mit folgenden Inhalten vertraut:"
+)
+```
+
+## Vorbereitung
+
+Das Aktivieren eines Pakets ist nach jedem neuen Start von R erneut erforderlich.
+und Aufruf der Hilfe zu einem Paket. 
+Entfernen Sie das "#" vor dem Funktionsaufruf der Hilfe "?ggplot2", um die Hilfe aufzurufen.
+
+```{r paket, exercise=TRUE}
+library(ggplot2)             # Aktivieren von Package (nach jedem Start von R)
+#?ggplot2                    # Hilfe zu Package
+```
+
+## Wertzuweisungen
+
+### Übung 1
+
+Weisen Sie der Variablen x den Wert 3 zu und lassen Sie sich anschließend den Wert von x anzeigen.
+
+```{r wertzuweisung-1, exercise=TRUE}
+x <- 3                   # gutes Beispiel einer Wertzuweisung
+x                        # Ausgabe von x
+```
+
+### Übung 2
+
+Weisen Sie der Variablen y den Wert 1 zu und lassen Sie sich anschließend den Wert von y anzeigen.
+
+```{r wertzuweisung-2, exercise=TRUE}
+1 -> y                   # schlechtes Beispiel einer Wertzuweisung
+#y                       # Ausgabe von y
+```
+
+### Übung 3
+
+Erstellen Sie die Variable mit dem Namen "klausurnoten", welche sich aus x und y zusammensetzt.
+Lassen Sie sich die Variable anzeigen
+
+```{r wertzuweisung-3, exercise=TRUE}
+x <- 3                   # gutes Beispiel einer Wertzuweisung
+x                        # Ausgabe von x
+1 -> y                   # schlechtes Beispiel einer Wertzuweisung
+y                        # Ausgabe von y
+klausurnoten <- c(x,y)   # Variable klausurnoten ergibt sich aus x und y
+```
+
+## Demo
+
+Sie haben ein erstes Demo-Tutorial erfolgreich ausgeführt. Gratulation!
