@@ -27,14 +27,14 @@ library(datascience)
 This is a basic example which shows you how to call one of the tutorials:
 
 ``` r
-datascience::tutorial.heesen(name = "Tutorial-R-1")
+ds.tutorial(name = "ds.syntax")
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`?
 You can include R chunks like so:
 
 ``` r
-descriptive(studierende$Größe, "Körpergröße (in cm)")
+ds.summary(studierende$Größe, "Körpergröße (in cm)")
 ```
 
 <img src="man/figures/README-studierende-1.png" width="100%" /><img src="man/figures/README-studierende-2.png" width="100%" />
