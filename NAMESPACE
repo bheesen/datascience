@@ -2,3 +2,5 @@
 
 export(descriptive)
 export(tutorial.heesen)
+export(ds.summary)
+export(ds.tutorial)

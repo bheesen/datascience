@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of the package datascience is to support the readers of the book "Data Science und Statistik" with samples, functions and tutorials as described in the book.
+The goal of the package datascience is to support the readers of the book "Data Science und Statistik mit R" with samples, functions and tutorials as described in the book.
 
 ## Installation
 
@@ -34,13 +34,13 @@ library(datascience)
 This is a basic example which shows you how to call one of the tutorials:
 
 ```{r tutorial}
-tutorial.heesen(name = "Tutorial-R-1")
+ds.tutorial(name = "ds.syntax")
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
 
 ```{r studierende}
-descriptive(studierende$Größe, "Körpergröße (in cm)")
+ds.summary(studierende$Größe, "Körpergröße (in cm)")
 ```
 
 The `README.Rmd` file was used to create the `README.md` file using the function `devtools::build_readme()`.
