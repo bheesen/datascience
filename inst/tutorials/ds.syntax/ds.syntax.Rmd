@@ -58,7 +58,7 @@ Weisen Sie der Variablen y den Wert 1 zu und lassen Sie sich anschließend den W
 ### 1.4 Übung
 
 Erstellen Sie die Variable mit dem Namen "klausurnoten", welche sich aus x und y zusammensetzt.
-Lassen Sie sich anschließend die Variable "klausurnoten" anzeigen.
+Lassen Sie sich anschließend die Variable "klausurnoten" anzeigen, die 3 und 1 anzeigen sollte.
 
 ```{r 1_4-setup, exercise=FALSE, exercise.setup="1_4", echo=FALSE, include=FALSE}
 x <- 3
@@ -79,7 +79,7 @@ klausurnoten <- ...
 
 Codeblöcke von Schleifen oder Funktionen werden mit geschweiften Klammern umschlossen.
 
-Geben Sie mean(klausurnoten) ein
+Führen Sie die for-Schleife aus, welche die ersten beiden Werte der Klausurnoten mit den Werten 3 und 1 ausgibt.
 
 ```{r 2-setup, exercise=FALSE, exercise.setup="2", echo=FALSE, include=FALSE}
 x <- 3
@@ -87,7 +87,7 @@ y <- 1
 klausurnoten <- c(x,y)
 ```
 
-```{r 2, exercise=FALSE}
+```{r 2, exercise=TRUE}
 for (i in 1:2) {         # For-Schleife von 1 bis 2
   print(klausurnoten[i]) # Gibt die Inhalte von klausurnoten mit Index i aus
 }
@@ -100,7 +100,7 @@ R-Befehle bestehen aus Ausdrücken, also aus Wertzuweisungen (arithmetische oder
 
 ### 3.1 Aufruf einer Funktion
 
-Geben Sie mean(klausurnoten) ein
+Rufen Sie die Funktion mean() auf und verwenden Sie als Parameter den Vektor klausurnoten. Als Ergebnis sollte 2 angezeigt werden.
 
 ```{r 3_1-setup, exercise=FALSE, exercise.setup="3_1", echo=FALSE, include=FALSE}
 x <- 3
@@ -120,7 +120,7 @@ klausurnoten <- c(x,y)
 
 Die Hilfe zu einer Funktion in R kann über ein dem Funktionsnamen vorangestelltes Fragezeichen erfolgen, z.B. ?ggplot, um die Hilfe zu der Funktion ggplot angezeigt zu bekommen. In der Hilfe werden u.a. auch die Parameter einer Funktion vorgestellt.
 
-Lassen Sie sich die Hilfe zu der Funktion mean anzeigen.
+Lassen Sie sich die Hilfe zu der Funktion mean anzeigen. Dies kann in R-Studio oder in einem separaten Browser-Fenster angezeigt werden.
 
 ```{r 3_2, exercise=TRUE}
 
@@ -146,7 +146,7 @@ question("Welche der folgenden Aussagen sind korrekt?",
 )
 ```
 
-## 5. Ende 
+## Ende 
 
 Gratulation!
 
