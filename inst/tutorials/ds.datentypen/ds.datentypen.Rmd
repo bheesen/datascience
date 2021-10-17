@@ -13,6 +13,7 @@ runtime: shiny_prerendered
 library(tidyverse)
 library(learnr)
 library(lubridate)
+library(stringr)
 ```
 
 
@@ -44,7 +45,7 @@ a <-  12                 # Numerische Variable
 heute <- Sys.Date()      # Datumsvariable mit aktuellem Datum
 ```
 
-```{r 0_2, exercise=FALSE, dependson = -1}
+```{r 0_2, exercise=FALSE}
 unclass(a)               # Uncodierte Variable vom Typ raw
 unclass(heute)
 ```
@@ -205,6 +206,10 @@ class(j)
 
 Das Paket lubridate bietet viele weitere Funktionen für Datums- und Zeitvariablen wie date(), year(), month(), day(), hour(), minute(), second(), week(), quarter(), am() und pm().
 
+```{r 3_6-setup, exercise=FALSE, exercise.setup="3_6", echo=FALSE, include=FALSE}
+j<-Sys.time()            # Zeitvariable
+```
+
 ```{r 3_6, exercise=FALSE}
 library(lubridate)       # Paket erforderlich
 date(j)                  # Datum
@@ -235,8 +240,13 @@ str(j)
 
 Werden Variablen vom Typ Character bearbeitet, so bietet das Paket stringr einige Funktionen an, z.B. die Funktion str_detect(), str_locate(), um nach Zeichenketten bzw. Wörtern zu suchen, oder str_count(), um die Häufigkeit einer Zeichenkette zu ermitteln.
 
-```{r 4_2, exercise=FALSE, dependson = -1}
-require(stringr)         # Paket erforderlich
+```{r 4_2-setup, exercise=FALSE, exercise.setup="4_2", echo=FALSE, include=FALSE}
+i <- 'Erste Zeichenkette'# Character Variable in einfachen Anführungszeichen
+j <- "Statistik ist toll"# Character Variable in doppelten Anführungszeichen
+```
+
+```{r 4_2, exercise=FALSE}
+library(stringr)         # Paket erforderlich
 str_detect(i,"toll")     # Prüfung, ob String enthalten ist
 str_detect(j,"toll")     # Prüfung, ob String enthalten ist
 str_locate(j,"toll")     # Start und Endeposition von String
