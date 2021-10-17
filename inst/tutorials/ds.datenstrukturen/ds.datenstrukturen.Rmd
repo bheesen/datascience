@@ -48,7 +48,7 @@ Die Anzeige sollte hinterher wie folgt aussehen: ![Aktualisierter Character-Vekt
 ```
 
 ```{r 0_2-hint}
-Tippen Sie "edit(b)"
+#Tippen Sie "edit(b)"
 ```
 
 ## 1. Vektor
@@ -371,8 +371,7 @@ class(j)
 
 Das Paket lubridate bietet viele weitere Funktionen für Datums- und Zeitvariablen wie date(), year(), month(), day(), hour(), minute(), second(), week(), quarter(), am() und pm().
 
-```{r 3_6, exercise=FALSE}
-require(lubridate)       # Paket erforderlich
+```{r 3_6, exercise=TRUE}
 date(j)                  # Datum
 year(j)                  # Jahr
 month(j)                 # Monat
@@ -401,8 +400,7 @@ str(j)
 
 Werden Variablen vom Typ Character bearbeitet, so bietet das Paket stringr einige Funktionen an, z.B. die Funktion str_detect(), str_locate(), um nach Zeichenketten bzw. Wörtern zu suchen, oder str_count(), um die Häufigkeit einer Zeichenkette zu ermitteln.
 
-```{r 4_2, exercise=FALSE, dependson = -1}
-require(stringr)         # Paket erforderlich
+```{r 4_2, exercise=FALSE}
 str_detect(i,"toll")     # Prüfung, ob String enthalten ist
 str_detect(j,"toll")     # Prüfung, ob String enthalten ist
 str_locate(j,"toll")     # Start und Endeposition von String
