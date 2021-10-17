@@ -39,17 +39,7 @@ b <- c("Ein", "Vektor", "vo", "Charaktervariablen") # Character Vektor
 ```
 
 Vorhandene Variablen und Datenstrukturen können mit der Funktion View() angezeigt und mit der Funktion edit() bearbeitet werden.
-Editieren Sie den Vektor b, korrigieren Sie die dritte Variable innerhalb des Character-Vektors von "vo" auf "von" ab und speichern Sie die Änderung über Datei/Speichern ab. Danach schließen Sie das Editierfenster. 
-
-Die Anzeige sollte hinterher wie folgt aussehen: ![Aktualisierter Character-Vektor](images/edit.jpg)
-
-```{r 0_2, exercise=TRUE}
-
-```
-
-```{r 0_2-hint}
-#Tippen Sie "edit(b)"
-```
+Angenommen Sie würden den Vektor b editieren und die dritte Variable innerhalb des Character-Vektors von "vo" auf "von" ändern und speichern, dann sollte die Variable hinterher wie folgt aussehen: ![Aktualisierter Character-Vektor](images/edit.jpg)
 
 ## 1. Vektor
 
@@ -70,7 +60,7 @@ Auf einzelne Elemente eines Vektors kann durch Indizierung in eckigen Klammern z
 a <- c(1.2, -13, 46, 1880.12, -2.5)           # Vektor Typ numerisch
 ```
 
-```{r 1_2, exercise=FALSE}
+```{r 1_2, exercise=TRUE}
 a[]                                           # Ausgabe 
 str(a)                                        # Ausgabe mit Typ und Länge
 a[2]                                          # Ausgabe 2. Element
@@ -86,7 +76,7 @@ Die Ausgabe einer Reihenfolge von Elementen kann auch beliebig inklusive Wiederh
 a <- c(1.2, -13, 46, 1880.12, -2.5)           # Vektor Typ numerisch
 ```
 
-```{r 1_3, exercise=FALSE}
+```{r 1_3, exercise=TRUE}
 a[c(1,3,3,1,1,5)]                             # Ausgabe beliebiger Elemente
 a[3:7]                                        # Ausgabe ungültiger Indizes 
 ```
@@ -97,7 +87,7 @@ Auch eine Berechnung der Indizes ist möglich. Die Funktion length() gibt die An
 a <- c(1.2, -13, 46, 1880.12, -2.5)           # Vektor Typ numerisch
 ```
 
-```{r 1_4, exercise=FALSE}
+```{r 1_4, exercise=TRUE}
 length(a)                                     # Anzahl Elemente von Vektor
 a[length(a)-1]                                # Ausgabe vorletztes Element
 ```
@@ -122,7 +112,7 @@ Auch ein logisches Indexing ist möglich, indem Bedingungen bestimmen, welche El
 b <- c(anna = 2.7, rolf = 1.3, heike = 4.0)   # Vektor mit Namen
 ```
 
-```{r 1_6, exercise=FALSE}
+```{r 1_6, exercise=TRUE}
 b[b>2]                                        # Ausgabe wenn >2
 b[b==1.3 | b>3]                               # Ausgabe wenn 1.3 oder >3
 b[b<3.3 & b>2]                                # Ausgabe wenn <3.3 und >2
