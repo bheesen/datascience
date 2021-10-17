@@ -202,7 +202,10 @@ Die Funktion Sys.time() erlaubt die Abfrage der aktuellen Uhrzeit.
 ```{r 3_5, exercise=FALSE}
 j<-Sys.time()            # Zeitvariable
 class(j)
+str(j)
 ```
+
+### 3.5 Paket lubridate
 
 Das Paket lubridate bietet viele weitere Funktionen für Datums- und Zeitvariablen wie date(), year(), month(), day(), hour(), minute(), second(), week(), quarter(), am() und pm().
 
@@ -210,7 +213,7 @@ Das Paket lubridate bietet viele weitere Funktionen für Datums- und Zeitvariabl
 j<-Sys.time()            # Zeitvariable
 ```
 
-```{r 3_6, exercise=FALSE}
+```{r 3_6, exercise=TRUE}
 date(j)                  # Datum
 year(j)                  # Jahr
 month(j)                 # Monat
@@ -235,7 +238,7 @@ j <- "Statistik ist toll"# Character Variable in doppelten Anführungszeichen
 str(j)
 ```
 
-### 4.1 Funktionen des Pakets stringr
+### 4.1 Paket stringr
 
 Werden Variablen vom Typ Character bearbeitet, so bietet das Paket stringr einige Funktionen an, z.B. die Funktion str_detect(), str_locate(), um nach Zeichenketten bzw. Wörtern zu suchen, oder str_count(), um die Häufigkeit einer Zeichenkette zu ermitteln.
 
@@ -244,14 +247,14 @@ i <- 'Erste Zeichenkette'# Character Variable in einfachen Anführungszeichen
 j <- "Statistik ist toll"# Character Variable in doppelten Anführungszeichen
 ```
 
-```{r 4_2, exercise=FALSE}
+```{r 4_2, exercise=TRUE}
 str_detect(i,"toll")     # Prüfung, ob String enthalten ist
 str_detect(j,"toll")     # Prüfung, ob String enthalten ist
 str_locate(j,"toll")     # Start und Endeposition von String
 str_count(j,"toll")      # Anzahl des Vorkommens von String
 ```
 
-### 4.2 Typabfrage und Konvertierung
+### 4.2 Typabfrage
 
 Die Funktion is.character() kann verwendet werden, um abzufragen, ob eine Variable den Datentyp Character hat. 
 
