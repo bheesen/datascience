@@ -50,7 +50,7 @@ unclass(a)               # Uncodierte Variable vom Typ raw
 unclass(heute)
 ```
 
-## 1. Datentyp numeric, double und integer
+## 1. Datentyp numeric und integer
 
 ### 1.1 Numerische Variable ohne Nachkommastellen
 
@@ -159,6 +159,8 @@ Lassen Sie sich die Hilfe zu der Funktion as.Date anzeigen, um deren Funktion un
 ?as.Date                # Hilfe zu der Funktion as.Date()
 ```
 
+### 3.2 Übung
+
 Gegeben ist die Character-Variable g, die eine Datumsinformation enthält.
 
 ```{r 3_2, exercise=FALSE}
@@ -166,8 +168,6 @@ g <- "2022-01-01"        # Character Variable
 g
 class(g)
 ```
-
-### 3.2 Übung
 
 Konvertieren Sie die Variable g mit Hilfe der Funktion as.Date() in die Datumsvariable h. Lassen Sie sich anschließend den Datentyp und Wert anzeigen. Als Ergebnis sollte Date[1:1], format: "2022-01-01" angezeigt werden.
 
@@ -211,7 +211,6 @@ j<-Sys.time()            # Zeitvariable
 ```
 
 ```{r 3_6, exercise=FALSE}
-library(lubridate)       # Paket erforderlich
 date(j)                  # Datum
 year(j)                  # Jahr
 month(j)                 # Monat
@@ -246,7 +245,6 @@ j <- "Statistik ist toll"# Character Variable in doppelten Anführungszeichen
 ```
 
 ```{r 4_2, exercise=FALSE}
-library(stringr)         # Paket erforderlich
 str_detect(i,"toll")     # Prüfung, ob String enthalten ist
 str_detect(j,"toll")     # Prüfung, ob String enthalten ist
 str_locate(j,"toll")     # Start und Endeposition von String
