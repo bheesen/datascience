@@ -12,6 +12,7 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(learnr)
+library(lubridate)
 ```
 
 
@@ -37,6 +38,11 @@ str(heute)               # Datentyp und Wert der Variable
 ```
 
 Die Funktion unclass() kann verwendet werden, um anzuzeigen wie eine Variable intern (uncodiert durch den Datentyp vom Typ raw/roh) betrachtet und gespeichert wird.
+
+```{r 0_2-setup, exercise=FALSE, exercise.setup="0_2", echo=FALSE, include=FALSE}
+a <-  12                 # Numerische Variable 
+heute <- Sys.Date()      # Datumsvariable mit aktuellem Datum
+```
 
 ```{r 0_2, exercise=FALSE, dependson = -1}
 unclass(a)               # Uncodierte Variable vom Typ raw
@@ -168,7 +174,7 @@ Konvertieren Sie die Variable g mit Hilfe der Funktion as.Date() in die Datumsva
 g <- "2022-01-01"        # Character Variable 
 ```
 
-```{r 3_3, exercise=TRUE, dependson = -1}
+```{r 3_3, exercise=TRUE}
 
 ```
 
@@ -200,7 +206,7 @@ class(j)
 Das Paket lubridate bietet viele weitere Funktionen für Datums- und Zeitvariablen wie date(), year(), month(), day(), hour(), minute(), second(), week(), quarter(), am() und pm().
 
 ```{r 3_6, exercise=FALSE}
-require(lubridate)       # Paket erforderlich
+library(lubridate)       # Paket erforderlich
 date(j)                  # Datum
 year(j)                  # Jahr
 month(j)                 # Monat
