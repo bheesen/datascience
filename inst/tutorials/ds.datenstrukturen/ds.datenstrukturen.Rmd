@@ -43,12 +43,12 @@ Editieren Sie den Vektor b, korrigieren Sie die dritte Variable innerhalb des Ch
 
 Die Anzeige sollte hinterher wie folgt aussehen: ![Aktualisierter Character-Vektor](images/edit.jpg)
 
-```{r 0_2, exercise=TRUE, dependson= -1}
+```{r 0_2, exercise=TRUE}
 
 ```
 
 ```{r 0_2-hint}
-edit(b)
+Tippen Sie "edit(b)"
 ```
 
 ## 1. Vektor
@@ -66,7 +66,11 @@ a                                             # Ausgabe
 
 Auf einzelne Elemente eines Vektors kann durch Indizierung in eckigen Klammern zugegriffen werden, wobei die Indizierung bei 1 startet, z.B. a[2] gibt den zweiten Wert der Vektorvariablen mit dem Namen a aus, hier also -13. Wird in den Klammern kein Index angegeben, so werden alle Elemente ausgegeben. Es können auch mehrere Werte eines Vek-tors ausgegeben werden, z.B. die Elemente 2 bis 4 mit der Anweisung a[2:4]. Um alle außer gewissen Elementen anzuzeigen, kann ein dem Index vorangestelltes Minuszeichen verwendet werden, z.B. a[-2] zeigt alle Elemente außer dem 2. Element an. Eine Liste von Indizes kann mit der Funktion c() angegeben werden, z.B. a[c(1,3:4)] gibt das Element 1 und 3 bis 4 aus.
 
-```{r 1_2, exercise=FALSE, dependson= -1}
+```{r 1_2-setup, exercise=FALSE, exercise.setup="1_2", echo=FALSE, include=FALSE}
+a <- c(1.2, -13, 46, 1880.12, -2.5)           # Vektor Typ numerisch
+```
+
+```{r 1_2, exercise=FALSE}
 a[]                                           # Ausgabe 
 str(a)                                        # Ausgabe mit Typ und Länge
 a[2]                                          # Ausgabe 2. Element
@@ -78,14 +82,22 @@ a[c(1,3:4)]                                   # Ausgabe 1. & 3.-4. Element
 
 Die Ausgabe einer Reihenfolge von Elementen kann auch beliebig inklusive Wiederholungen einzelner Elemente kombiniert werden, z.B. um die Elemente 1, 3, 3, 1, 1, 5 auszugeben a[c(1,3,3,1,1,5)]. Die Angabe eines ungültigen Indizes bewirkt die Ausgabe NA, z.B. a[3:7] bewirkt für den Index 6 und 7 ein NA
 
-```{r 1_3, exercise=FALSE, dependson= c(-1,-2)}
+```{r 1_3-setup, exercise=FALSE, exercise.setup="1_3", echo=FALSE, include=FALSE}
+a <- c(1.2, -13, 46, 1880.12, -2.5)           # Vektor Typ numerisch
+```
+
+```{r 1_3, exercise=FALSE}
 a[c(1,3,3,1,1,5)]                             # Ausgabe beliebiger Elemente
 a[3:7]                                        # Ausgabe ungültiger Indizes 
 ```
 
 Auch eine Berechnung der Indizes ist möglich. Die Funktion length() gibt die Anzahl der Elemente eines Vektors zurück. Möchte man z.B. auf das vorletzte Element zugreifen, so kann man mit der Anweisung a[length(a)-1] arbeiten.
 
-```{r 1_4, exercise=FALSE, dependson= c(-1,-2,-3)}
+```{r 1_4-setup, exercise=FALSE, exercise.setup="1_4", echo=FALSE, include=FALSE}
+a <- c(1.2, -13, 46, 1880.12, -2.5)           # Vektor Typ numerisch
+```
+
+```{r 1_4, exercise=FALSE}
 length(a)                                     # Anzahl Elemente von Vektor
 a[length(a)-1]                                # Ausgabe vorletztes Element
 ```
@@ -106,7 +118,11 @@ b["rolf"]                                     # Ausgabe 2. Element```
 
 Auch ein logisches Indexing ist möglich, indem Bedingungen bestimmen, welche Elemente ausgewählt werden sollen, z.B. b[>2], b[b==1.3 | b>3] oder b[b<3.3 & b>2]. Eine weitere Option ist die Angabe von TRUE (soll ausgegeben werden) oder FALSE (soll nicht ausgegeben werden) für jedes Element, z.B. b[c(FALSE, TRUE, FALSE)], um nur das Element 2 auszugeben.
 
-```{r 1_6, exercise=FALSE, dependson= -1}
+```{r 1_6-setup, exercise=FALSE, exercise.setup="1_6", echo=FALSE, include=FALSE}
+b <- c(anna = 2.7, rolf = 1.3, heike = 4.0)   # Vektor mit Namen
+```
+
+```{r 1_6, exercise=FALSE}
 b[b>2]                                        # Ausgabe wenn >2
 b[b==1.3 | b>3]                               # Ausgabe wenn 1.3 oder >3
 b[b<3.3 & b>2]                                # Ausgabe wenn <3.3 und >2
@@ -324,7 +340,7 @@ Konvertieren Sie die Variable g mit Hilfe der Funktion as.Date() in die Datumsva
 g <- "2022-01-01"        # Character Variable 
 ```
 
-```{r 3_3, exercise=TRUE, dependson = -1}
+```{r 3_3, exercise=TRUE}
 
 ```
 
