@@ -1,7 +1,7 @@
 ---
 title: "Quiz-Template"
-author: "Bernd Heesen"
-date: "October 5th, 2021"
+author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
+date: "05.10.2021"
 output: 
   learnr::tutorial:
     progressive: true
@@ -55,6 +55,12 @@ question("Check all that you have NOT done:",
 ### How to include a video
 
 ![](https://www.youtube.com/watch?v=61v_f3RcgDM)
+
+## Picture
+
+### How to include a picture
+
+![Bildunterschrift: Datenstrukturen (Heesen, 2021)](images/datenstrukturen.png)
 
 ## Code chunk
 
@@ -112,7 +118,7 @@ mtcars
 **Hint:** You may want to use the "head" function.
 </div>
 head(mtcars, n = ?)
-
+```
 ```{r cars-hint-2}
 head(mtcars, n = 5)
 ```
@@ -147,28 +153,25 @@ random_answer_order = TRUE should be used as default to make tests different for
 * Extra
   * `options`: List of extra pieces of information to store.  For an example, `question_text` uses `options` to store the `trim` and `placeholder` values.
 
-```{r quiz}
+```{r 7_1, echo = FALSE}
 quiz(
-  question("Which package contains functions for installing other R packages?",
-    answer("base"),
-    answer("tools"),
-    answer("utils", correct = TRUE),
-    answer("codetools")
+  question("Welche der folgenden Aussagen sind korrekt?", allow_retry = TRUE, random_answer_order = TRUE,
+    answer("a<-12 erzeugt eine numerische Variable.", correct = TRUE),
+    answer("b<-'23,67' erzeugt eine numerische Variable.", message = "Nein, die Verwendung von Hochkommata erzeugt eine character-Variable."),
+    type = "multiple"
   ),
-  question("Which of the R packages listed below are used to create plots?",
-    answer("lattice", correct = TRUE),
-    answer("tools"),
-    answer("stats"),
-    answer("grid", correct = TRUE)
+  question("Welche der folgenden Aussagen sind korrekt?", allow_retry = TRUE, random_answer_order = TRUE,
+    answer("class(a) gibt den Inhalt der Klasse aus.", message = "Nein, die Funktion class() zeigt den Datentyp an."),
+    answer("str(a) zeigt den Wert, die Attribute und den Datentyp von a an.", correct = TRUE),
+    answer("System.date() gibt das aktuelle Datum an.", message = "Nein, die Funktion Sys.Date() gibt das aktuelle Datum an."),
+    type = "multiple"
   ),
-  question("What number is the letter A in the English alphabet?",
-  answer("8"),
-  answer("14"),
-  answer("1", correct = TRUE),
-  answer("23"),
-  allow_retry = TRUE,
-  try_again = "Versuchen Sie es ruhig erneut!"
-)
+  question("Welche der folgenden Aussagen sind korrekt?", allow_retry = TRUE, random_answer_order = TRUE,
+    answer("8"),
+    answer("14"),
+    answer("1", correct = TRUE),
+    answer("23")
+  )
 )
 ```
 
@@ -248,3 +251,9 @@ envir_prep	A copy of the R environment before the execution of the chunk.
 last_value	The last value of the evaluated chunk.
 engine	The engine value of the evaluated chunk.
 …	Unused (include for compatibility with parameters to be added in the future
+
+## Ende 
+
+Gratulation!
+
+Sie haben dieses Tutorial erfolgreich ausgeführt und einen Einblick in die Datentypen der Programmiersprache R erhalten.
