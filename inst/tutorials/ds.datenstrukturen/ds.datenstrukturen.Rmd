@@ -1,7 +1,7 @@
 ---
 title: "Datenstrukturen"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "16.10.2021"
+date: "18.10.2021"
 output: 
   learnr::tutorial:
     progressive: true
@@ -151,7 +151,7 @@ x
 x[c(2,4)]
 ```
 
-Teilen Sie für alle Elemente von Objekt x, welche größer als 100 sind, den Wert der Objekte durch 2. Speichern Sie das Ergebnis in dem Objekt y. Lassen Sie sich anschließend das Objekt y anzeigen.
+Teilen Sie für alle Elemente von Objekt x, welche größer als 10 sind, den Wert der Objekte durch 2. Speichern Sie das Ergebnis in dem Objekt y. Lassen Sie sich anschließend das Objekt y anzeigen.
 
 Die Anzeige sollte hinterher wie folgt aussehen: ![Vektor](images/vektor2.jpg)
 
@@ -169,20 +169,23 @@ y<-x[x>10]/2
 ```{r 1_10-hint-2}
 y
 ```
+
 ## 2. Faktorvariable
 
 Eine Faktorvariable ist ein atomarer Vektor vom Datentyp factor, in dem mehrere Werte eines Datentyps gespeichert werden können. Es handelt sich dabei um kategoriale Variablen mit einer vordefinierten Menge an Ausprägungen. Bei kategorialen Variablen wird unterscheiden zwischen nominalen Variablen wie Farbe oder Land (ohne Reihenfolge) und ordinalen Variablen wie Schulnoten (mit Reihenfolge von sehr gut bis ungenügend).
 
 Für jede vorkommende Ausprägung wird ein sogenanntes Label als Kombination des Wertes der Ausprägung und einem Zähler vergeben, so dass jede Ausprägung nur einmalig gespeichert werden muss. Die Labels werden standardmäßig entweder von der kleinsten Zahl zur größten Zahl (numerisch) oder alphabetisch (character) mit einer Integerzahl von 1 bis n durchnummeriert. Dies ist bei einer nominalen Faktorvariable auch in Ordnung. Bei einer ordinalen Faktorvariable dagegen ist es wichtig, dass die einer Ausprägung zugeordnete Integerzahl entsprechend der Reihenfolge entweder aufsteigend oder absteigend vergeben wird, damit die Integerwerte später z.B. für Korrelationsanalysen und Machine Learning verwendet werden können. 
-Eine derartige Vergabe der Integerzahlen wird durch die Verwendung der Parameter order und lebels erreicht, z.B. noten.ordinal <- factor(noten, order=TRUE, levels=c("sehr gut","gut","befriedigend","ausreichend","ungenügend")). Mit dem Parameter exclude=NULL werden auch Ausprägungen mit fehlenden Werten (NA) berücksichtigt.
+Eine derartige Vergabe der Integerzahlen wird durch die Verwendung der Parameter order und levels erreicht, z.B. noten.ordinal <- factor(noten, order=TRUE, levels=c("sehr gut","gut","befriedigend","ausreichend","ungenügend")). Mit dem Parameter exclude=NULL werden auch Ausprägungen mit fehlenden Werten (NA) berücksichtigt.
 
-Kommt ein Wert in der Faktorvariablen vor, so wird nicht der Wert selbst, sondern die zugeordnete Integerzahl für das Element hinterlegt. Da Integerzahlen minimalen Speicherplatz benötigen, reduziert sich so der Speicherbedarf für einen Vektor vom Typ factor, wenn Werte wiederholt vorkommen. 
+Kommt ein Wert in der Faktorvariablen vor, so wird nicht der Wert selbst, sondern die zugeordnete Integerzahl für das Element hinterlegt. Die Integerzahlen repräsentieren die Reihenfolge der Werte, wie sie mit dem levels-Parameter angegeben werden bzw. mit der Funktion levels() angezeigt werden. Da Integerzahlen minimalen Speicherplatz benötigen, reduziert sich so der Speicherbedarf für einen Vektor vom Typ factor, wenn Werte wiederholt vorkommen. 
 
 ### 2.1 Faktorvariable erzeugen
 
 Eine Faktorvariable lässt sich mit der Funktion factor() erstellen, z.B. für die Nominale Variable torschuetze <- factor(c("Robert", "Timo", "Marco", "Timo", "Robert", "Robert")). 
 Alternativ kann auch die Funktion as.factor() aus einem bereits existierenden Vektor eine Faktorvariable erstellen, z.B. aa <- as.factor(a). 
-In beiden Fällen hat R den Datentyp nicht automatisch erkennen müssen, sondern die Funktion factor() bzw. as.factor() hat bestimmt, dass eine Faktorvariable erzeugt werden soll. Der Parameter order=TRUE bestimmt, ob die Funktion class() factor oder ordered factor zurückgibt. Für ordinale Variablen sollte der Parameter order=TRUE verwendet werden.
+In beiden Fällen hat R den Datentyp nicht automatisch erkennen müssen, sondern die Funktion factor() bzw. as.factor() hat bestimmt, dass eine Faktorvariable erzeugt werden soll. 
+
+Der Parameter order=TRUE bestimmt, ob die Funktion class() den Datentyp "factor" oder "ordered factor" zurückgibt. Für ordinale Variablen sollte der Parameter order=TRUE verwendet werden.
 
 Die gesamte Faktorvariable kann durch Eingabe des Namens oder mit der Funktion str() ausgegeben werden und die Funktion levels() zeigt die Ausprägungen einer Faktorvariablen an.
 
@@ -204,13 +207,31 @@ str(unternehmen)                                 # Ausgabe mit Typ und Länge
 levels(unternehmen)                              # Levels anzeigen
 ```
 
+Erzeugen Sie eine neue Faktorvariable mit dem Namen module.ws.ansbach und den Inhalten "Statistik", "Programmieren 1", und "EBusiness". Lassen Sie sich dann mit einem Funktionsaufruf den Inhalt, den Datentyp und die Länge der Variablen module.ws.ansbach anzeigen und anschließend auch noch die Ausprägungen der Levels.
+
+Die Anzeige sollte hinterher wie folgt aussehen: ![Faktor](images/faktor1.jpg)
+
+```{r 2_1, exercise=TRUE}
+
+```
+
+```{r 2_1-hint-1}
+module.wif.ansbach <- factor(c("Statistik", "Programmieren 1", "EBusiness"))
+```
+```{r 2_1-hint-2}
+str(module.wif.ansbach)                          # Ausgabe mit Typ und Länge
+```
+```{r 2_1-hint-3}
+levels(module.wif.ansbach)                       # Levels anzeigen
+```
+
 ### 2.2 Häufigkeiten
 
 Wenn Sie eine Faktorvariable anlegen, in der Sie die Wochentage festhalten, an denen Sie diesen Monat Sport getrieben haben, so können Sie dies mit der Anweisung tag <- factor(c("Mittwoch", "Montag", "Mittwoch", "Dienstag", "Mittwoch")) erledigen. Alternativ können Sie auch zunächst eine Charactervariable anlegen und diese dann in eine Faktorvariable konvertieren.
 
 Mit der Funktion table() kann man sich die Häufigkeiten der vorkommenden Werte in einem Vektor anzeigen zu lassen, in diesem Falle mit table(tag). Die Reihenfolge bei der Auflistung der Häufigkeiten erfolgt in der Reihenfolge, in welcher die Levels in der Faktorvariablen vorkommen (bei numerischen Inhalten aufsteigend, bei Zeichenketten alphabetisch sortiert).
 
-```{r 2_1, exercise=FALSE}
+```{r 2_2, exercise=FALSE}
 tag <- c("Mittwoch", "Montag", "Mittwoch", "Dienstag", "Mittwoch") # Vektor
 table(tag)                                    # Häufigkeit
 tag1 <- factor(tag)                           # Faktorisierter Vektor
@@ -220,9 +241,9 @@ table(tag1)                                   # Häufigkeit
 
 ### 2.3 Nominale und Ordinale Faktorvariablen
 
-Der Parameter order=TRUE bestimmt, ob die Funktion class() factor oder ordered factor zurückgibt. Für ordinale Variablen sollte der Parameter order=TRUE verwendet werden.
+Der Parameter order=TRUE bestimmt, ob die Funktion class() den Datentyp "factor" oder "ordered factor" zurückgibt. Für ordinale Variablen sollte der Parameter order=TRUE verwendet werden.
 
-```{r 2_2, exercise=FALSE}
+```{r 2_3, exercise=FALSE}
 noten<-c("sehr gut",NA,"ungenügend","ausreichend","gut","gut",NA) #Vektor
 noten                                         # Ausgabe Charactervektor
 #-Konvertierung in Nominale Faktorvariable---------------------------------
@@ -250,179 +271,291 @@ str(noten.ordinal)                            # Ausgabe mit Typ und Länge
 table(noten.ordinal)
 ```
 
-### 2.4 xxx
+### 2.4 Reihenfolge der Levels
 
 Wenn Sie jetzt aber gerne eine spezifische Reihenfolge bevorzugen, z.B. die Abfolge der Wochentage innerhalb einer Woche, dann können Sie die Reihenfolge auch ändern bzw. spezifisch vorgeben. Für diesen Zweck gibt es die Funktionen fct_inorder() (sortiert nach Reihenfolge des Vorkommens), fct_infreq() (sortiert nach Häufigkeit) und fct_inseq() (sortiert numerisch). Die Funktion fct_inseq() setzt voraus, dass die Inhalte numerisch sind, sonst wird eine Fehlermeldung veranlasst. Diese Funktionen sind in dem Paket forcats enthalten.
 
 Die Reihenfolge der Levels kann auch ganz individuell vorgegeben werden, wenn der Parameter levels in der Funktion factor() verwendet wird, z.B. wochentage <- factor(tag, levels = c("Montag","Dienstag","Mittwoch")). Jetzt entspricht die Reihenfolge der Levels der Abfolge innerhalb einer Woche von Montag, Dienstag zu Mittwoch. Eine Ausgabe der Häufigkeiten erfolgt dann entsprechend der Wochentage. Sollen Levels nicht in den Daten vorkommen, so können Sie mit der Funktion droplevels() entfernt werden, z.B. autos <- droplevels(autos).
 
-```{r 2_3, exercise=FALSE}
-
-```
-
-### 2.5 xxx
-
-xxx
-
 ```{r 2_4, exercise=FALSE}
-
-```
-
-
-
-```{r 2_x, exercise=TRUE}
-a <- 12                  # Numerische Variable
-e <- TRUE                # Boolsche Variable 
-
-```
-
-```{r 2_x-hint-1}
-is.numeric(a)
-is.logical(a)
-```
-```{r 2_x-hint-2}
-is.numeric(e)
-is.logical(e)
+f <- factor(c("b", "b", "a", "c", "c", "c"))
+f
+fct_inorder(f)
+fct_infreq(f)
+f <- factor(1:3, levels = c("3", "2", "1"))
+f
+fct_inseq(f)
 ```
 
 ## 3. Liste
 
-R hat eine spezielle Art Datums- und Zeitvariablen zu verarbeiten. Der Datentyp der Datumsvariablen ist Date und der von Zeitvariablen ist POSIXct und POSIXlt. Alle Zeitinformationen werden als die Zeit in Tagen, Stunden oder Sekunden gespeichert, die seit dem 1.1.1970 vergangen ist. Für Zeiten vor diesem Datum gibt eine negative Zahl die Tage bzw. Sekunden bis zum 1.1.1970 an. 
+Eine Verknüpfung von mehreren Vektoren ist in einer Liste möglich, die mit der Funktion list() erzeugt werden kann. Dabei muss es sich keinesfalls um eine Repräsentation einer Tabelle mit Zeilen und Spalten handeln, denn die verknüpften Vektoren können im Gegensatz zu Matrizen, Arrays, Dataframes und Tibbles eine unterschiedliche Länge besitzen.
 
-Die Funktion Sys.Date() kann verwendet werden, um das aktuelle Datum anzuzeigen. Mit der Anweisung unclass(Sys.Date()) wird Ihnen die interne Darstellung des aktuellen Datums angezeigt und dies ist die Zahl der Tage, die seit dem 1.1.1970 vergangen sind. Mit der Funktion Sys.time() lässt sich auch die aktuelle Uhrzeit anzeigen. Die Anweisung unclass(Sys.time()) zeigt dann die Zahl der Sekunden an, die seit dem 1.1.1970 vergangen sind.
+Im folgenden Beispiel werden drei Vektoren unterschiedlichen Datentyps zu einer Liste zusammengefügt und auf die Elemente der Liste über Index (Syntax: Objekt[Index]) und Name (Syntax: Objekt$Elementname oder Objekt[[“Elementname“]]) zugegriffen. Die Ausgabe bei Zugriff über Index ist eine Liste während die Ausgabe bei Zugriff über Name ein Vektor sein wird.
+
 
 ```{r 3, exercise=FALSE}
-f <- Sys.Date()          # Datumsvariable
-str(f)
-unclass(f)
-t <- Sys.time()          # Uhrzeitvariable
-str(t)
-unclass(t)
-```
-
-### 3.1 Konvertierung in Datumsvariable
-
-Die Hilfe zu einer Funktion in R kann über ein dem Funktionsnamen vorangestelltes Fragezeichen erfolgen, z.B. ?ggplot, um die Hilfe zu der Funktion ggplot angezeigt zu bekommen. In der Hilfe werden u.a. auch die Parameter einer Funktion vorgestellt.
-
-Lassen Sie sich die Hilfe zu der Funktion as.Date anzeigen, um deren Funktion und Parameter besser zu verstehen. Dies kann in R-Studio oder in einem separaten Browser-Fenster angezeigt werden.
-
-```{r 3_1, exercise=TRUE}
-
-```
-
-```{r 3_1-hint-1}
-?as.Date                # Hilfe zu der Funktion as.Date()
-```
-
-Gegeben ist die Character-Variable g, die eine Datumsinformation enthält.
-
-```{r 3_2, exercise=FALSE}
-g <- "2022-01-01"        # Character Variable
-g
-class(g)
-```
-
-### 3.2 Übung
-
-Konvertieren Sie die Variable g mit Hilfe der Funktion as.Date() in die Datumsvariable h. Lassen Sie sich anschließend den Datentyp und Wert anzeigen. Als Ergebnis sollte Date[1:1], format: "2022-01-01" angezeigt werden.
-
-```{r 3_3-setup, exercise=FALSE, exercise.setup="3_3", echo=FALSE, include=FALSE}
-g <- "2022-01-01"        # Character Variable 
-```
-
-```{r 3_3, exercise=TRUE}
-
-```
-
-```{r 3_3-hint-1}
-h <- as.Date(g)          # Konvertierung in Datumsvariable
-```
-```{r 3_3-hint-2}
-str(h)
-```
-
-### 3.3 Demo
-
-Sie können bei der Funktion as.Date() über den Parameter format auch ein ganz spezifisches Format für die Konvertierung festlegen. Die Konvertierung in eine Datumsvariable ist für beliebige Datumsformate mit dem Parameter format möglich, z.B. as.Date("04.01.2021", format= "%d.%m.%Y").
-
-```{r 3_4, exercise=FALSE}
-i <- as.Date("16.10.2021", format= "%d.%m.%Y") # Konvertierung jeden Formates
-str(i)
-```
-
-### 3.4 Zeitvariable
-
-Die Funktion Sys.time() erlaubt die Abfrage der aktuellen Uhrzeit.
-
-```{r 3_5, exercise=FALSE}
-j<-Sys.time()            # Zeitvariable
-class(j)
-```
-
-Das Paket lubridate bietet viele weitere Funktionen für Datums- und Zeitvariablen wie date(), year(), month(), day(), hour(), minute(), second(), week(), quarter(), am() und pm().
-
-```{r 3_6, exercise=TRUE}
-date(j)                  # Datum
-year(j)                  # Jahr
-month(j)                 # Monat
-day(j)                   # Tag
-hour(j)                  # Stunde
-minute(j)                # Minute
-second(j)                # Sekunde
-week(j)                  # Woche
-quarter(j)               # Quartal
-am(j)                    # AM-Uhrzeit TRUE/FALSE
-pm(j)                    # PM-Uhrzeit TRUE/FALSE
+x1 <- c("Hans", "Silke")                      # Vektor x1 (Freunde)
+x2 <- c(42, 5, 7, 356)                        # Vektor X2 (Spende in Euro)
+x3 <- c(TRUE, FALSE, FALSE, FALSE, TRUE)      # Vektor X3 (Ergebnis Münzwurf)
+liste <- list(Freund=x1, Spende=x2, Kopf=x3)  # Liste
+liste                                         # Ausgabe 
+str(liste)                                    # Ausgabe mit Typ und Länge
+a <- liste[2]                                 # Ausgabe über Index erzeugt Liste
+str(a)
+b <- liste$Spende                             # Ausgabe über Name erzeugt Vektor
+str(b)
+c <- liste[["Spende"]]                        # Ausgabe über Name erzeugt Vektor
+str(c)
 ```
 
 ## 4. Matrix und Array
 
-Zeichenketten bzw. Strings werden in einfache ‘ ‘ oder doppelte “ “ Anführungszeichen gesetzt und sind vom Typ character bzw. chr.
+Matrizen, Arrays, Dataframes und Tibbles sind mehrdimensionale Vektoren. Matrizen, Dataframes und Tibbles sind wie Tabellen und haben zwei Dimensionen, Zeilen und Spalten, während Arrays beliebig viele Dimensi-onen haben können. Matrizen und Arrays sind atomare Vektoren und können nur Elemente eines Datentyps enthalten. Dataframes und Tibbles dagegen können beliebig viele Datentypen enthalten.
+
+### 4.1 Matrix
+
+Eine Matrix kann erzeugt werden, indem einem eindimensionalen Vektor mit der Funktion dim() die Dimensionsattribute (Spalten, Zeilen) zugeordnet werden. Eine andere Option ist es mehrere eindimensionale Vektoren mit den Funktionen cbind() (column bind verbindet die Vektoren als Spalten nebeneinander) oder rbind() (row bind verbindet die Vektoren als Zeilen untereinander) zu einer Matrix zusammenzuführen. Es gibt aber auch die Funktion matrix(), um eine Matrix anzulegen.
+Mit der Funktion dim() können für alle mehrdimensionalen Vektoren auch die Dimensionen (Zeilen, Spalten) angezeigt werden. Wird die Funktion dim() auf eindimensionale Vektoren angewendet, so wird als Ergebnis NULL zurückgegeben.
+
 
 ```{r 4_1, exercise=FALSE}
-i <- 'Erste Zeichenkette'# Character Variable in einfachen Anführungszeichen
-str(i)
-j <- "Statistik ist toll"# Character Variable in doppelten Anführungszeichen
-str(j)
+zahlen <- 1:15                            # Vektor
+zahlen                                    # Ausgabe
+dim(zahlen)                               # Dimensionen
+class(zahlen)                             # Datentyp
+dim(zahlen) <- c(3,5)                     # Matrix
+zahlen                                    # Ausgabe
+dim(zahlen)                               # Dimensionen
+class(zahlen)                             # Datentyp
+str(zahlen)                               # Ausgabe mit Typ, Dimension und Länge
+matrix1 <- matrix(1:15, 3, 5)             # Matrix
+matrix1                                   # Ausgabe
+dim(matrix1)                              # Dimensionen
+str(matrix1)                              # Ausgabe mit Typ, Dimension und Länge
+zahlen1 <- 1:3                            # Vektor
+zahlen2 <- 4:6                            # Vektor
+zahlen3 <- 7:9                            # Vektor
+zahlen4 <- 10:12                          # Vektor
+zahlen5 <- 13:15                          # Vektor
+matrix2 <- cbind(zahlen1, zahlen2, zahlen3, zahlen4, zahlen5) # Matrix
+matrix2                                   # Ausgabe
+str(matrix2)                              # Ausgabe mit Typ, Dimension und Länge
+zahlen6 <- 1:5                            # Vektor
+zahlen7 <- 6:10                           # Vektor             
+zahlen8 <- 11:15                          # Vektor
+matrix3 <- rbind(zahlen6, zahlen7, zahlen8) # Matrix
+matrix3                                   # Ausgabe
+str(matrix3)                              # Ausgabe mit Typ, Dimension und Länge
 ```
 
-### 4.1 Funktionen des Pakets stringr
+### 4.2 Array
 
-Werden Variablen vom Typ Character bearbeitet, so bietet das Paket stringr einige Funktionen an, z.B. die Funktion str_detect(), str_locate(), um nach Zeichenketten bzw. Wörtern zu suchen, oder str_count(), um die Häufigkeit einer Zeichenkette zu ermitteln.
+Ein Array kann mit der Funktion array() angelegt werden und unter-scheidet sich nur von einer Matrix durch die beliebige Anzahl an Dimensionen. Arrays eignen sich zum Anlegen von sogenannten DataCubes, mit deren Hilfe Auswertungen sehr performant erfolgen können. In folgendem Beispiel soll ein Array mit den drei Dimensionen Quartal 1-4, Produktgruppe 1-9 und Vertriebsregion für Land 1-5 genutzt werden, um die Umsatzzahlen je Produktgruppe und Land für jedes der Quartale zu hinterlegen. Der Einfachheit halber wurden die Umsatzzahlen mit 1 bis 180 bestimmt.
 
 ```{r 4_2, exercise=FALSE}
-str_detect(i,"toll")     # Prüfung, ob String enthalten ist
-str_detect(j,"toll")     # Prüfung, ob String enthalten ist
-str_locate(j,"toll")     # Start und Endeposition von String
-str_count(j,"toll")      # Anzahl des Vorkommens von String
+array1 <- array(1:180, dim=c(4,9,5))      # Array: Quartal, Produktgruppe, Land
+array1                                    # Ausgabe 
+str(array1)                               # Ausgabe mit Typ, Dimension und Länge
+dim(array1)                               # Dimensionen
+array1[1,,]                               # Dim 1=1
+array1[1,2,]                              # Dim 1=1, Dim 2=2
+array1[1,2,4]                             # Dim 1=1, Dim 2=2, Dim 3=4
+array1[,1,]                               # Dim 2=1
+array1[,,1]                               # Dim 3=1
 ```
 
-### 4.2 Typabfrage und Konvertierung
+### 4.2 Übung
 
-Die Funktion is.character() kann verwendet werden, um abzufragen, ob eine Variable den Datentyp Character hat. 
+Legen Sie das Array mit dem Namen demo mit vier Dimensionen an, wobei die erste Dimension 2, die zweite Dimension 3, die dritte Dimension 4 und die vierte Dimension 5 Werte beinhalten soll. Füllen Sie das Array mit den Zahlen 1 bis 120.
+Lassen Sie sich anschließend alle Werte für die zweite Dimension und vierte Dimension anzeigen, bei denen Dimension 1=1 und Dimension 3=3.
 
-```{r 4_3, exercise=FALSE}
-k <- "27.62"             # Character Variable
-str(k)                   # str() zeigt Datentyp und Inhalt gleichzeitig
-l <- is.character(k)     # Logische Frage ob Datentyp == character
-str(l)
+Die Anzeige sollte hinterher wie folgt aussehen: ![Array](images/array1.jpg)
+
+```{r 4_3, exercise=TRUE}
+
+```
+```{r 4_3-hint-1}
+demo <- array(1:120, dim=c(2,3,4,5)) 
+```
+```{r 4_3-hint-2}
+demo[1,,3,]
 ```
 
 ## 5. Dataframe und Tibble
 
-Wenn der Datentyp konvertiert werden soll, so ist dies mit den Funktionen as.numeric(), as.logical(), as.character() und as.Date() möglich. Die Funktion as.numeric() ermöglicht beispielsweise die Konvertierung in eine Variable vom Typ numeric.
+Die vielleicht beliebtesten Datenstrukturen sind der Dataframe und das Tibble. Oft sollen in Tabellen mehrere Dimensionen und verschiedene Datentypen der Elemente abgelegt werden. Für diesen Zweck ist ein Dataframe oder ein Tibble geeignet. 
+
+### 5.1 Dataframe
+
+Ein Dataframe kann mit der Funktion data.frame() erstellt werden. Einzelne Spalten eines Dataframes können über Index oder mit Hilfe des $-Operators mit der Syntax Dataframename$Spaltenname oder Dataframename[[“Spaltenname“]] angesprochen werden. In Verbindung mit dem Pipe-Operator (%>%) ist dem $ bzw. [[ noch ein Punkt voranzustellen. Soll ein Element eines Dataframes über Indizes adressiert werden, ist eine Notation der Form dataframe[zeile,spalte] möglich. Indizes können auch weggelassen werden und so zum Beispiel mit df[,3] die dritte Spalte des Dataframes, also die Variable Alter, ausgeben. Davon abhängig ob auf einen Dataframe über Index (Syntax: Objekt[Index]) oder Name (Syntax: Objekt$Elementname oder Objekt[[“Elementname“]]) zugegriffen wird, entscheidet sich der Objekttyp, der zurückgegeben wird. Die Ausgabe bei Zugriff über Index ist ein Dataframe während die Ausgabe bei Zugriff über Name ein Vektor sein wird.
 
 ```{r 5, exercise=FALSE}
-k <- "27.62"             # Character Variable
-str(k)                   # str() zeigt Datentyp und Inhalt gleichzeitig
-m <- as.numeric(k)       # Konvertierung zu numerisch 
-m                        # Wert anzeigen
-str(m)                   # Anzeige Typ, Wert, Attribute
+x1 <- c("Tobi","Silke","Klaus","Tobi")   # Vektor x1 (Freunde)
+x2 <- c(42, 356, 123, 200)               # Vektor X2 (Facebook Freunde)
+x3 <- c(53, 22, 31, 26)                  # Vektor X3 (Alter)
+df <- data.frame(Freund=x1, Facebook=x2, Alter=x3)  # Dataframe
+df2 <- df                                # Kopie des Dataframes
+df                                       # Ausgabe
+class(df)                                # Datentyp
+str(df)                                  # Ausgabe mit Typ, Dimension und Länge
+```
+
+Folgende Funktionen sind sowohl für Dataframes als auch für Tibbles anwendbar. Die Dimensionen (Zeilen, Spalten) können mit der Funktion dim() ausgegeben werden. Um nur die Anzahl der Zeilen zu ermitteln, kann die Funktion nrow() verwendet werden. Gleichermaßen funktioniert die Funktion ncol(), um die Anzahl der Spalten zu ermitteln. Die Namen der Spalten (Variablen) eines Dataframes können mit der Funktion names() angezeigt werden. Mit den Funktionen colnames() und rownames() kann man den Spalten und Zeilen Namen zuweisen (die Zuweisung von Zeilennamen funktioniert für Tibbles nicht).
+
+```{r 5_1-setup, exercise=FALSE, exercise.setup="5_1", echo=FALSE, include=FALSE}
+x1 <- c("Tobi","Silke","Klaus","Tobi")   # Vektor x1 (Freunde)
+x2 <- c(42, 356, 123, 200)               # Vektor X2 (Facebook Freunde)
+x3 <- c(53, 22, 31, 26)                  # Vektor X3 (Alter)
+df <- data.frame(Freund=x1, Facebook=x2, Alter=x3)  # Dataframe
+```
+
+```{r 5_1, exercise=TRUE}
+dim(df)                            # Dimension (Zeilen,Spalten)
+nrow(df)                           # Zeilenanzahl
+ncol(df)                           # Spaltenanzahl
+object.size(df)                    # Größe des Dataframe in Bytes
+names(df)                          # Namen der Spalten
+colnames(df)[2] <- "fb"            # Spalte 2 umbenennen
+colnames(df)[names(df)=="Freund"] <- "Name"   # Spalte "Freund" umbenennen
+rownames(df) <- c("F-1", "F-2", "F-3", "F-4") # Zeilen benennen
+df
+```
+
+### 5.2 Zugriff auf Dataframe
+
+```{r 5_2-setup, exercise=FALSE, exercise.setup="5_2", echo=FALSE, include=FALSE}
+x1 <- c("Tobi","Silke","Klaus","Tobi")   # Vektor x1 (Freunde)
+x2 <- c(42, 356, 123, 200)               # Vektor X2 (Facebook Freunde)
+x3 <- c(53, 22, 31, 26)                  # Vektor X3 (Alter)
+df <- data.frame(Freund=x1, Facebook=x2, Alter=x3)  # Dataframe
+```
+
+```{r 5_2, exercise=TRUE}
+a <- df[2]                         # Ausgabe Spalte 2 über Index erzeugt Dataframe
+str(a)
+b <- df$Facebook                   # Ausgabe Spalte 2 über Name erzeugt Vektor
+str(b)
+c <- df[["Facebook"]]              # Ausgabe Spalte 2 über Name erzeugt Vektor
+str(c)
+d <- df %>% .$Facebook             # Ausgabe Spalte 2 mit Name und Pipe -> Vektor
+str(d)
+e <- df %>% .[["Facebook"]]        # Ausgabe Spalte 2 mit Name und Pipe -> Vektor
+str(e)
+df[3,2]                            # Ausgabe Zeile 3 Spalte 2 mit Index
+df[3,]                             # Ausgabe Zeile 3 mit Index
+df[df$Freund == "Silke",]          # Ausgabe Zeile 2 mit logischen index
+```
+
+Um einen schnellen Überblick über einen Dataframe oder ein Tibble zu erhalten, ist die Funktion head() geschickt, welche die ersten 6 Datensätze anzeigt, oder mit konkreter Angabe einer Zahl auch eine beliebige andere Anzahl, z.B. head(df, 10), um die ersten zehn Datensätze anzuzeigen. Um die letzten n Datensätze anzuzeigen, kann die Funktion tail(df, n) verwendet werden.
+
+Hilfreich ist auch die Funktion summary(), um sich einen Überblick über die Daten zu verschaffen. Sie liefert für jede Variable, abhängig von deren Typ (num, char, factor...) einen anderen Output. Für numerische (num, int) Daten zeigt sie Minimum, unteres Quartil, Median, arithmetisches Mittel, oberes Quartil und Maximum an. Diese Information hilft zu verstehen, wie die Daten verteilt sind. Für Faktorvariablen (kategoriale Variablen) zeigt die Funktion die absolute Häufigkeit jedes Levels, also jeder Ausprägung, an.
+
+```{r 5_3-setup, exercise=FALSE, exercise.setup="5_3", echo=FALSE, include=FALSE}
+x1 <- c("Tobi","Silke","Klaus","Tobi")   # Vektor x1 (Freunde)
+x2 <- c(42, 356, 123, 200)               # Vektor X2 (Facebook Freunde)
+x3 <- c(53, 22, 31, 26)                  # Vektor X3 (Alter)
+df <- data.frame(Freund=x1, Facebook=x2, Alter=x3)  # Dataframe
+colnames(df)[names(df)=="Freund"] <- "Name"   # Spalte "Freund" umbenennen
+```
+
+```{r 5_3, exercise=TRUE}
+df                                 # Ausgabe
+head(df)                           # Ausgabe der ersten Datensätze
+head(df, 3)                        # Ausgabe der ersten 3 Datensätze
+tail(df, 2)                        # Ausgabe der letzten 2 Datensätze
+summary(df)                        # Zusammenfassung
+table(df$Name)                     # Häufigkeit der Namen von Freunden
+df$Name <- as.factor(df$Name)      # Konvertierung Freund von chr->factor
+summary(df)                        # Zusammenfassung (factor anders)
+```
+
+### 5.3 Tibble
+
+Neben Dataframes erlauben auch Tibbles, als moderne und aktualisierte Form eines Dataframes, das Ablegen verschiedener Datentypen in einer zweidimensionalen Tabellenform. Ein Tibble ist vom Datentyp tbl_df und die Installation des Pakets tibble oder tidyverse ist erforderlich, um diesen Datentyp zu verwenden. Im Gegensatz zu Dataframes konvertieren Tibbles die Datentypen von Variablen nicht in Vektoren, wenn nur noch eine Spalte verbleibt (das passiert bei Dataframes) und sie lassen sich etwas komfortabler ausgeben. Mit der Funktion as_tibble() können Dataframes, Listen, Matrizen oder Tabellen in ein Tibble konvertiert werden. Um ein Tibble anzulegen, ist auch die Funktion tibble() anwendbar. Wenn jedoch eine Funktion nur mit dem Datentyp Dataframe funktioniert, dann erlaubt die Funktion as.data.frame() einen Tibble auch in einen Dataframe zu konvertieren.
+
+```{r 5_4-setup, exercise=FALSE, exercise.setup="5_4", echo=FALSE, include=FALSE}
+x1 <- c("Tobi","Silke","Klaus","Tobi")   # Vektor x1 (Freunde)
+x2 <- c(42, 356, 123, 200)               # Vektor X2 (Facebook Freunde)
+x3 <- c(53, 22, 31, 26)                  # Vektor X3 (Alter)
+df2<- data.frame(Freund=x1, Facebook=x2, Alter=x3)  # Dataframe
+```
+
+```{r 5_4, exercise=TRUE}
+tbl <- as_tibble(df2)              # Tibble
+tbl                                # Ausgabe
+class(tbl)                         # Datentyp
+tbl2 <- tibble(Freund=x1, Facebook=x2, Alter=x3)  # Tibble
+tbl2                               # Ausgabe
+class(tbl2)                        # Datentyp
+str(tbl)                           # Ausgabe mit Typ, Dimension und Länge
+object.size(tbl)                   # Größe des Tibble in Bytes
+names(tbl)                         # Namen der Spalten
+colnames(tbl)[2] <- "fb"           # Spalte 2 umbenennen
+colnames(tbl)[names(tbl)=="Freund"] <- "Name"   # Spalte "Freund" umbenennen
+rownames(tbl) <- c("F-1", "F-2", "F-3", "F-4")  # Zeilen benennen NICHT in Tibble
+tbl                                # Ausgabe
+```
+
+Um einen schnellen Überblick über einen Dataframe oder ein Tibble zu erhalten, ist die Funktion head() geschickt, welche die ersten 6 Datensätze anzeigt, oder mit konkreter Angabe einer Zahl auch eine beliebige andere Anzahl, z.B. head(df, 10), um die ersten zehn Datensätze anzuzeigen. Um die letzten n Datensätze anzuzeigen, kann die Funktion tail(df, n) verwendet werden.
+
+Hilfreich ist auch die Funktion summary(), um sich einen Überblick über die Daten zu verschaffen. Sie liefert für jede Variable, abhängig von deren Typ (num, char, factor...) einen anderen Output. Für numerische (num, int) Daten zeigt sie Minimum, unteres Quartil, Median, arithmetisches Mittel, oberes Quartil und Maximum an. Diese Information hilft zu verstehen, wie die Daten verteilt sind. Für Faktorvariablen (kategoriale Variablen) zeigt die Funktion die absolute Häufigkeit jedes Levels, also jeder Ausprägung, an.
+
+```{r 5_5-setup, exercise=FALSE, exercise.setup="5_5", echo=FALSE, include=FALSE}
+x1 <- c("Tobi","Silke","Klaus","Tobi")   # Vektor x1 (Freunde)
+x2 <- c(42, 356, 123, 200)               # Vektor X2 (Facebook Freunde)
+x3 <- c(53, 22, 31, 26)                  # Vektor X3 (Alter)
+df2<- data.frame(Freund=x1, Facebook=x2, Alter=x3)  # Dataframe
+tbl <- as_tibble(df2)              # Tibble
+tbl2 <- tibble(Freund=x1, Facebook=x2, Alter=x3)  # Tibble
+colnames(tbl)[names(tbl)=="Freund"] <- "Name"   # Spalte "Freund" umbenennen
+```
+
+```{r 5_5, exercise=TRUE}
+head(tbl)                          # Ausgabe der ersten Datensätze
+head(tbl, 3)                       # Ausgabe der ersten 3 Datensätze
+tail(tbl, 2)                       # Ausgabe der letzten 2 Datensätze
+summary(tbl)                       # Zusammenfassung
+table(tbl$Name)                    # Häufigkeit der Namen von Freunden
+tbl$Name <- as.factor(tbl$Name)    # Konvertierung Freund von chr->factor
+summary(tbl)                       # Zusammenfassung (factor anders)
+#-  Tibble in Dataframe konvertieren----------------------------------------------
+df3 <- as.data.frame(tbl)          # Konvertiert Tibble in Dataframe
+class(df3)                         # Datentyp
+```
+
+### 5.4 Zugriff auf Tibble
+
+```{r 5_6-setup, exercise=FALSE, exercise.setup="5_6", echo=FALSE, include=FALSE}
+x1 <- c("Tobi","Silke","Klaus","Tobi")   # Vektor x1 (Freunde)
+x2 <- c(42, 356, 123, 200)               # Vektor X2 (Facebook Freunde)
+x3 <- c(53, 22, 31, 26)                  # Vektor X3 (Alter)
+df2<- data.frame(Freund=x1, Facebook=x2, Alter=x3)  # Dataframe
+tbl <- as_tibble(df2)              # Tibble
+tbl2 <- tibble(Freund=x1, Facebook=x2, Alter=x3)  # Tibble
+```
+
+```{r 5_6, exercise=TRUE}
+str(tbl)                           # Ausgabe mit Typ, Dimension und Länge
+a <- tbl[2]                        # Ausgabe Spalte 2 über Index erzeugt Tibble
+str(a)
+b <- tbl$Facebook                  # Ausgabe Spalte 2 über Name erzeugt Vektor
+str(b)
+c <- tbl[["Facebook"]]             # Ausgabe Spalte 2 über Name erzeugt Vektor
+str(c)
+d <- tbl %>% .$Facebook            # Ausgabe Spalte 2 mit Name und Pipe -> Vektor
+str(d)
+e <- tbl %>% .[["Facebook"]]       # Ausgabe Spalte 2 mit Name und Pipe -> Vektor
+str(e)
+tbl[2]                             # Ausgabe Spalte 2 mit Index
+tbl[3,2]                           # Ausgabe Zeile 3 Spalte 2 mit Index
+tbl[3,]                            # Ausgabe Zeile 3 mit Index
+tbl[tbl$Freund == "Silke",]        # Ausgabe Zeile 2 mit logischen index
 ```
 
 ## 6. Dynamische Datenstrukturen
 
-Variablen können neben dem Wert auch Attribute besitzen. Mit der Funktion attributes() kann man diese anzeigen lassen und mit der Funktion attr() Attribute ändern oder hinzufügen, z.B. wird der Variablen a mit der Anweisung attr(a, "Bedeutung") <- "Stückzahl verkauft" das Attribut Bedeutung hinzugefügt. Die Funktion str() kann verwendet werden, um sowohl den Datentyp, den Wert als auch die Attribute einer Variablen anzuzeigen.
+Manchmal ist es sinnvoll, wenn die Namen der Datenstrukturen erst während der Laufzeit des Programms bestimmt werden. Um einen Variablennamen neu zu erzeugen, kann die Funktion assign() verwendet werden und um den Inhalt einer Variablen abzufragen, dient die Funktion get().
 
 ```{r 6, exercise=FALSE}
 a <-  12                                       # Numerische Variable
@@ -438,32 +571,20 @@ str(a)                                         # Anzeige Typ, Wert, Attribute
 ```{r 7_1, echo = FALSE}
 quiz(
   question("Welche der folgenden Aussagen sind korrekt?", allow_retry = TRUE, random_answer_order = TRUE,
-    answer("a<-12 erzeugt eine numerische Variable.", correct = TRUE),
-    answer("b<-''23,67'' erzeugt eine numerische Variable.", message = "Nein, die Verwendung von Hochkommata erzeugt eine character-Variable."),
+    answer("a[2:4] gibt das 2.-4. Element des Vektors a aus.", correct = TRUE),
+    answer("b[<3.3 & >2] gibt alle Werte von b aus, die <3.3 und >2 sind.", message = "Nein, b[b<3.3 & b>2] gibt alle Werte von b aus, die <3.3 und >2 sind."),
     type = "multiple"
   ),
   question("Welche der folgenden Aussagen sind korrekt?", allow_retry = TRUE, random_answer_order = TRUE,
-    answer("class(a) gibt den Inhalt der Klasse aus.", message = "Nein, die Funktion class() zeigt den Datentyp an."),
-    answer("str(a) zeigt den Wert, die Attribute und den Datentyp von a an.", correct = TRUE),
-    answer("System.date() gibt das aktuelle Datum an.", message = "Nein, die Funktion Sys.Date() gibt das aktuelle Datum an."),
+    answer("fct_infreq(f) ordnet die Levels der Faktorvariablen f in der Reihenfolge ihres Vorkommens.", message = "Nein, fct_infreq(f) ordnet die Levels der Faktorvariablen f entsprechend der Häufigkeit ihres Vorkommens."),
+    answer("f <- factor(c(1,1,2,3,3,3)) legt eine Faktorvariable mit dem Namen f an.", correct = TRUE),
+    answer("table(f) gibt die Häufigkeit der Levels der Faktorvariablen f aus.", correct = TRUE),
     type = "multiple"
   ),
   question("Welche der folgenden Aussagen sind korrekt?", allow_retry = TRUE, random_answer_order = TRUE,
-    answer("as.integer() prüft, ob eine Variable vom Typ Integer ist.", message = "Nein, die Funktion konvertiert eine Variable zum Datentyp Integer."),
-    answer("Die Anweisung x <- 97,82 erzeugt eine Fehlermeldung", message = "Ja, die Fehlermeldung wird durch das falsche Dezimaltrennzeichen ',' anstatt des korrekten '.' verursacht.", correct = TRUE),
-    answer("e<-T erzeugt eine logische Variable mit dem Wert TRUE", correct = TRUE),
-    answer("Die Funktionen is.numeric(), is.logical() und is.character() prüfen, ob eine Variable vom Typ numeric, logical oder character ist und geben Yes bzw. No als Wert zurück.", message = "Nein, die Funktionen prüfen den Typ, geben aber TRUE bzw. FALSE zurück.")
-  ),
-  question("Welche der folgenden Aussagen sind korrekt?", allow_retry = TRUE, random_answer_order = TRUE,
-    answer("POSIXct ist der Datentyp für Datums- und Zeitangaben.", correct = TRUE),
-    answer("Die Funktion as.Date() konvertiert eine Variable in das Format Date.", correct = TRUE),
-    answer("Das Paket lubridate beinhaltet wertvolle Funktionen zur Bearbeitung von Strings/Zeichenketten.", message = "Nein, lubridate enthält Funktionen für Datums- und Zeitvariablen."),
-    answer("Charactervariablen können durch die Zuweisung einer Zeichenkette erstellt werden. Dabei darf die Zeichenkette entweder in einfachen oder doppelten Anführungszeichen geschrieben werden.", correct = TRUE)
-  ),
-  question("Welche der folgenden Aussagen sind korrekt?", allow_retry = TRUE, random_answer_order = TRUE,
-    answer("Die Funktion str_locate() prüft, ob eine Zeichenkette in einer Charactervariablen enthalten ist.", message = "Nein, die Funktion str_detect() prüft, ob eine Zeichenkette in einer Charactervariablen enthalten ist. Die Funktion str_locate() gibt die Start- und Endposition zurück."),
-    answer("Die Funktion attributes() erlaubt einer Variablen Attribute zuzuordnen", message = "Nein, die Zuordnung von Attributen erfolgt durch die Funktion attr(). Die Funktion attributes() zeigt die Attribute an."),
-    answer("Die Funktion str() zeigt neben dem Datentyp und dem Wert einer Variablen auch die Attribute an.", correct = TRUE)
+    answer("dim(df) zeigt die Dimensionen des Dataframes df in Zeilen und Spalten an.", correct = TRUE),
+    answer("head(df, 3) gibt die Spaltenbezeichnung der 3. Spalte des Dataframes df aus.", message = "Nein, head(df, 3) gibt die ersten 3 Datensätze des Dataframes df aus."),
+    answer("colnames(df)[2] <- 'Jahre' benennt die Spalte 2 des Dataframes df um in Jahre", correct = TRUE)
   )
 )
 ```
