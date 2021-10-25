@@ -22,25 +22,6 @@ Dieses Tutorial ergänzt die Inhalte des Buches [_Data Science und Statistik mit
 
 Das Kapitel 3.3.3 im Buch beschreibt, wie Operationen in R unterstützt werden. Nachfolgend wird vorgestellt, wie R arithmetische, logische, selektive Operationen als auch Text- und Datumsoperationen unterstützt.
 
-```{r x_y-setup, exercise.setup="x_y", exercise=FALSE, echo=FALSE, include=FALSE}
-
-```
-
-Berechnen Sie ....
-
-Die Anzeige sollte hinterher wie folgt aussehen: ![Vektor](images/xxx.jpg)
-
-```{r x_y, exercise=TRUE}
-
-```
-
-```{r x_y-hint-1}
-
-```
-```{r x_y-hint-2}
-
-```
-
 ## 1. Arithmetische Operationen
 
 R kann für arithmetische Operationen auch als Taschenrechner verwendet werden. Wenn das Ergebnis gespeichert werden soll, dann kann es einer Variablen zugewiesen werden. Eine solche Wertzuweisung erfolgt in R mit Hilfe der Operation <- (Kleiner-Zeichen und Minus-Zeichen), also einem Pfeil, der auf eine Variable zeigt, z.B. a<-6+8. In RStudio wird der Inhalt der Variablen anschließend im Global Environment angezeigt. Folgende Operatoren können in R verwendet werden.
