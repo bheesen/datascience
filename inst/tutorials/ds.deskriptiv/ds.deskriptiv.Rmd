@@ -24,25 +24,6 @@ Dieses Tutorial ergänzt die Inhalte des Buches [_Data Science und Statistik mit
 
 Das Kapitel 4.1 im Buch behandelt die Deskriptive Statistik. Nachfolgend wird vorgestellt, wie die Deskriptive Statistik von R unterstützt wird.
 
-```{r x_y-setup, exercise.setup="x_y", exercise=FALSE, echo=FALSE, include=FALSE}
-
-```
-
-Berechnen Sie ....
-
-Die Anzeige sollte hinterher wie folgt aussehen: ![Vektor](images/xxx.jpg)
-
-```{r x_y, exercise=TRUE}
-
-```
-
-```{r x_y-hint-1}
-
-```
-```{r x_y-hint-2}
-
-```
-
 ## 1. Statistik
 
 In der Statistik werden in der Regel quantitative und qualitative Daten analysiert, um neues Wissen zu erlangen. Mit Hilfe der Statistik versucht man Fragen zu beantworten wie z.B. was ist der günstigste Preis für ein Produkt, um einen maximalen Profit zu erzielen. Um eine solche Frage zu beantworten, benötigt man zunächst Daten. Diese Daten liegen entweder bereits vollständig vor oder man versucht diese selbst zu erheben, z.B. durch Beobachtungen, Umfragen, Experimente oder andere Methoden.
