@@ -34,13 +34,13 @@ library(datascience)
 This is a basic example which shows you how to call one of the tutorials:
 
 ```{r tutorial}
-ds.tutorial(name = "ds.syntax")
+datascience::ds.tutorial(name = "ds.syntax")
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
 
 ```{r studierende}
-ds.summary(studierende$Größe, "Körpergröße (in cm)")
+datascience::ds.summary(studierende$Größe, "Körpergröße (in cm)")
 ```
 
 The `README.Rmd` file was used to create the `README.md` file using the function `devtools::build_readme()`.
