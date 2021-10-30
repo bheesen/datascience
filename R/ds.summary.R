@@ -17,7 +17,7 @@ function(variable, name) {
     var.median<- ifelse(is.numeric(variable), stats::median(variable, na.rm = TRUE),NA)
     var.mean  <- ifelse(is.numeric(variable), mean(variable, na.rm = TRUE),NA)
     var.skewness <- skewness(variable)                              # Schiefe
-    var.skewness.txt<- <-new("character")
+    var.skewness.txt<- new("character")
     var.min   <- ifelse(is.numeric(variable), min(variable),NA)
     var.max   <- ifelse(is.numeric(variable), max(variable),NA)
     var.spannweite <- var.max - var.min
