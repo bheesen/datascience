@@ -17,6 +17,6 @@ BugReports: https://github.com/bheesen/datascience/issues
 Imports: 
     stats,
     graphics,
-    dplyr,
-    forcats,
-    learnr
+    tidyverse,
+    learnr,
+    e1071
