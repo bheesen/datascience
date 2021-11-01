@@ -30,7 +30,7 @@ Neben den klassischen Visualisierungen, die bisher vorgestellt wurden, erlaubt R
 
 Vorbereitend kann zunächst die Performanz der Niederlassungen einer Organisation in einem Bar-Chart visualisiert werden.
 
-```{r 1_0, exercise=FALSE}
+```{r 1_0, exercise=TRUE}
 # Funktion zur Zuordnung der Farbe in Abhängigkeit von der Note (KPI)
 getColor <- function(hsansbach) {
   sapply(hsansbach$kpi, function(kpi) {
@@ -244,7 +244,7 @@ Das Paket shiny erlaubt dynamische Abbildungen, die auch auf Webseiten eingebund
 
 Ein weiteres interessantes Paket mit Funktionen für dynamische Abbildungen ist das Paket plotly. Die in der nachfolgenden Abbildung gezeigte Visualisierung ist dynamisch und zeigt die Entwicklung der Lebenserwartung in Abhängigkeit vom Bruttosozialprodukt pro Kopf im Zeitverlauf. Die Größe der Kreise reflektiert die Bevölkerungsanzahl (Daten stammen aus dem Paket gapminder).
 
-```{r 3_1, exercise=FALSE}
+```{r 3_1, exercise=TRUE}
 data(gapminder, package = "gapminder")
 gg <- ggplot(gapminder, aes(gdpPercap,lifeExp,color=continent,frame=year,ids=country)) +
   geom_point(aes(size=pop)) +
