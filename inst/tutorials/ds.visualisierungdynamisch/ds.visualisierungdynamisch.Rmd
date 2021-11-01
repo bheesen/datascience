@@ -92,7 +92,7 @@ Die nachfolgende Karte zeigt, wie Organisationen mit mehreren Niederlassungen ih
 
 In der Karte wird die Markierung in Abhängigkeit von der Performanz automatisch in unterschiedlichen Farben dargestellt. Beim Klick auf eine Markierung können u.a. Details wie die Adresse, URLs mit Link zur Webseite oder auch eine URL mit Link zu detaillierteren Analysen angezeigt werden.
 
-Karte mit dynamisch eingefügten Markierungen: ![Karte1](images/karte1.jpg)
+Karte mit dynamisch eingefügten Markierungen:
 
 ```{r 2_0-setup, exercise.setup="2_0", exercise=FALSE, echo=FALSE, include=FALSE}
 getColor <- function(hsansbach) {
@@ -157,7 +157,7 @@ l1
 
 Die Icons für die Markierungen können beliebige Bilder sein, z.B. eine grüne Ampel bei guter, gelb bei mittlerer und rot bei schlechter Performanz.
 
-Karte mit dynamisch eingefügten Icons: ![Karte2](images/karte2.jpg)
+Karte mit dynamisch eingefügten Icons:
 
 ```{r 2_1-setup, exercise.setup="2_1", exercise=FALSE, echo=FALSE, include=FALSE}
 getColor <- function(hsansbach) {
