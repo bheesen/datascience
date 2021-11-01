@@ -13,7 +13,6 @@ runtime: shiny_prerendered
 library(tidyverse)
 library(learnr)
 library(lubridate)
-library(stringr)
 ```
 
 
