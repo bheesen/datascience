@@ -96,7 +96,7 @@ Eine Häufigkeitsverteilung wird in der Regel in Form eines Histogramms dargeste
 
 1. Schiefe (engl. Skew) zeigt die Art und Stärke der Asymmetrie einer Verteilung an (siehe Abb. 4-9 im Buch), entweder eine (a) positive Schiefe (linkssteile oder rechtsschiefe Verteilung) oder (b) negative Schiefe (linksschiefe oder rechtssteile Verteilung). Ob eine Verteilung schief ist, lässt sich auf Basis der Lagemaße Modus, Median und Mittelwert erkennen. Die Funktion skewness() aus dem Paket e1071 berechnet die Schiefe in R.
 
-2. Wölbung (engl. Kurtosis) ist eine Maßzahl für die Steilheit bzw. „Spitzigkeit“ einer Verteilung, entweder (a) steilgipflig (supergaußförmig oder leptokurtisch) oder (b) flachgipflig (subgaußförmig oder platykurtisch).
+2. Wölbung (engl. Kurtosis) ist eine Maßzahl für die Steilheit bzw. „Spitzigkeit“ einer Verteilung, entweder (a) steilgipflig (supergaußförmig oder leptokurtisch) oder (b) flachgipflig (subgaußförmig oder platykurtisch). Die Funktion kurtosis() aus dem Paket e1071 berechnet die Exzess Kurtosis, also den Wert der Kurtosis -3.
 
 Normalverteilung versus Schiefe:
 ![Schiefe](images/schiefe.jpg)
@@ -106,15 +106,9 @@ Wölbung:
 
 ### 2.1 Schiefe und Wölbung
 
-Ob eine Verteilung schief ist, lässt sich auf Basis der Lagemaße Modus, Median und Mittelwert erkennen. 
+Ob eine Verteilung schief ist, lässt sich auf Basis der Lagemaße Modus, Median und Mittelwert erkennen oder über die Funktion skewness() aus dem Paket e1071 berechnen.
 
-Die Funktion skewness() aus dem Paket e1071 berechnet die Schiefe in R.
-
-Der Wert für die Wölbung beträgt im Falle der Normalverteilung 3. Liegt der Wert der Wölbung über 3, dann handelt es sich um eine schmalgipflige, spitze Verteilung und bei Werten kleiner als 3 um eine breitgipflige, flache Verteilung mit Beobachtungen nahe dem Mittelwert.
-
-Um das Ausmaß der Wölbung besser einschätzen zu können, wird die Wölbung einer Verteilung mit der Wölbung einer Normalverteilung verglichen. Für diesen Zweck berechnet man den Exzess als Wölbung minus 3 der Wölbung einer Normalverteilung. Liegt der Wert des Exzesses bei Null, so handelt es sich um eine näherungsweise Normalverteilung. Liegt der Wert über Null, dann handelt es sich um eine schmalgipflige, spitze Verteilung und bei Werten kleiner als Null um eine breitgipflige, flache Verteilung mit Beobachtungen nahe dem Mittelwert.
-
-In R kann die Wölbung mit der Funktion kurtosis() aus dem Paket e1071 berechnet werden.
+Der Wert für die Wölbung beträgt im Falle der Normalverteilung 3. Liegt der Wert der Wölbung über 3, dann handelt es sich um eine schmalgipflige, spitze Verteilung und bei Werten kleiner als 3 um eine breitgipflige, flache Verteilung mit Beobachtungen nahe dem Mittelwert. Um das Ausmaß der Wölbung besser einschätzen zu können, wird die Wölbung einer Verteilung mit der Wölbung einer Normalverteilung verglichen. Für diesen Zweck berechnet man den Exzess oder die Exzess Kurtosis als Wölbung minus 3 der Wölbung einer Normalverteilung. Liegt der Wert der Exzess Kurtosis bei Null, so handelt es sich um eine näherungsweise Normalverteilung. Liegt der Wert über Null, dann handelt es sich um eine schmalgipflige, spitze Verteilung und bei Werten kleiner als Null um eine breitgipflige, flache Verteilung mit Beobachtungen nahe dem Mittelwert. Die Exzess Kurtosis wird von der Funktion kurtosis() aus dem Paket e1071 berechnet.
 
 ```{r 2_1-setup, exercise.setup="2_1", exercise=FALSE, echo=FALSE, include=FALSE}
 sp2 <- as_tibble(studierende[70:85,5])                 # Stichprobe 2 (sp2)
@@ -147,14 +141,12 @@ ggplot(sp2)+                                           # Histogramm
   scale_color_manual(name="Kennzahl",labels=linien$name,values=linien$farbe)+
   geom_vline(data=linien,aes(xintercept=wert,colour=farbe,alpha=0.5),
              linetype=linien$linie,size=linien$gross,show.legend=F)
-if (sp2.modus>sp2.median & sp2.median<sp2.mean) {
-  if (sp2.skewness<0) 
-    print("Schiefe < 0, Linke Schiefe: negative Schiefe, linksschief, rechtssteil")
+if (sp2.modus>sp2.median & sp2.median>sp2.mean) {
+    paste("Schiefe",sp2.skewness,"< 0, Linke Schiefe: negative Schiefe, linksschief, rechtssteil")
 } else if (sp2.modus<sp2.median & sp2.median<sp2.mean) {
-    if (sp2.skewness>0) 
-      print("Schiefe > 0, Rechte Schiefe: positive Schiefe, linkssteil, rechtsschief")
+    paste("Schiefe",sp2.skewness,"> 0, Rechte Schiefe: positive Schiefe, linkssteil, rechtsschief")
 } else {
-  print("Näherungsweise Normalverteilt")
+  paste("Schiefe",sp2.skewness,"Näherungsweise Normalverteilt")
 }
 #- Kurtosis-----------------------------------------------------------------------
 sp2.kurtosis <- kurtosis(sp2$Größe)
@@ -165,6 +157,7 @@ if (sp2.kurtosis<0) { print("Exzess Kurtosis < 0, flachgipflig")
 }
 #- Beispiel für negative Schiefe und steilgipflige Wölbung------------------------
 daten<-c(88,95,92,97,96,97,96,97,94,86,91,95,97,88,85,76,68)
+daten
 hist(daten)
 skewness(daten)                         # Negative Schiefe, da Schiefe < 0
 kurtosis(daten)                         # Steilgipflig, da Exzess Kurtosis > 0
@@ -253,7 +246,7 @@ ps.kurtosis<-kurtosis(kfz$PS)                        # Kurtosis
 ps.kurtosis
 ```
 ```{r 2_4-hint-2}
-if (ps.modus>ps.median & ps.median<ps.mean) {
+if (ps.modus>ps.median & ps.median>ps.mean) {
     paste("Schiefe",ps.skewness,"< 0, Linke Schiefe: negative Schiefe, linksschief, rechtssteil")
 } else if (ps.modus<ps.median & ps.median<ps.mean) {
     paste("Schiefe",ps.skewness,"> 0, Rechte Schiefe: positive Schiefe, linkssteil, rechtsschief")
