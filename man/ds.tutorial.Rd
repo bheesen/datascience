@@ -2,14 +2,14 @@
 % Please edit documentation in R/ds.tutorial.R
 \name{ds.tutorial}
 \alias{ds.tutorial}
-\title{Function to start a tutorial accompanying the package "datascience" and the book "Data Science und Statistik mit R"}
+\title{Function to start a tutorial accompanying the package "datascience" and the book "Data Science und Statistik mit R" if you have received a password from Professor Heesen (access limited to selected group only) validating your access rights.}
 \usage{
 ds.tutorial(name)
 }
 \arguments{
-\item{name}{is the name of the tutorial}
+\item{name}{name of the tutorial}
 }
 \description{
-Function to start a tutorial accompanying the package "datascience" and the book "Data Science und Statistik mit R"
+Function to start a tutorial accompanying the package "datascience" and the book "Data Science und Statistik mit R" if you have received a password from Professor Heesen (access limited to selected group only) validating your access rights."
 }
 \keyword{tutorial}
