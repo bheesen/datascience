@@ -12,15 +12,24 @@ ds.tutorial <-  function(name){
   s<-as.numeric(format(t, format="%m"))
   if (s>2) {
     x<-s-2
-    b<-a[z,x:s] }
+    b<-ax[z,x:s] }
   else if (s==2) {
     x<-s-1
     y<-z-1
-    b<-c(a[z,x:s],a[y,12]) }
+    b<-c(ax[z,x:s],ax[y,12]) }
   else {
     y<-z-1
-    b<-c(a[z,s],a[y,11:12])
+    b<-c(ax[z,s],ax[y,11:12])
   }
+  z<-as.numeric(format(t, format="%Y"))-1462
+  if (s %in% c(9,10,11,12)) {
+    s<-9 }
+  else if (s %in% c(1,2)) {
+    z<-z-1
+    s<-9 }
+  else {
+    s<-3 }
+  b<-c(b,ax[z,s])
   passwort <- rstudioapi::askForPassword(
     prompt="Passwort erforderlich! Bitte geben Sie das Berechtigungspasswort ein, welches Sie von Professor Heesen erhalten haben.")
   if (passwort %in% b)
