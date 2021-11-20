@@ -1,7 +1,7 @@
 ---
 title: "Deskriptive Statistik"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 30.10.2021"
+date: "Version vom 16.11.2021"
 output: 
   learnr::tutorial:
     progressive: true
@@ -33,7 +33,7 @@ Insofern ist man als Forscher oft gezwungen mit einer Stichprobe oder Teilmenge 
 
 Die deskriptive Statistik und Wissen über die Daten einer Stichprobe bilden die Grundlage für die induktive Statistik. Die Daten zu beschreiben ist Aufgabe der deskriptiven Statistik.
 
-Statistik: ![Statistik](images/statistik.jpg)
+![](images/statistik.jpg)
 
 ## 2. Deskriptive Statistik
 
@@ -85,14 +85,14 @@ sp2.mean
 
 Extreme Einzelwerte können den Mittelwert signifikant beeinflussen. Daher verwendet man neben dem Mittelwert eine weitere Maßzahl, die durch extreme Werte nicht beeinflusst ist, den Median. Der Median wird bestimmt, indem man alle Einzelwerte zunächst aufsteigend sortiert. Bei einer ungeraden Anzahl von Werten ist der Median der Einzelwert, der in der Mitte liegt. Bei einer geraden Anzahl von Werten berechnet sich der Median aus dem Mittelwert der beiden Einzelwerte in der Mitte. In R lässt sich die Funktion median() nutzen, um den Median zu ermitteln.
 
-```{r 3_2-setup, exercise.setup="3_2", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 3_2-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 sp1 <- as_tibble(studierende[1:15,5])                  # Stichprobe 1 (sp1)
 colnames(sp1) <- "Größe"
 sp2 <- as_tibble(studierende[70:85,5])                 # Stichprobe 2 (sp2)
 colnames(sp2) <- "Größe"
 ```
 
-```{r 3_2, exercise=TRUE}
+```{r 3_2, exercise=FALSE}
 sort(sp1$Größe)                                        # Größe sortiert sp1
 median(sp1$Größe)                                      # Median sp1
 sort(sp2$Größe)                                        # Größe sortiert sp2
@@ -106,12 +106,12 @@ Eine weiteres Lagemaß ist der Modus, der Wert, der am häufigsten vorkommt. Man
 
 Daher betrachtet man in der Regel den Mittelwert, den Median und den Modus gemeinsam, um eine Vorstellung über die Verteilung einer Variablen zu erhalten. In R existiert keine spezielle Funktion für die Berechnung des Modus. Die Funktion table() kann aber hilfreich sein, denn sie gibt die Häufigkeit des Vorkommens der Werte in tabellarischer Form an. Für numerische Variablen kann alternativ auch die Funktion stem() verwendet werden, die ein sogenanntes Stem-and-leaf-Plot anzeigt. Ein Stem-and-leaf-Plot organisiert numerische Daten entsprechend ihren Dezimalwerten. Die linke Spalte zeigt den sogenannten Stamm an, also alle Ziffern der Dezimalzahl außer der letzten Ziffer. Die sogenannten Blätter in der rechten Spalte repräsentieren die letzte Ziffer der Dezimalzahl und jede Zahl dort repräsentiert einen Datensatz.
 
-```{r 3_3-setup, exercise.setup="3_3", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 3_3-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 sp1 <- as_tibble(studierende[1:15,5])                  # Stichprobe 1 (sp1)
 colnames(sp1) <- "Größe"
 ```
 
-```{r 3_3, exercise=TRUE}
+```{r 3_3, exercise=FALSE}
 table(sp1$Größe)                                       # Verteilung sp1
 stem(sp1$Größe)                                        # Stem-Plot sp1
 g <- as.data.frame(table(sp1$Größe))                   # table() -> Dataframe
@@ -144,12 +144,11 @@ verteilung <- as.data.frame(table(sp3))                # table() -> Dataframe
 filter(verteilung, Freq == max(verteilung$Freq))$sp3   # Modus sp3
 ```
 
-
 ## 4. Streuungsmaße
 
 Während Lagemaße die mittleren Werte einer Datenmenge beschreiben, beschreiben Streuungsmaße wie weit die Werte verteilt bzw. gestreut sind und wie weit sie von den mittleren Werten entfernt sind. Nur Lagemaße zu betrachten ist oft nicht ausreichend, da Stichproben mit dem gleichen Mittelwert oder Median eine sehr unterschiedliche Streuung haben können.
 
-Mittelwert ungeeignet als Streuungsmaß: ![Mittelwert](images/mittelwert.jpg)
+![](images/mittelwert.jpg)
 
 Nur Streuungsmaße zu betrachten ist ebenso wenig ausreichend, um ein Verständnis der Daten zu erlangen.
 
@@ -159,7 +158,7 @@ Um die Streuung besser zu verstehen, dienen u.a. die Maßgrößen der Spannweite
 
 Die Spannweite beschreibt die Distanz zwischen dem größten und dem kleinsten Wert. Im Beispiel von Abb. 4-7 im Buch beträgt die Spannweite 351 – 12 = 339. In R gibt es keine Standardfunktion für die Berechnung der Spannweite. Die Funktion range() ist aber hilfreich, da sie den kleinsten und größten Wert anzeigt. Die Spannweite für die Variable x kann dann mit der Anweisung max(range(x, na.rm = TRUE)) - min(range(x, na.rm = TRUE)) ermittelt werden. Noch geschickter ist die Anweisung max(x) – min(x).
 
-```{r 4_1-setup, exercise.setup="4_1", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 4_1-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 sp2 <- as_tibble(studierende[70:85,5])                 # Stichprobe 2 (sp2)
 colnames(sp2) <- "Größe"
 h <- as.data.frame(table(sp2$Größe))                   # table() -> Dataframe
@@ -167,7 +166,7 @@ sp2.modus <- filter(h, Freq == max(h$Freq))$Var1       # Modus sp2
 sp2.modus <- as.numeric(as.character(sp2.modus))       # Konvertierung numerisch
 ```
 
-```{r 4_1, exercise=TRUE}
+```{r 4_1, exercise=FALSE}
 plot(sp2$Größe,rep(1,nrow(sp2)),ylab="Stichprobe 2",main="Scatterplot", # Plot sp2
      yaxt="n",xlab="Körpergröße in cm",xlim=c(150,210))
 abline(v=min(sp2$Größe),col="red",lwd=2)               # Minimun: rot
@@ -220,14 +219,14 @@ Eine weitere bedeutende Maßgröße für die Streuung ist die Varianz. Mathemati
 
 Die einfache Summierung aller Abweichungen vom Mittelwert ist ungenügend, da die Abweichungen positive und negative Werte annehmen können, die sich gegenseitig ausgleichen, auch wenn die Abweichungen groß sind. Ein kleiner Wert dieser Summe wäre daher nicht aussagekräftig. Auch die Summe der Quadrate der Abweichungen (Sum of Squared Errors, SS) wäre keine gute Maßgröße der Abweichung, denn bei zunehmender Anzahl an Werten würde die Maßzahl zunehmen, obwohl die durchschnittliche Abweichung nicht höher ausfällt. Für eine Population wird die Varianz 𝜎2 (Sigma Quadrat) daher berechnet als die Summe der Abweichungsquadrate (SS) geteilt durch die Anzahl der Beobachtungen (N = Größe der Population, wenn die gesamte Population beobachtet wurde). Die Stichprobenvarianz s² dagegen ergibt sich als Summe der Abweichungsquadrate (SS) geteilt durch die Anzahl der Freiheitsgrade (Freiheitsgrad = n – 1, n = Anzahl der Beobachtungen der Stichprobe).
 
-```{r 4_4-setup, exercise.setup="4_4", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 4_4-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 sp1 <- as_tibble(studierende[1:15,5])                  # Stichprobe 1 (sp1)
 colnames(sp1) <- "Größe"
 sp2 <- as_tibble(studierende[70:85,5])                 # Stichprobe 2 (sp2)
 colnames(sp2) <- "Größe"
 ```
 
-```{r 4_4, exercise=TRUE}
+```{r 4_4, exercise=FALSE}
 sp1 <- arrange(sp1, sp1$Größe)                         # Tibble sp1 sortieren
 sp1meanGröße <- mean(sp1$Größe)                        # Mittelwert sp1
 sp1$no <- rep(1:nrow(sp1))                             # Spalte für Nummer
@@ -259,7 +258,7 @@ round(sum(tab$AbwQuadrat),2)                           # Summe Abweichungsquadra
 
 In R dient die Funktion var() zur Berechnung der Varianz und diese berechnet im Standard die Stichprobenvarianz s², teilt also durch n-1. Zur Berechnung der Varianz der Population 𝜎2 (Sigma Quadrat) kann bei Bedarf die folgende Funktion definiert werden: sigmaquadrat <- function(x) {n=length(x); var(x, na.rm=T) * (n-1)/n}.
 
-```{r 4_5-setup, exercise.setup="4_5", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 4_5-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 sp1 <- as_tibble(studierende[1:15,5])                  # Stichprobe 1 (sp1)
 colnames(sp1) <- "Größe"
 sp1 <- arrange(sp1, sp1$Größe)                         # Tibble sp1 sortieren
@@ -270,7 +269,7 @@ tab <- select(sp1, Größe, diffGröße)                   # Tibble tab anlegen
 colnames(tab) <- c("Größe","Abweichung")               # Spaltennamen festlegen
 ```
 
-```{r 4_5, exercise=TRUE}
+```{r 4_5, exercise=FALSE}
 var(tab$Größe)                          # Stichprobenvarianz
 ```
 
@@ -280,12 +279,12 @@ Die Varianz hat den Nachteil, dass sie auf den quadrierten Abweichungen basiert 
 
 Die Standardabweichung ist eine sehr aussagekräftige Maßgröße der Statistik.
 
-```{r 4_6-setup, exercise.setup="4_6", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 4_6-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 sp1 <- as_tibble(studierende[1:15,5])                  # Stichprobe 1 (sp1)
 colnames(sp1) <- "Größe"
 ```
 
-```{r 4_6, exercise=TRUE}
+```{r 4_6, exercise=FALSE}
 sd(sp1$Größe)                                    # Standardabweichung Stichprobe 1
 ```
 
@@ -330,7 +329,7 @@ Die Anzeige sollte hinterher wie folgt aussehen: ![Box-Plot](images/boxplot.jpg)
 ```
 
 ```{r 4_8-hint-1}
-boxplot(sp3,main="Boxplot",xlab="",ylab="Note")  # Boxplot mit Ausreißern
+boxplot(sp3,main="Boxplot",xlab="",ylab="Note")
 ```
 
 ## 5. Quiz
