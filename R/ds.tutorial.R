@@ -1,4 +1,5 @@
-#' Function to start a tutorial accompanying the package "datascience" and the book "Data Science und Statistik mit R"
+#' Function to start a tutorial accompanying the package "datascience" and the book "Data Science und Statistik mit R" if
+#' you have received a password from Professor Heesen (access limited to selected group only) validating your access rights.
 #'
 #' @param name is the name of the tutorial
 #' @keywords tutorial
@@ -6,7 +7,6 @@
 #' @export
 
 ds.tutorial <-  function(name){
-  load(file="a.RData")
   t <- Sys.Date()
   z<-as.numeric(format(t, format="%Y"))-1362
   s<-as.numeric(format(t, format="%m"))
@@ -23,8 +23,6 @@ ds.tutorial <-  function(name){
   }
   passwort <- rstudioapi::askForPassword(
     prompt="Passwort erforderlich! Bitte geben Sie das Berechtigungspasswort ein, welches Sie von Professor Heesen erhalten haben.")
-  string<-paste(name,z,s,b[1],b[2],b[3],passwort)
-  print(string)
   if (passwort %in% b)
     learnr::run_tutorial(name, package = "datascience")
   else
