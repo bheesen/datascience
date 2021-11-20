@@ -1,7 +1,7 @@
 ---
 title: "Operationen"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 26.10.2021"
+date: "Version vom 16.11.2021"
 output: 
   learnr::tutorial:
     progressive: true
@@ -25,7 +25,7 @@ Das Kapitel 3.3.3 im Buch beschreibt, wie Operationen in R unterstützt werden. 
 
 R kann für arithmetische Operationen auch als Taschenrechner verwendet werden. Wenn das Ergebnis gespeichert werden soll, dann kann es einer Variablen zugewiesen werden. Eine solche Wertzuweisung erfolgt in R mit Hilfe der Operation <- (Kleiner-Zeichen und Minus-Zeichen), also einem Pfeil, der auf eine Variable zeigt, z.B. a<-6+8. In RStudio wird der Inhalt der Variablen anschließend im Global Environment angezeigt. Folgende Operatoren können in R verwendet werden.
 
-Operationen: ![Operationen](images/operationen.jpg)
+![](images/operationen.jpg)
 
 ### 1.1 Einfache Operationen
 
@@ -126,7 +126,7 @@ zminus50                              # Ausgabe
 ## 2. Logische Operationen
 
 Auch logische Operationen lassen sich auf verschiedene Objekte anwenden.
-Logische Operationen: ![Logische Operationen](images/logischeoperationen.jpg)
+![](images/logischeoperationen.jpg)
 
 Neben einer einfachen logischen Operation lässt sich auch ein logisches ODER (Symbol für Disjunktion in R: |), logisches UND (Symbol für Konjunktion in R: &) und die logische NEGATION (Symbol für Negation in R: !) in Bedingungen einsetzen.
 
@@ -151,14 +151,14 @@ is.numeric(a) | a > 84                # Datentyp is.numeric OR a>84 TRUE
 
 ### 2.2 Logische Operationen auf Vektoren
 
-```{r 2_2-setup, exercise.setup="2_2", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 2_2-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 i <- c(3, -10, -20, 40)               # vektor numerisch Länge 4
 df <- data.frame(x= c(53,2,100), y=c(299,20,30)) # Dataframe
 ```
 
 Wenn R eine logische Operation auf einem Vektor ausführt, so wird diese für jedes Element des Vektors einzeln ausgeführt und ein Ergebnis produziert, das so viele logische Werte erzeugt, wie Elemente in dem Vektor existieren. Die einzelnen Werte stellen bei TRUE dar, dass ein Element die Bedingung erfüllt und bei FALSE, dass die Bedingung für dieses Element nicht erfüllt ist.
 
-```{r 2_2, exercise=TRUE}
+```{r 2_2, exercise=FALSE}
 i                                     # Ausgabe
 truefalse1 <- i > 0                   # Operator > auf Vektor
 truefalse1                            # Ausgabe
@@ -423,11 +423,11 @@ Es gibt auch nützliche Berechnungsfunktionen (+, -) und Vergleiche, die mit Dat
 
 Das Paket lubridate erlaubt viele weitere essenzielle Operationen mit Datums- und Zeitvariablen. 
 
-```{r 5_6-setup, exercise.setup="5_6", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 5_6-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 heute <- Sys.Date()                           # Aktuelles Datum
 ```
 
-```{r 5_6, exercise=TRUE}
+```{r 5_6, exercise=FALSE}
 heute                                         # Ausgabe
 weekdays(heute)                               # Wochentag
 übermorgen <- heute+2                         # Datumsberechnung mit +
@@ -484,7 +484,7 @@ Oft besteht das Interesse Daten für eine Analyse miteinander zu verbinden, wenn
 
 Für diesen Zweck kann man Tabellen x und y mit der Funktion merge() zusammenführen. Die Parameter by.x und by.y geben die Spaltennamen an, über welche der Join erfolgen soll. Das Ergebnis ist eine Tabelle, welche die Inhalte der Tabelle x und die Inhalte der Tabelle y zusammenführt, wenn für den Schlüssel, der mit by.x angegeben wurde, ein identischer Eintrag mit dem Schlüssel by.y in der Tabelle y existiert. Wenn der Parameter all.x=TRUE verwendet wird und kein Eintrag für den Schlüssel by.x in by.y existiert, dann werden die sonst mit den Werten der Tabelle y befüllten Spalten mit NA gefüllt (Outer Join, Partial Match). Wird der Parameter all.x=TRUE nicht verwendet und es existiert kein Eintrag für den Schlüssel by.x in by.y, so wird der Datensatz mit by.x nicht in die Ergebnistabelle aufgenommen (Inner Join, Full Match).
 
-![Tabellenjoin](images/join.jpg)
+![](images/join.jpg)
 
 ### 6.1 Join von Tabellen
 
