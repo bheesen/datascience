@@ -24,12 +24,6 @@ library(datascience)
 
 ## Example
 
-This is a basic example which shows you how to call one of the tutorials:
-
-``` r
-ds.tutorial(name = "ds.syntax")
-```
-
 What is special about using `README.Rmd` instead of just `README.md`?
 You can include R chunks like so:
 
