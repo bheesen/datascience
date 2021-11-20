@@ -1,7 +1,7 @@
 ---
 title: "Datentypen"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 16.10.2021"
+date: "Version vom 16.11.2021"
 output: 
   learnr::tutorial:
     progressive: true
@@ -170,26 +170,26 @@ class(g)
 
 Konvertieren Sie die Variable g mit Hilfe der Funktion as.Date() in die Datumsvariable h. Lassen Sie sich anschließend den Datentyp und Wert anzeigen. Als Ergebnis sollte Date[1:1], format: "2022-01-01" angezeigt werden.
 
-```{r 3_3-setup, exercise=FALSE, exercise.setup="3_3", echo=FALSE, include=FALSE}
+```{r 3_21-setup, exercise=FALSE, exercise.setup="3_21", echo=FALSE, include=FALSE}
 g <- "2022-01-01"        # Character Variable 
 ```
 
-```{r 3_3, exercise=TRUE}
+```{r 3_21, exercise=TRUE}
 
 ```
 
-```{r 3_3-hint-1}
+```{r 3_21-hint-1}
 h <- as.Date(g)          # Konvertierung in Datumsvariable
 ```
-```{r 3_3-hint-2}
+```{r 3_21-hint-2}
 str(h)
 ```
 
-### 3.3 Demo
+### 3.3 Datumsformat
 
 Sie können bei der Funktion as.Date() über den Parameter format auch ein ganz spezifisches Format für die Konvertierung festlegen. Die Konvertierung in eine Datumsvariable ist für beliebige Datumsformate mit dem Parameter format möglich, z.B. as.Date("04.01.2021", format= "%d.%m.%Y").
 
-```{r 3_4, exercise=FALSE}
+```{r 3_3, exercise=FALSE}
 i <- as.Date("16.10.2021", format= "%d.%m.%Y") # Konvertierung jeden Formates
 str(i)
 ```
@@ -198,7 +198,7 @@ str(i)
 
 Die Funktion Sys.time() erlaubt die Abfrage der aktuellen Uhrzeit.
 
-```{r 3_5, exercise=FALSE}
+```{r 3_4, exercise=FALSE}
 j<-Sys.time()            # Zeitvariable
 class(j)
 str(j)
@@ -208,11 +208,11 @@ str(j)
 
 Das Paket lubridate bietet viele weitere Funktionen für Datums- und Zeitvariablen wie date(), year(), month(), day(), hour(), minute(), second(), week(), quarter(), am() und pm().
 
-```{r 3_6-setup, exercise=FALSE, exercise.setup="3_6", echo=FALSE, include=FALSE}
+```{r 3_5-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 j<-Sys.time()            # Zeitvariable
 ```
 
-```{r 3_6, exercise=TRUE}
+```{r 3_5, exercise=FALSE}
 date(j)                  # Datum
 year(j)                  # Jahr
 month(j)                 # Monat
@@ -226,11 +226,28 @@ am(j)                    # AM-Uhrzeit TRUE/FALSE
 pm(j)                    # PM-Uhrzeit TRUE/FALSE
 ```
 
+### 3.6 Übung
+
+Weisen Sie der Variablen heute das heutige Datum zu und weisen Sie der Variablen gerade die aktuelle Zeit zu. Lassen Sie sich im nächsten Schritt den aktuellen Monat und die aktuelle Stunde anzeigen.
+
+```{r 3_6, exercise=TRUE}
+
+```
+
+```{r 3_6-hint-1}
+heute <- Sys.Date()
+gerade <- Sys.time()
+```
+```{r 3_6-hint-2}
+month(heute)
+hour(gerade)
+```
+
 ## 4. Datentyp character
 
 Zeichenketten bzw. Strings werden in einfache ‘ ‘ oder doppelte “ “ Anführungszeichen gesetzt und sind vom Typ character bzw. chr.
 
-```{r 4_1, exercise=FALSE}
+```{r 4_0, exercise=FALSE}
 i <- 'Erste Zeichenkette'# Character Variable in einfachen Anführungszeichen
 str(i)
 j <- "Statistik ist toll"# Character Variable in doppelten Anführungszeichen
@@ -241,12 +258,12 @@ str(j)
 
 Werden Variablen vom Typ Character bearbeitet, so bietet das Paket stringr einige Funktionen an, z.B. die Funktion str_detect(), str_locate(), um nach Zeichenketten bzw. Wörtern zu suchen, oder str_count(), um die Häufigkeit einer Zeichenkette zu ermitteln.
 
-```{r 4_2-setup, exercise=FALSE, exercise.setup="4_2", echo=FALSE, include=FALSE}
+```{r 4_1-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 i <- 'Erste Zeichenkette'# Character Variable in einfachen Anführungszeichen
 j <- "Statistik ist toll"# Character Variable in doppelten Anführungszeichen
 ```
 
-```{r 4_2, exercise=TRUE}
+```{r 4_1, exercise=FALSE}
 str_detect(i,"toll")     # Prüfung, ob String enthalten ist
 str_detect(j,"toll")     # Prüfung, ob String enthalten ist
 str_locate(j,"toll")     # Start und Endeposition von String
@@ -257,11 +274,34 @@ str_count(j,"toll")      # Anzahl des Vorkommens von String
 
 Die Funktion is.character() kann verwendet werden, um abzufragen, ob eine Variable den Datentyp Character hat. 
 
-```{r 4_3, exercise=FALSE}
+```{r 4_2, exercise=FALSE}
 k <- "27.62"             # Character Variable
 str(k)                   # str() zeigt Datentyp und Inhalt gleichzeitig
 l <- is.character(k)     # Logische Frage ob Datentyp == character
 str(l)
+```
+
+### 4.3 Übung
+
+```{r 4_3-setup, exercise=FALSE, echo=FALSE, include=FALSE}
+feedback <- "Das Essen war sehr gut, die Freundlichkeit des Personals ebenso. Leider können wir die Sauberkeit des Zimmers nicht als gut bezeichnen."
+```
+
+Prüfen Sie, ob es sich bei der Variablen mit dem Namen feedback um eine Variable vom Typ character handelt und lassen Sie sich den Inhalt der Variablen anzeigen. Anschließend lassen Sie sich bitte anzeigen, ob die Zeichenkette "gut" in der Variablen enthalten ist und wie häufig "gut" vorkommt.
+
+Folgendes sollte Ihnen angezeigt werden: ![Zeichenkette](images/zeichenkette.jpg)
+
+```{r 4_3, exercise=TRUE}
+
+```
+
+```{r 4_3-hint-1}
+is.character(feedback)
+feedback
+```
+```{r 4_3-hint-2}
+str_detect(feedback,"gut")
+str_count(feedback,"gut")
 ```
 
 ## 5. Konvertierung von Datentyp
