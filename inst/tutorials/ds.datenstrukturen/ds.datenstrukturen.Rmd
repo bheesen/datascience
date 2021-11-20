@@ -1,7 +1,7 @@
 ---
 title: "Datenstrukturen"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 18.10.2021"
+date: "Version vom 16.11.2021"
 output: 
   learnr::tutorial:
     progressive: true
@@ -12,7 +12,7 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(learnr)
-library(forcats)
+library(datascience)
 ```
 
 
@@ -21,7 +21,7 @@ library(forcats)
 Dieses Tutorial ergänzt die Inhalte des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1).
 
 Das Kapitel 3.3.2 im Buch beschreibt die Datenstrukturen von R. 
-![Bildunterschrift: Datenstrukturen (Heesen, 2021)](images/datenstrukturen.png)
+![Bildunterschrift: Datenstrukturen (Heesen, 2021)](images/datenstrukturen.jpg)
 
 ### Grundsätzliches
 
@@ -54,13 +54,13 @@ a                                             # Ausgabe
 
 ### 1.1 Zugriff auf Vektor mit Index
 
-Auf einzelne Elemente eines Vektors kann durch Indizierung in eckigen Klammern zugegriffen werden, wobei die Indizierung bei 1 startet, z.B. a[2] gibt den zweiten Wert der Vektorvariablen mit dem Namen a aus, hier also -13. Wird in den Klammern kein Index angegeben, so werden alle Elemente ausgegeben. Es können auch mehrere Werte eines Vek-tors ausgegeben werden, z.B. die Elemente 2 bis 4 mit der Anweisung a[2:4]. Um alle außer gewissen Elementen anzuzeigen, kann ein dem Index vorangestelltes Minuszeichen verwendet werden, z.B. a[-2] zeigt alle Elemente außer dem 2. Element an. Eine Liste von Indizes kann mit der Funktion c() angegeben werden, z.B. a[c(1,3:4)] gibt das Element 1 und 3 bis 4 aus.
+Auf einzelne Elemente eines Vektors kann durch Indizierung in eckigen Klammern zugegriffen werden, wobei die Indizierung bei 1 startet, z.B. a[2] gibt den zweiten Wert der Vektorvariablen mit dem Namen a aus, hier also -13. Wird in den Klammern kein Index angegeben, so werden alle Elemente ausgegeben. Es können auch mehrere Werte eines Vektors ausgegeben werden, z.B. die Elemente 2 bis 4 mit der Anweisung a[2:4]. Um alle außer gewissen Elementen anzuzeigen, kann ein dem Index vorangestelltes Minuszeichen verwendet werden, z.B. a[-2] zeigt alle Elemente außer dem 2. Element an. Eine Liste von Indizes kann mit der Funktion c() angegeben werden, z.B. a[c(1,3:4)] gibt das Element 1 und 3 bis 4 aus.
 
-```{r 1_2-setup, exercise=FALSE, exercise.setup="1_2", echo=FALSE, include=FALSE}
+```{r 1_2-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 a <- c(1.2, -13, 46, 1880.12, -2.5)           # Vektor Typ numerisch
 ```
 
-```{r 1_2, exercise=TRUE}
+```{r 1_2, exercise=FALSE}
 a[]                                           # Ausgabe 
 str(a)                                        # Ausgabe mit Typ und Länge
 a[2]                                          # Ausgabe 2. Element
@@ -70,7 +70,7 @@ a[-2:-4]                                      # Ausgabe ohne 2.-4. Element
 a[c(1,3:4)]                                   # Ausgabe 1. & 3.-4. Element
 ```
 
-Die Ausgabe einer Reihenfolge von Elementen kann auch beliebig inklusive Wiederholungen einzelner Elemente kombiniert werden, z.B. um die Elemente 1, 3, 3, 1, 1, 5 auszugeben a[c(1,3,3,1,1,5)]. Die Angabe eines ungültigen Indizes bewirkt die Ausgabe NA, z.B. a[3:7] bewirkt für den Index 6 und 7 ein NA
+Die Ausgabe einer Reihenfolge von Elementen kann auch beliebig inklusive Wiederholungen einzelner Elemente kombiniert werden, z.B. um die Elemente 1, 3, 3, 1, 1, 5 auszugeben a[c(1,3,3,1,1,5)]. Die Angabe eines ungültigen Indizes bewirkt die Ausgabe NA, z.B. a[3:7] bewirkt für den Index 6 und 7 ein NA.
 
 ```{r 1_3-setup, exercise=FALSE, exercise.setup="1_3", echo=FALSE, include=FALSE}
 a <- c(1.2, -13, 46, 1880.12, -2.5)           # Vektor Typ numerisch
@@ -263,12 +263,12 @@ class(noten.ordinal)                          # Datentyp
 str(noten.ordinal)                            # Ausgabe mit Typ und Länge      
 table(noten.ordinal)
 #-Konvertierung in Ordinale Faktorvariable ordered NAs auch codiert--------
-noten.ordinal <- factor(noten,order=TRUE,     # Ordinale Variable "ordered"
+noten.ordinal.mitNA<-factor(noten,order=TRUE, # Ordinale Variable "ordered"
   exclude = NULL,                             # NAs auch codiert
   levels=c("sehr gut","gut","befriedigend","ausreichend","ungenügend",NA))
-class(noten.ordinal)                          # Datentyp
-str(noten.ordinal)                            # Ausgabe mit Typ und Länge  
-table(noten.ordinal)
+class(noten.ordinal.mitNA)                    # Datentyp
+str(noten.ordinal.mitNA)                      # Ausgabe mit Typ und Länge  
+table(noten.ordinal.mitNA)
 ```
 
 ### 2.4 Reihenfolge der Levels
@@ -285,6 +285,32 @@ fct_infreq(f)
 f <- factor(1:3, levels = c("3", "2", "1"))
 f
 fct_inseq(f)
+```
+
+### 2.5 Übung
+
+```{r 2_5-setup, exercise=FALSE, exercise.setup="2_5", echo=FALSE, include=FALSE}
+noten<-c("3",NA,"5","1","3","1","3")
+```
+
+Lassen Sie sich zunächst den Inhalt der gemeldeten Noten anzeigen, die im Vektor noten hinterlegt sind. Lassen Sie sich anschließend eine Häufigkeitsverteilung mit Hilfe der Funktion table() anzeigen.
+Um die Anzeige übersichtlicher zu gestalten, legen Sie eine neue Faktorvariable mit dem Namen "klausur" an, welche die Klausurnoten von 1 bis 5 und auch NA (NA für nicht teilgenommen bzw. Prüfung nicht abgelegt) erfassen soll und die Werte des Vektors noten enthält. Die Variable sollte ordered sein und die Angabe NA sollte als die letzte Ausprägung nach der 5 folgen. Lassen Sie sich die Häufigkeitsverteilung der Variablen klausur mit Hilfe der Funktion table() anzeigen.
+
+Folgendes sollte Ihnen angezeigt werden: ![Klausur](images/klausur.jpg)
+
+```{r 2_5, exercise=TRUE}
+
+```
+
+```{r 2_5-hint-1}
+noten
+table(noten)
+```
+```{r 2_5-hint-2}
+klausur <- factor(noten,order=TRUE,       # Ordinale Variable "ordered"
+  exclude = NULL,                         # NAs auch codiert
+  levels=c("1","2","3","4","5",NA))
+table(klausur)
 ```
 
 ## 3. Liste
@@ -307,6 +333,37 @@ b <- liste$Spende                             # Ausgabe über Name erzeugt Vekto
 str(b)
 c <- liste[["Spende"]]                        # Ausgabe über Name erzeugt Vektor
 str(c)
+```
+
+### 3.1 Übung
+
+```{r 3_1-setup, exercise=FALSE, exercise.setup="3_1", echo=FALSE, include=FALSE}
+mitarbeiterdesmonats <- factor(c("Robert", "Timo", "Marco", "Timo", "Robert"))
+neukunden<-c(3,17,4,31,267,54,612,1050)
+marketing<-c("Facebook","YouTube")
+zielwerte <- matrix(16:30, 3, 5)             
+```
+
+Lassen Sie sich zunächst den Inhalt der folgenden Variablen anzeigen, die für die Landesniederlassung in Burkina Faso erfasst wurden: mitarbeiterdesmonats, neukunden, marketing, zielwerte. Fügen Sie diese vier Variablen in einer Liste mit dem Namen burkinafaso zusammen und benennen die Variablen innerhalb der Liste so wie auch die Ursprungsvariablen benannt sind.
+
+Lassen Sie sich anschließend den Inhalt für marketing und zielwerte aus der Liste burkinafaso anzeigen.
+
+Folgendes sollte Ihnen angezeigt werden: ![BurkinaFaso](images/burkinafaso.jpg)
+
+```{r 3_1, exercise=TRUE}
+
+```
+
+```{r 3_1-hint-1}
+mitarbeiterdesmonats
+neukunden
+marketing
+zielwerte
+```
+```{r 3_1-hint-2}
+burkinafaso <- list(mitarbeiterdesmonats=mitarbeiterdesmonats, neukunden=neukunden, marketing=marketing, zielwerte=zielwerte)  
+burkinafaso$marketing
+burkinafaso$zielwerte
 ```
 
 ## 4. Matrix und Array
@@ -388,7 +445,7 @@ Die vielleicht beliebtesten Datenstrukturen sind der Dataframe und das Tibble. O
 
 ### 5.1 Dataframe
 
-Ein Dataframe kann mit der Funktion data.frame() erstellt werden. Einzelne Spalten eines Dataframes können über Index oder mit Hilfe des $-Operators mit der Syntax Dataframename$Spaltenname oder Dataframename[[“Spaltenname“]] angesprochen werden. In Verbindung mit dem Pipe-Operator (%>%) ist dem $ bzw. [[ noch ein Punkt voranzustellen. Soll ein Element eines Dataframes über Indizes adressiert werden, ist eine Notation der Form dataframe[zeile,spalte] möglich. Indizes können auch weggelassen werden und so zum Beispiel mit df[,3] die dritte Spalte des Dataframes, also die Variable Alter, ausgeben. Davon abhängig ob auf einen Dataframe über Index (Syntax: Objekt[Index]) oder Name (Syntax: Objekt$Elementname oder Objekt[[“Elementname“]]) zugegriffen wird, entscheidet sich der Objekttyp, der zurückgegeben wird. Die Ausgabe bei Zugriff über Index ist ein Dataframe während die Ausgabe bei Zugriff über Name ein Vektor sein wird.
+Ein Dataframe kann mit der Funktion data.frame() erstellt werden. Einzelne Spalten eines Dataframes können über Index oder mit Hilfe des Operators $ (Dollar) mit der Syntax Dataframename Dollar Spaltenname oder Dataframename[[“Spaltenname“]] angesprochen werden. In Verbindung mit dem Pipe-Operator (%>%) ist dem $ bzw. [[ noch ein Punkt voranzustellen. Soll ein Element eines Dataframes über Indizes adressiert werden, ist eine Notation der Form dataframe[zeile,spalte] möglich. Indizes können auch weggelassen werden und so zum Beispiel mit df[,3] die dritte Spalte des Dataframes, also die Variable Alter, ausgeben. Davon abhängig ob auf einen Dataframe über Index (Syntax: Objekt[Index]) oder Name (Syntax: Objekt$Elementname oder Objekt[[“Elementname“]]) zugegriffen wird, entscheidet sich der Objekttyp, der zurückgegeben wird. Die Ausgabe bei Zugriff über Index ist ein Dataframe während die Ausgabe bei Zugriff über Name ein Vektor sein wird.
 
 ```{r 5, exercise=FALSE}
 x1 <- c("Tobi","Silke","Klaus","Tobi")   # Vektor x1 (Freunde)
@@ -403,14 +460,14 @@ str(df)                                  # Ausgabe mit Typ, Dimension und Länge
 
 Folgende Funktionen sind sowohl für Dataframes als auch für Tibbles anwendbar. Die Dimensionen (Zeilen, Spalten) können mit der Funktion dim() ausgegeben werden. Um nur die Anzahl der Zeilen zu ermitteln, kann die Funktion nrow() verwendet werden. Gleichermaßen funktioniert die Funktion ncol(), um die Anzahl der Spalten zu ermitteln. Die Namen der Spalten (Variablen) eines Dataframes können mit der Funktion names() angezeigt werden. Mit den Funktionen colnames() und rownames() kann man den Spalten und Zeilen Namen zuweisen (die Zuweisung von Zeilennamen funktioniert für Tibbles nicht).
 
-```{r 5_1-setup, exercise=FALSE, exercise.setup="5_1", echo=FALSE, include=FALSE}
+```{r 5_1-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 x1 <- c("Tobi","Silke","Klaus","Tobi")   # Vektor x1 (Freunde)
 x2 <- c(42, 356, 123, 200)               # Vektor X2 (Facebook Freunde)
 x3 <- c(53, 22, 31, 26)                  # Vektor X3 (Alter)
 df <- data.frame(Freund=x1, Facebook=x2, Alter=x3)  # Dataframe
 ```
 
-```{r 5_1, exercise=TRUE}
+```{r 5_1, exercise=FALSE}
 dim(df)                            # Dimension (Zeilen,Spalten)
 nrow(df)                           # Zeilenanzahl
 ncol(df)                           # Spaltenanzahl
@@ -424,14 +481,14 @@ df
 
 ### 5.2 Zugriff auf Dataframe
 
-```{r 5_2-setup, exercise=FALSE, exercise.setup="5_2", echo=FALSE, include=FALSE}
+```{r 5_2-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 x1 <- c("Tobi","Silke","Klaus","Tobi")   # Vektor x1 (Freunde)
 x2 <- c(42, 356, 123, 200)               # Vektor X2 (Facebook Freunde)
 x3 <- c(53, 22, 31, 26)                  # Vektor X3 (Alter)
 df <- data.frame(Freund=x1, Facebook=x2, Alter=x3)  # Dataframe
 ```
 
-```{r 5_2, exercise=TRUE}
+```{r 5_2, exercise=FALSE}
 a <- df[2]                         # Ausgabe Spalte 2 über Index erzeugt Dataframe
 str(a)
 b <- df$Facebook                   # Ausgabe Spalte 2 über Name erzeugt Vektor
@@ -451,7 +508,7 @@ Um einen schnellen Überblick über einen Dataframe oder ein Tibble zu erhalten,
 
 Hilfreich ist auch die Funktion summary(), um sich einen Überblick über die Daten zu verschaffen. Sie liefert für jede Variable, abhängig von deren Typ (num, char, factor...) einen anderen Output. Für numerische (num, int) Daten zeigt sie Minimum, unteres Quartil, Median, arithmetisches Mittel, oberes Quartil und Maximum an. Diese Information hilft zu verstehen, wie die Daten verteilt sind. Für Faktorvariablen (kategoriale Variablen) zeigt die Funktion die absolute Häufigkeit jedes Levels, also jeder Ausprägung, an.
 
-```{r 5_3-setup, exercise=FALSE, exercise.setup="5_3", echo=FALSE, include=FALSE}
+```{r 5_21-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 x1 <- c("Tobi","Silke","Klaus","Tobi")   # Vektor x1 (Freunde)
 x2 <- c(42, 356, 123, 200)               # Vektor X2 (Facebook Freunde)
 x3 <- c(53, 22, 31, 26)                  # Vektor X3 (Alter)
@@ -459,7 +516,7 @@ df <- data.frame(Freund=x1, Facebook=x2, Alter=x3)  # Dataframe
 colnames(df)[names(df)=="Freund"] <- "Name"   # Spalte "Freund" umbenennen
 ```
 
-```{r 5_3, exercise=TRUE}
+```{r 5_21, exercise=FALSE}
 df                                 # Ausgabe
 head(df)                           # Ausgabe der ersten Datensätze
 head(df, 3)                        # Ausgabe der ersten 3 Datensätze
@@ -470,18 +527,39 @@ df$Name <- as.factor(df$Name)      # Konvertierung Freund von chr->factor
 summary(df)                        # Zusammenfassung (factor anders)
 ```
 
-### 5.3 Tibble
+### 5.3 Übung
+
+Lassen Sie sich zunächst mit der Funktion str() die Struktur inklusive der darin enthaltenen Variablen des Dataframes alkohol anzeigen. Lassen Sie sich dann die ersten fünf Inhalte der Variablen Typ im Dataframe alkohol anzeigen.
+Im nächsten Schritt lassen Sie sich bitte alle Informationen aus dem Dataframe anzeigen, die sich auf das Land "Italy" beziehen.
+
+Folgendes sollte Ihnen angezeigt werden: ![Alkohol](images/alkohol.jpg)
+
+```{r 5_3, exercise=TRUE}
+
+```
+
+```{r 5_3-hint-1}
+str(alkohol)
+```
+```{r 5_3-hint-2}
+alkohol$Typ[1:5]
+```
+```{r 5_3-hint-3}
+alkohol[alkohol$Land == "Italy",,]
+```
+
+### 5.4 Tibble
 
 Neben Dataframes erlauben auch Tibbles, als moderne und aktualisierte Form eines Dataframes, das Ablegen verschiedener Datentypen in einer zweidimensionalen Tabellenform. Ein Tibble ist vom Datentyp tbl_df und die Installation des Pakets tibble oder tidyverse ist erforderlich, um diesen Datentyp zu verwenden. Im Gegensatz zu Dataframes konvertieren Tibbles die Datentypen von Variablen nicht in Vektoren, wenn nur noch eine Spalte verbleibt (das passiert bei Dataframes) und sie lassen sich etwas komfortabler ausgeben. Mit der Funktion as_tibble() können Dataframes, Listen, Matrizen oder Tabellen in ein Tibble konvertiert werden. Um ein Tibble anzulegen, ist auch die Funktion tibble() anwendbar. Wenn jedoch eine Funktion nur mit dem Datentyp Dataframe funktioniert, dann erlaubt die Funktion as.data.frame() einen Tibble auch in einen Dataframe zu konvertieren.
 
-```{r 5_4-setup, exercise=FALSE, exercise.setup="5_4", echo=FALSE, include=FALSE}
+```{r 5_4-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 x1 <- c("Tobi","Silke","Klaus","Tobi")   # Vektor x1 (Freunde)
 x2 <- c(42, 356, 123, 200)               # Vektor X2 (Facebook Freunde)
 x3 <- c(53, 22, 31, 26)                  # Vektor X3 (Alter)
 df2<- data.frame(Freund=x1, Facebook=x2, Alter=x3)  # Dataframe
 ```
 
-```{r 5_4, exercise=TRUE}
+```{r 5_4, exercise=FALSE}
 tbl <- as_tibble(df2)              # Tibble
 tbl                                # Ausgabe
 class(tbl)                         # Datentyp
@@ -501,7 +579,7 @@ Um einen schnellen Überblick über einen Dataframe oder ein Tibble zu erhalten,
 
 Hilfreich ist auch die Funktion summary(), um sich einen Überblick über die Daten zu verschaffen. Sie liefert für jede Variable, abhängig von deren Typ (num, char, factor...) einen anderen Output. Für numerische (num, int) Daten zeigt sie Minimum, unteres Quartil, Median, arithmetisches Mittel, oberes Quartil und Maximum an. Diese Information hilft zu verstehen, wie die Daten verteilt sind. Für Faktorvariablen (kategoriale Variablen) zeigt die Funktion die absolute Häufigkeit jedes Levels, also jeder Ausprägung, an.
 
-```{r 5_5-setup, exercise=FALSE, exercise.setup="5_5", echo=FALSE, include=FALSE}
+```{r 5_41-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 x1 <- c("Tobi","Silke","Klaus","Tobi")   # Vektor x1 (Freunde)
 x2 <- c(42, 356, 123, 200)               # Vektor X2 (Facebook Freunde)
 x3 <- c(53, 22, 31, 26)                  # Vektor X3 (Alter)
@@ -511,7 +589,7 @@ tbl2 <- tibble(Freund=x1, Facebook=x2, Alter=x3)  # Tibble
 colnames(tbl)[names(tbl)=="Freund"] <- "Name"   # Spalte "Freund" umbenennen
 ```
 
-```{r 5_5, exercise=TRUE}
+```{r 5_41, exercise=FALSE}
 head(tbl)                          # Ausgabe der ersten Datensätze
 head(tbl, 3)                       # Ausgabe der ersten 3 Datensätze
 tail(tbl, 2)                       # Ausgabe der letzten 2 Datensätze
@@ -524,9 +602,9 @@ df3 <- as.data.frame(tbl)          # Konvertiert Tibble in Dataframe
 class(df3)                         # Datentyp
 ```
 
-### 5.4 Zugriff auf Tibble
+### 5.5 Zugriff auf Tibble
 
-```{r 5_6-setup, exercise=FALSE, exercise.setup="5_6", echo=FALSE, include=FALSE}
+```{r 5_5-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 x1 <- c("Tobi","Silke","Klaus","Tobi")   # Vektor x1 (Freunde)
 x2 <- c(42, 356, 123, 200)               # Vektor X2 (Facebook Freunde)
 x3 <- c(53, 22, 31, 26)                  # Vektor X3 (Alter)
@@ -535,7 +613,7 @@ tbl <- as_tibble(df2)              # Tibble
 tbl2 <- tibble(Freund=x1, Facebook=x2, Alter=x3)  # Tibble
 ```
 
-```{r 5_6, exercise=TRUE}
+```{r 5_5, exercise=FALSE}
 str(tbl)                           # Ausgabe mit Typ, Dimension und Länge
 a <- tbl[2]                        # Ausgabe Spalte 2 über Index erzeugt Tibble
 str(a)
@@ -553,6 +631,29 @@ tbl[3,]                            # Ausgabe Zeile 3 mit Index
 tbl[tbl$Freund == "Silke",]        # Ausgabe Zeile 2 mit logischen index
 ```
 
+### 5.6 Übung
+
+```{r 5_6-setup, exercise=FALSE, exercise.setup="5_6", echo=FALSE, include=FALSE}
+fussball <- as_tibble(bundesliga) 
+```
+
+Lassen Sie sich zunächst die Struktur des Tibble fussball anzeigen. Zeigen Sie die besten 3 Mannschaften (Variable Verein) mit ihren Torverhältnissen an. Zeigen Sie anschließend alle Vereine an, die sich auf einem Abstiegsplatz befinden (Variable Quali. mit dem Wert "Ab").
+
+Folgendes sollte Ihnen angezeigt werden: ![Fußball](images/fussball.jpg)
+
+```{r 5_6, exercise=TRUE}
+
+```
+
+```{r 5_6-hint-1}
+str(fussball)
+```
+```{r 5_6-hint-2}
+head(fussball[c("Verein","Tore.")],3)
+```
+```{r 5_6-hint-3}
+fussball$Verein[fussball$Quali.=="Ab"]
+```
 ## 6. Dynamische Datenstrukturen
 
 Manchmal ist es sinnvoll, wenn die Namen der Datenstrukturen erst während der Laufzeit des Programms bestimmt werden. Um einen Variablennamen neu zu erzeugen, kann die Funktion assign() verwendet werden und um den Inhalt einer Variablen abzufragen, dient die Funktion get().
