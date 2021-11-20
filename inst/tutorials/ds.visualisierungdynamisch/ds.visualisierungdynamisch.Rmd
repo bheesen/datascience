@@ -1,7 +1,7 @@
 ---
 title: "Interaktive Landkarten und Dynamische Abbildungen"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 1.11.2021"
+date: "Version vom 16.11.2021"
 output: 
   learnr::tutorial:
     progressive: true
@@ -30,7 +30,7 @@ Neben den klassischen Visualisierungen, die bisher vorgestellt wurden, erlaubt R
 
 Vorbereitend kann zunächst die Performanz der Niederlassungen einer Organisation in einem Bar-Chart visualisiert werden.
 
-```{r 1_0, exercise=TRUE}
+```{r 1_0, exercise=FALSE}
 # Funktion zur Zuordnung der Farbe in Abhängigkeit von der Note (KPI)
 getColor <- function(hsansbach) {
   sapply(hsansbach$kpi, function(kpi) {
@@ -94,7 +94,7 @@ In der Karte wird die Markierung in Abhängigkeit von der Performanz automatisch
 
 Karte mit dynamisch eingefügten Markierungen:
 
-```{r 2_0-setup, exercise.setup="2_0", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 2_0-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 getColor <- function(hsansbach) {
   sapply(hsansbach$kpi, function(kpi) {
     if(kpi <= 2) {
@@ -139,7 +139,7 @@ hsansbach$farben<-getColor(hsansbach)
 hsansbach<-arrange(hsansbach,ort)
 ```
 
-```{r 2_0, exercise=TRUE}
+```{r 2_0, exercise=FALSE}
 # Farbe der Icons je nach Performanz 
 icons <- awesomeIcons(                              
   icon = 'ios-close',
@@ -159,7 +159,7 @@ Die Icons für die Markierungen können beliebige Bilder sein, z.B. eine grüne 
 
 Karte mit dynamisch eingefügten Icons:
 
-```{r 2_1-setup, exercise.setup="2_1", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 2_1-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 getColor <- function(hsansbach) {
   sapply(hsansbach$kpi, function(kpi) {
     if(kpi <= 2) {
@@ -204,7 +204,7 @@ hsansbach$farben<-getColor(hsansbach)
 hsansbach<-arrange(hsansbach,ort)
 ```
 
-```{r 2_1, exercise=TRUE}
+```{r 2_1, exercise=FALSE}
 ampelgruen<- makeIcon(                          # Icon jpg.Datei für Ampel
   iconUrl = "images/ampelgruen.jpg",
   iconWidth = 18, iconHeight = 45)
@@ -233,7 +233,7 @@ ampelgruen<- makeIcon(                          # Icon jpg.Datei für Ampel
 ```{r 2_2-hint-2}
 karte<-leaflet() %>%                            # Zeigt interaktive Karte an
        addTiles() %>%                           # Zeigt OpenStreetMap map Tiles an
-      addMarkers(lng=11.0763782,lat=49.4570004, # Fügt Markierung ein
+       addMarkers(lng=11.0763782,lat=49.4570004,# Fügt Markierung ein
                  popup="Untere Schmiedgasse 8, 90403 Nürnberg",icon=ampelgruen,label="Nürnberg")
 karte                                           # Gibt Karte aus
 ```
