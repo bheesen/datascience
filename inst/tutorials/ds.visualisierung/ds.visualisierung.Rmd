@@ -398,7 +398,7 @@ grid.arrange(p1,p2,nrow=2)                # Ausgabe
 
 ### 2.6 Facetten
 
-Gerade wenn mehrere Gruppierungsvariablen zum Einsatz kommen, die in Abbildungen mit Hilfe von Farben und Formen dargestellt werden, kann eine Abbildung unübersichtlich werden. Hier kann die Funktion facet_wrap() oder facet_grid() hilfreich sein. Die Funktion facet_wrap() erstellt für jede Kategorie einer Gruppierungsvariablen eine eigene Abbildung und die Funktion facet_grid() leistet das glei-che für jede Kombination aller Kategorien von zwei Gruppierungsvariablen.
+Gerade wenn mehrere Gruppierungsvariablen zum Einsatz kommen, die in Abbildungen mit Hilfe von Farben und Formen dargestellt werden, kann eine Abbildung unübersichtlich werden. Hier kann die Funktion facet_wrap() oder facet_grid() hilfreich sein. Die Funktion facet_wrap() erstellt für jede Kategorie einer Gruppierungsvariablen eine eigene Abbildung und die Funktion facet_grid() leistet das gleiche für jede Kombination aller Kategorien von zwei Gruppierungsvariablen.
 
 ```{r 2_6-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 kfz$Alter<-2019-kfz$Zulassung                      # Alter berechnen
