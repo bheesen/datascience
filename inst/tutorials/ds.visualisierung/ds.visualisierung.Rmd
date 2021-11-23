@@ -500,7 +500,7 @@ grid.arrange(p1,p2,p3,p4,p5,p6,nrow=3,ncol=2)                       # Ausgabe
 ```{r 4_1, echo = FALSE}
 quiz(
   question("Welche der folgenden Aussagen sind korrekt?", allow_retry = TRUE, random_answer_order = TRUE,
-    answer('Die sogenannten aesthetic mappings wie die Zuordnung der x- und y-Achse oder die Farbe werden mit der Funktion aes() über den Parameter mapping angegeben, z.B. ggplot(studierende, mapping=aes(x=Geschlecht,y=Größe).', correct = TRUE),
+    answer('Die sogenannten aesthetic mappings wie die Zuordnung der x- und y-Achse oder die Farbe werden mit der Funktion aes() über den Parameter mapping angegeben, z.B. ggplot(studierende, mapping=aes(x=Geschlecht,y=Größe)).', correct = TRUE),
     answer('Die Abbildungsform wird in der Funktion ggplot() über die Funktion geom_*() definiert, z.B. geom_line() für eine Linie oder geom_point() für einen Scatterplot.', correct = TRUE),
     answer('Overplotting lässt sich bei Dot-Plots nicht vermeiden.', message = 'Doch, die Funktion geom_jitter() vermeidet Overplotting.'),
     type = "multiple"
