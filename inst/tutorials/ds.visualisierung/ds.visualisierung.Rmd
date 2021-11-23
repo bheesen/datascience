@@ -1,7 +1,7 @@
 ---
 title: "Visualisierung"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 16.11.2021"
+date: "Version vom 23.11.2021"
 output: 
   learnr::tutorial:
     progressive: true
@@ -428,7 +428,7 @@ p1<-ggplot(kfz.marke)+
 p1 + geom_histogram(bins=10)              # Histogramm
 ```
 
-### 2.7 Übung !!!
+### 2.7 Übung
 
 ```{r 2_7-setup, exercise.setup="2_7", exercise=FALSE, echo=FALSE, include=FALSE}
 sp3 <- studierende[1:15,"Note"]                        # Stichprobe 3 (sp3)
