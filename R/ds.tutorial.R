@@ -31,7 +31,7 @@ ds.tutorial <-  function(name){
     s<-3 }
   b<-c(b,ax[z,s])
   passwort <- rstudioapi::askForPassword(
-    prompt="Passwort erforderlich! Bitte geben Sie das Berechtigungspasswort ein, welches Sie von Professor Heesen erhalten haben.")
+    prompt="Bitte geben Sie das Berechtigungspasswort ein, welches Sie von Professor Heesen erhalten haben.")
   if (passwort %in% b)
     learnr::run_tutorial(name, package = "datascience")
   else
