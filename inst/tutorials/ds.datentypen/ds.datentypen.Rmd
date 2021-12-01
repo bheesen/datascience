@@ -213,6 +213,7 @@ j<-Sys.time()            # Zeitvariable
 ```
 
 ```{r 3_5, exercise=FALSE}
+j<-Sys.time()            # Zeitvariable
 date(j)                  # Datum
 year(j)                  # Jahr
 month(j)                 # Monat
