@@ -1,0 +1,216 @@
+---
+title: "Bedingte Wahrscheinlichkeit"
+author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
+date: "Version vom 19.11.2021"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(datascience)
+library(tidyverse)
+library(learnr)
+```
+
+
+## Willkommen
+
+Dieses Tutorial ergänzt die Inhalte des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1).
+
+Das Kapitel 4.2.6 behandelt das Thema Bedingte Wahrscheinlichkeit und nachfolgend wird vorgestellt, wie dies von R unterstützt wird.
+
+## 1. Bedingte Wahrscheinlichkeit
+
+Die Wahrscheinlichkeit dafür, dass die Zufallsvariable X den Wert x annimmt wird mit P(X=x) beschrieben. Bei dem folgenden Beispiel der Fußballbundesligatabelle nach 19 Spieltagen der Saison 2020/21 zeigt sich u.a., dass drei Mannschaften (absolute Häufigkeit) 22 Punkte erreicht haben. Die relative Häufigkeit für das Ereignis P(Punkte=22)=0.1667 beträgt 16,67% (3/18). Gleichermaßen gilt, dass zwei Mannschaften (absolute Häufigkeit) 9 Siege erreicht haben. Die relative Häufigkeit für das Ereignis P(Siege=9)=0.1111 beträgt 11,11% (2/18). Dies beobachtete relative Häufigkeiten sind somit die Wahrscheinlichkeiten für das Eintreten dieser Ereignisse.
+
+```{r 1_1-setup, exercise=FALSE, echo=FALSE, include=FALSE}
+bundesliga <- select(bundesliga,-2,-3)                      # Spalten entfernen
+names(bundesliga) <- c('Rang','Team','Spiele','Siege',      # Spalten umbenennen
+                    'Unentschieden','Niederlagen','Tore', 
+                    'Tordifferenz','Punkte','Qualifikation')
+bundesliga[c(3:6,8:9)]<-sapply(bundesliga[c(3:6,8:9)],      # Konvertierung num
+                               as.numeric)                  # für Spalte 3-6 + 8-9 
+```
+
+```{r 1_1, exercise=FALSE}
+head(bundesliga,18)                              # Anzeige 18 Zeilen
+#- Relative Wahrscheinlichkeit----------------------------------------------------
+abs.pkt <- table(bundesliga$Punkte)              # Absolute Häufigkeit
+abs.pkt
+rel.pkt <- round(100*prop.table(abs.pkt),2)      # Relative Häufigkeit in %
+rel.pkt
+abs.sieg <- table(bundesliga$Siege)              # Absolute Häufigkeit
+abs.sieg
+rel.sieg <- round(100*prop.table(abs.sieg),2)    # Relative Häufigkeit in %
+rel.sieg
+```
+
+Die bedingte Wahrscheinlichkeit oder auch konditionale Wahrscheinlichkeit ist definiert als die Wahrscheinlichkeit des Eintretens eines Ereignisses A unter der Bedingung, dass das Eintreten eines anderen Ereignisses B bereits bekannt ist. Sie wird als P(A|B) geschrieben.
+
+### 1.1 Berechnung der Wahrscheinlichkeit der Ereignisse A und B
+
+Betrachtet man das Ereignis A, dass eine Mannschaft eine positive Tordifferenz hat und das Ereignis B, dass eine Mannschaft nach 19 Spieltagen mehr als die Hälfte aller Spiele gewonnen hat, so lässt sich die jeweilige Wahrscheinlichkeit berechnen. 
+
+```{r 1_2-setup, exercise=FALSE, echo=FALSE, include=FALSE}
+abs.sieg <- table(bundesliga$Siege)              # Absolute Häufigkeit
+abs.tor <- table(bundesliga$Tordifferenz)        # Absolute Häufigkeit
+```
+
+```{r 1_2, exercise=FALSE}
+rel.sieg <- round(100*prop.table(abs.sieg),2)    # Relative Häufigkeit in %
+rel.sieg
+rel.tor <- round(100*prop.table(abs.tor),2)      # Relative Häufigkeit in %
+rel.tor
+#- Wahrscheinlichkeit Ereignis A: Positive Tordifferenz---------------------------
+rel.tor <- as.data.frame(rel.tor,stringsAsFactors = FALSE)
+colnames(rel.tor) = c("Tordifferenz","Wahrscheinlichkeit")
+rel.tor$Tordifferenz <- as.numeric(rel.tor$Tordifferenz)
+rel.tor
+sum.tor <- sum(rel.tor$Wahrscheinlichkeit[rel.tor$Tordifferenz>=0])
+sum.tor                                          # Wahrscheinlichkeit A
+#- Wahrscheinlichkeit Ereignis B: Mindestens 10 Siege-----------------------------
+rel.sieg <- as.data.frame(rel.sieg,stringsAsFactors = FALSE)
+colnames(rel.sieg) = c("Siege","Wahrscheinlichkeit")
+rel.sieg$Siege <- as.numeric(rel.sieg$Siege)
+rel.sieg
+sum.sieg <- sum(rel.sieg$Wahrscheinlichkeit[rel.sieg$Siege>=10])
+sum.sieg                                         # Wahrscheinlichkeit B
+```
+
+Betrachtet man das Ereignis A, dass eine Mannschaft eine positive Tordifferenz hat, so beträgt P(A)=P(Tordifferenz≥0)=0.5558, also 55,58%. Betrachtet man das Ereignis B, dass eine Mannschaft nach 19 Spieltagen mehr als die Hälfte aller Spiele gewonnen hat, so beträgt P(B)=P(Siege≥10)=0.1668, also 16,68%. 
+
+### 1.2 Berechnung der Bedingten Wahrscheinlichkeit des Ereignisses A unter der Bedingung, dass Ereignis B eingetreten ist
+
+Die bedingte Wahrscheinlichkeit berechnet sich nicht als das Produkt der beiden Einzelwahrscheinlichkeiten, P(A│B)≠P(A)*P(B). Um die bedingte Wahrscheinlichkeit zu berechnen, werden nur die Beobachtungen, bei denen B eingetreten ist, bezüglich der Wahrscheinlichkeit evaluiert, dass auch A eingetreten ist. 
+
+```{r 1_3, exercise=FALSE}
+Bedingung.B <- filter(bundesliga,Siege>=10)      # B erfüllt
+abs.AB <- table(Bedingung.B$Tordifferenz)        # Absolute Häufigkeit
+abs.AB
+rel.AB <- round(100*prop.table(abs.AB),2)        # Relative Häufigkeit in %
+rel.AB
+bed.AB <- as.data.frame(rel.AB,stringsAsFactors = FALSE)
+colnames(bed.AB) = c("Tordifferenz","Wahrscheinlichkeit")
+bed.AB$Tordifferenz <- as.numeric(bed.AB$Tordifferenz)
+bed.AB
+sum.AB <- sum(bed.AB$Wahrscheinlichkeit[bed.AB$Tordifferenz>=0])
+round(sum.AB)                                    # Wahrscheinlichkeit A unter B
+```
+
+In diesem Fall haben alle Mannschaften mit mindestens 10 Siegen auch eine positive Tordifferenz, so dass die bedingte Wahrscheinlichkeit P(A│B)=1, also 100% beträgt. 
+
+### 1.3 Übung
+
+Ermitteln Sie die dei bedingte Wahrscheinlichkeit von Ereignis A, dass eine Mannschaft eine positive Tordifferenz hat unter der Bedingung, dass das Ereignis B eingetreten ist, dass eine Mannschaft nach 19 Spieltagen mindestens 6 Spiele gewonnen hat. 
+
+Prüfen Sie, dass Ihr Ergebnis ergibt, dass die bedingte Wahrscheinlichkeit 83 Prozent beträgt.
+
+```{r 1_4-setup, exercise=FALSE, echo=FALSE, include=FALSE}
+bundesliga <- select(bundesliga,-2,-3)                      # Spalten entfernen
+names(bundesliga) <- c('Rang','Team','Spiele','Siege',      # Spalten umbenennen
+                    'Unentschieden','Niederlagen','Tore', 
+                    'Tordifferenz','Punkte','Qualifikation')
+bundesliga[c(3:6,8:9)]<-sapply(bundesliga[c(3:6,8:9)],      # Konvertierung num
+                               as.numeric)                  # für Spalte 3-6 + 8-9
+```
+
+```{r 1_4, exercise=TRUE}
+
+```
+
+```{r 1_4-hint-1}
+Bedingung.B <- filter(bundesliga,Siege>=6)       # B erfüllt
+```
+```{r 1_4-hint-2}
+abs.AB <- table(Bedingung.B$Tordifferenz)        # Absolute Häufigkeit
+abs.AB
+rel.AB <- round(100*prop.table(abs.AB),2)        # Relative Häufigkeit in %
+rel.AB
+bed.AB <- as.data.frame(rel.AB,stringsAsFactors = FALSE)
+colnames(bed.AB) = c("Tordifferenz","Wahrscheinlichkeit")
+bed.AB$Tordifferenz <- as.numeric(bed.AB$Tordifferenz)
+bed.AB
+```
+```{r 1_4-hint-3}
+sum.AB <- sum(bed.AB$Wahrscheinlichkeit[bed.AB$Tordifferenz>=0])
+round(sum.AB)                                    # Wahrscheinlichkeit A unter B
+```
+
+## 2. Bedingte Kennzahlen
+
+Eine hilfreiche Familie von Funktionen in R sind auch die apply-Funktionen. Diese lassen sich u.a. nachfolgend im Beispiel nutzen, um bedingte Kennzahlen zu berechnen, z.B. den bedingten Mittelwert oder das bedingte Maximum.
+
+Die Funktion sapply() kann eine ganze Liste als Input verwenden und dann eine Funktion auf jedes Element dieser Liste anwenden. Als Ergebnis wird eine Liste der Ergebnisse zurückgegeben. Da ein Tibble oder ein Dataframe nichts anderes als eine Liste von Vektoren ist (prüfen Sie dies gerne mit der Funktion as.list(bundesliga)), lässt sich die Funktion sapply() auch verwenden, um die Funktion mean() auf jede Spalte des Dataframes bundesliga anzuwenden. Die Anweisung sapply(bundesliga, mean) wendet daher die Funktion mean() auf alle Spalten des Dataframes bundesliga an.
+
+Oft möchten Sie eine Funktion auch auf Gruppierungen anwenden. Dies können Sie mit der Funktion tapply() erreichen. Wenn Sie sich die durchschnittliche Anzahl der erreichten Punkte in der Saison für jede Gruppierung anzeigen lassen möchten, die gleich viele Siege vorzuweisen haben, dann nutzen Sie die Funktion tapply(Parameter1,Parameter2, mean) und verwenden Punkte als Parameter1 und Siege als Parameter2. Damit erhalten Sie den bedingten Mittelwert der Punkte je Gruppe von Teams mit gleicher Anzahl an Siegen. 
+
+```{r 2_1, exercise=FALSE}
+as.list(bundesliga)
+spaltennumerisch<-sapply(bundesliga,is.numeric) # TRUE/FALSE für numerische Spalte
+sapply(bundesliga[spaltennumerisch], mean)      # Mittelw. für numerische Spalten 
+table(bundesliga$Punkte)                        # Absolute Häufigkeit
+table(bundesliga$Siege)                         # Absolute Häufigkeit
+mean(bundesliga$Punkte)                         # Mittelwert
+tapply(bundesliga$Punkte,bundesliga$Siege, mean)# Bedingter Mittelwert
+max(bundesliga$Punkte)                          # Maximum
+tapply(bundesliga$Punkte,bundesliga$Siege, max) # Bedingtes Maximum
+```
+
+Der Mittelwert der erreichten Punkte für alle Mannschaften beträgt 25,77 Punkte, während der bedingte Mittelwert, wenn acht Siege errungen wurden, 32,50 Punkte beträgt. Unter der Bedingung, dass sechs Siege errungen wurden, beträgt der Mittelwert dagegen nur 23,00 Punkte. Das Maximum der erreichten Punkte für alle Mannschaften beträgt 45,00 Punkte. Unter der Bedingung, dass sechs Siege errungen wurden, beträgt das Maximum dagegen nur 25,00 Punkte.
+
+### 2.1 Übung
+
+Ermitteln Sie die die bedingte Kennzahl der Niederlagen in Abhängigkeit von der Anzahl der Siege. Wie hoch ist der Mittelwert der Anzahl verlorener Spiele? Wie hoch ist der bedingte Mittelwert der Anzahl verlorener Spiele für Teams, die 9 Siege erreicht haben? Wie viele Spiele wurden maximal von einem Team verloren? Wie hoch ist die bedingte Kennzahl des Maximums an verlorenen Spielen für Teams, die 9 Siege erreicht haben?
+
+Dies sind die korrekten Ergebnisse: Der Mittelwert der verlorenen Spiele ist 6,77. Teams mit 9 Siegen haben im Durchschnitt nur 5,33 Spiele verloren. Maximal wurden von einem Team 13 Spiele verloren. Teams mit 9 Siegen haben maximal 6 Spiele verloren.
+
+```{r 2_2-setup, exercise=FALSE, echo=FALSE, include=FALSE}
+bundesliga <- select(bundesliga,-2,-3)                      # Spalten entfernen
+names(bundesliga) <- c('Rang','Team','Spiele','Siege',      # Spalten umbenennen
+                    'Unentschieden','Niederlagen','Tore', 
+                    'Tordifferenz','Punkte','Qualifikation')
+bundesliga[c(3:6,8:9)]<-sapply(bundesliga[c(3:6,8:9)],      # Konvertierung num
+                               as.numeric)                  # für Spalte 3-6 + 8-9
+```
+
+```{r 2_2, exercise=TRUE}
+table(bundesliga$Siege)                              # Absolute Häufigkeit
+table(bundesliga$Niederlagen)                        # Absolute Häufigkeit
+```
+
+```{r 2_2-hint-1}
+mean(bundesliga$Niederlagen)                         # Mittelwert
+tapply(bundesliga$Siege,bundesliga$Niederlagen, mean)# Bedingter Mittelwert
+```
+```{r 2_2-hint-2}
+max(bundesliga$Niederlagen)                          # Maximum
+tapply(bundesliga$Siege,bundesliga$Niederlagen, max) # Bedingtes Maximum
+```
+
+## 3. Quiz
+
+```{r 3_1, echo = FALSE}
+quiz(
+  question("Welche der folgenden Aussagen sind korrekt?", allow_retry = TRUE, random_answer_order = TRUE,
+    answer('Bedingte Wahrscheinlichkeit oder auch konditionale Wahrscheinlichkeit ist definiert als die Wahrscheinlichkeit des Eintretens eines Ereignisses A unter der Bedingung, dass das Eintreten eines anderen Ereignisses B bereits bekannt ist. Sie wird als P(B|A) geschrieben.', message = 'Nein, Sie wird als P(A|B) geschrieben.'),
+    answer('Die bedingte Wahrscheinlichkeit berechnet sich als das Produkt der beiden Einzelwahrscheinlichkeiten, P(A|B) = P(A)*P(B).', message = 'Nein, die bedingte Wahrscheinlichkeit berechnet sich NICHT als das Produkt der beiden Einzelwahrscheinlichkeiten P(A)*P(B).'),
+    answer('Um die bedingte Wahrscheinlichkeit zu berechnen, werden nur die Beobachtungen, bei denen B eingetreten ist, bezüglich der Wahrscheinlichkeit evaluiert, dass auch A eingetreten ist.', correct = TRUE),
+    type = "multiple"
+  ),
+  question("Welche der folgenden Aussagen sind korrekt?", allow_retry = TRUE, random_answer_order = TRUE,
+    answer('Die Funktion sapply() kann eine ganze Liste als Input verwenden und dann eine Funktion auf jedes Element dieser Liste anwenden. Als Ergebnis wird eine Liste der Ergebnisse zurückgegeben.', correct = TRUE),
+    answer('Wenn Sie sich die durchschnittliche Anzahl der erreichten Punkte in der Saison für jede Gruppierung anzeigen lassen möchten, die gleich viele Siege vorzuweisen haben, dann nutzen Sie die Funktion tapply(Parameter1,Parameter2, mean) und verwenden Punkte als Parameter1 und Siege als Parameter2. Damit erhalten Sie den bedingten Mittelwert der Punkte je Gruppe von Teams mit gleicher Anzahl an Siegen.', correct = TRUE),
+    answer('Die Funktion sapply(bundesliga, mean) wendet die Funktion mean() auf alle Spalten des Dataframes bundesliga an.', correct = TRUE),
+    type = "multiple"
+  )
+)
+```
+
+## Ende 
+
+Gratulation!
+
+Sie haben dieses Tutorial erfolgreich ausgeführt und einen Einblick in die bedingte Wahrscheinlichkeitsrechnung mit R erhalten.
