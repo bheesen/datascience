@@ -26,7 +26,8 @@ Das Kapitel 4.2 bis 4.2.3 behandelt die Wahrscheinlichkeitsrechnung, Zufallsvari
 
 Eine Wahrscheinlichkeit kann berechnet werden, indem man die relativen Häufigkeiten eines Ereignisses beobachtet, welches in der Vergangenheit aufgetreten ist. Diese Beobachtung der Vergangenheit kann uns dabei helfen die Wahrscheinlichkeiten für die Zukunft zu schätzen, obwohl dies immer mit einer gewissen Ungenauigkeit verbunden ist, denn die Rahmenbedingungen könnten sich geändert haben. Derartige Schätzungen und Voraussagen für die Zukunft sind Bestandteil der induktiven Statistik.
 
-Folgende Schreibweise bzw. Notation ist in der Wahrscheinlichkeitsrechnung üblich und beschreibt die zugehörigen Berechnungsformeln: ![Formeln](images/formeln.jpg)
+Folgende Schreibweise bzw. Notation ist in der Wahrscheinlichkeitsrechnung üblich und beschreibt die zugehörigen Berechnungsformeln: 
+![Formeln](images/formeln.jpg)
 
 ### 1.1 Gesetz der Großen Zahl und Formeln
 
@@ -37,11 +38,9 @@ Wiederholt man den Münzwurf 100x oder sogar 1000x, so nähert sich die relative
 Dies ist auch bei dem nachfolgenden Beispiel erkennbar, wo zunächst ein Würfel 15x und dann 10000x gewürfelt wird und sich die Wahrscheinlichkeiten bei großer Anzahl an Wiederholungen dem Wert von 0,16 je Zahl annähert.
 
 15 Mal würfeln:
-
 ![](images/diskret15.jpg)
 
 10000 Mal würfeln:
-
 ![](images/diskret10000.jpg)
 
 ## 2. Zufallsvariablen
@@ -52,7 +51,8 @@ Die Wahrscheinlichkeitsrechnung verwendet Zufallsvariablen als Basis der Berechn
 
 Diskrete Zufallsvariablen zeichnen sich wie diskrete Variablen dadurch aus, dass sie diskrete Werte annehmen. Ein Würfel kann z.B. die konkreten Werte von 1 bis 6 annehmen und insofern ist das Würfelergebnis eine diskrete Zufallsvariable. Im Fall eines Würfels ist die Wahrscheinlichkeit für jeden der Werte 1/6.
 
-Wahrscheinlichkeit beim Würfeln: ![Diskret](images/diskret.jpg)
+Wahrscheinlichkeit beim Würfeln:
+![Diskret](images/diskret.jpg)
 
 Nachfolgend wird die Funktion seq(x,y) verwendet, die einen Vektor mit Zahlen von x bis y erzeugt. Die Wahrscheinlichkeit jeder der Zahlen in dem Vektor mit den Zahlen von 1 bis 6 ist demnach 1/6. 
 
@@ -65,7 +65,8 @@ wahrscheinlichkeit
 Erzeugen Sie sich einen numerischen Vektor mit dem Namen "position" und den Inhalten von 1 bis 18 für die Tabellenposition der 1. Bundesliga. Wenn alle Mannschaften gleich gut sind, was ist dann die Wahrscheinlichkeit, dass Ihr Lieblingsclub von den 18 Mannschaften nach dem 3. Spieltag auf einer der ersten 6 Tabellenpositionen steht? Ermitteln Sie die Wahrscheinlichkeiten für jede der ersten 6 Tabellenpositionen und lassen Sie sich diese anzeigen.
 Lassen Sie sich auch anzeigen, wie hoch die Wahrscheinlichkeit ist, dass Ihr Lieblingsclub auf einer der ersten 4 Plätze ist.
 
-Die Anzeige sollte hinterher wie folgt aussehen: ![bundesliga](images/bundesliga.jpg)
+Die Anzeige sollte hinterher wie folgt aussehen:
+![bundesliga](images/bundesliga.jpg)
 
 ```{r 2_1, exercise=TRUE}
 
@@ -89,11 +90,9 @@ sum(position.tabelle$prozentwahrscheinlichkeit[1:4])
 Stetige Zufallsvariablen können beliebige numerische Werte annehmen und sind nicht wie im Falle eines Würfels beschränkt auf eine Liste diskreter Werte. Ein Beispiel für eine stetige Zufallsvariable wäre z.B. die Zeit zur Fertigung eines Produkts. Beobachtet man 10000 Produktionsvorgänge, so ergibt sich als schnellste Zeit eventuell 45 Minuten 55 Sekunden und als längste Zeit 80 Minuten 13 Sekunden. Betrachtet man die aufsteigend sortierten Fertigungszeiten und betrachtet den Wert 7501, der 64 Minuten 43 Sekunden beträgt, so kann man sagen, dass mit einer Wahrscheinlichkeit von 75% (75%-Quantil) zu erwarten ist, dass die Fertigungszeit geringer als 64 Minuten 43 Sekunden sein wird. Die kumulierte Verteilungsfunktion einer stetigen Zufallsvariablen ist eine stetige, nicht fallende Funktion, die sich von 0 bis 1 bzw. 0% bis 100% auf der Y-Achse abbilden lässt. Bei Kenntnis von deren Formel lässt sich mit Hilfe der Integralrechnung die kumulierte Verteilung berechnen.
 
 15 Fertigungsdurchführungen:
-
 ![](images/stetig15.jpg)
 
 10000 Fertigungsdurchführungen:
-
 ![](images/stetig10000.jpg)
 
 In R kann die Funktion rnorm(x, Mittelwert, Standardabweichung) verwendet werden, um einen Vektor mit x Zahlen (hier: Fertigungszeit in Minuten) erzeugt, welche normalverteilt mit dem Mittelwert und der Standardabweichung sind. Die Häufigkeit jeder Fertigungszeit lässt sich dem Histogramm entnehmen. 
@@ -111,7 +110,8 @@ ggplot(fertigungszeit, aes(x=fertigungszeit)) +
 
 Lassen Sie sich einen Vektor mit dem Namen temp erzeugen, der 8 Temperaturen als stetige Zufallszahl enthält, wobei die Temperatur im Mittel 28 Grad und die Standardabweichung 2 Grad beträgt. Lassen Sie sich die Temperaturen ausgeben und stellen Sie diese auch in einem Histogramm dar.
 
-Die Anzeige sollte hinterher so ähnlich wie nachfolgende aussehen: ![Temperatur](images/temperatur.jpg)
+Die Anzeige sollte hinterher so ähnlich wie nachfolgende aussehen:
+![Temperatur](images/temperatur.jpg)
 
 ```{r 2_21, exercise=TRUE}
 
@@ -132,7 +132,8 @@ Die Werte müssen nicht mit der Abbildung oberhalb der Aufgabe übereinstimmen! 
 
 Wenn wir jedoch reproduzierbare Zufallszahlen erzeugen wollen, die immer wieder gleich und auch für andere Personen identisch sind, unabhängig von Ort und Zeit, dann kann die Funktion set.seed() verwendet werden. 
 
-Fügen Sie oberhalb der Funktion rnorm() in Ihrem Code die folgende Zeile ein: set.seed(8735). Wenn Sie  Ihren Code jetzt erneut ausführen, dann sollte das Ergebnis tatsächlich mit dem folgenden übereinstimmen: ![Temperatur2](images/temperatur2.jpg)
+Fügen Sie oberhalb der Funktion rnorm() in Ihrem Code die folgende Zeile ein: set.seed(8735). Wenn Sie  Ihren Code jetzt erneut ausführen, dann sollte das Ergebnis tatsächlich mit dem folgenden übereinstimmen:
+![Temperatur2](images/temperatur2.jpg)
 
 Mehr Details zu der Funktion set.seed() finden Sie im Kapitel 4.2.3 im Buch.
 
@@ -189,7 +190,8 @@ ggplot(wahrscheinlichkeit,aes(x=wuerfel,y=prozent))+
 ```
 Erzeugen Sie jetzt mit der Funktion sample() 300 Werte, die dem zufälligen Ergebnis beim Würfeln entsprechen. Zeigen Sie anschließend die ersten 5 Werte an und geben Sie zusätzlich die Häufigkeit des Vorkommens mit einem Bar-Chart aus.
 
-Die Anzeige sollte hinterher so ähnlich wie folgt aussehen: ![wuerfel](images/wuerfel.jpg)
+Die Anzeige sollte hinterher so ähnlich wie folgt aussehen:
+![wuerfel](images/wuerfel.jpg)
 
 ```{r 2_4_11, exercise=TRUE}
 
@@ -210,7 +212,8 @@ Die Werte müssen nicht mit der Abbildung oberhalb der Aufgabe übereinstimmen! 
 
 Wenn wir jedoch reproduzierbare Zufallswerte erzeugen wollen, die immer wieder gleich und auch für andere Personen identisch sind, unabhängig von Ort und Zeit, dann kann die Funktion set.seed() auch hier verwendet werden. 
 
-Fügen Sie oberhalb der Funktion sample() in Ihrem Code die folgende Zeile ein: set.seed(8735). Wenn Sie  Ihren Code jetzt erneut ausführen, dann sollte das Ergebnis tatsächlich mit dem folgenden übereinstimmen: ![Wuerfel2](images/wuerfel2.jpg)
+Fügen Sie oberhalb der Funktion sample() in Ihrem Code die folgende Zeile ein: set.seed(8735). Wenn Sie  Ihren Code jetzt erneut ausführen, dann sollte das Ergebnis tatsächlich mit dem folgenden übereinstimmen:
+![Wuerfel2](images/wuerfel2.jpg)
 
 Das Gesetz der Großen Zahlen gilt übrigens auch für diskrete Zufallsvariablen. Das nachfolgende Beispiel zeigt, dass sich die Verteilung der Würfelergebnisse für 15, 100, 10.000 und 100.000 Wiederholungen mit größerer Zahl der Wiederholungen dem Erwartungswert von 1/6 je Zahl immer mehr annähert (Details dazu in Kapitel 4.2.1 im Buch).
 
@@ -269,7 +272,8 @@ Erzeugen Sie anschließend einen Vektor mit dem Namen gleich, der n gleichvertei
 
 Erzeugen Sie auch noch einen Vektor mit dem Namen normal, der n normalverteilte Zufallszahlen mit dem Mittelwert 50 und einer Standardabweichung von 10 enthält und sortieren Sie diesen Vektor aufsteigend. Lassen Sie sich den Inhalt des Vektors in einem Scatter-Plot anzeigen, wobei die x-Achse die Position des Wertes im Vektor von 1 bis n anzeigt und die y-Achse den Wert. Stellen Sie sicher, dass die y-Achse von 1 bis 99 skaliert ist und die x-Achse nicht angezeigt wird.
 
-Die Anzeige sollte hinterher wie folgt aussehen: ![Zufallszahlen](images/zufallszahlen.jpg)
+Die Anzeige sollte hinterher wie folgt aussehen:
+![Zufallszahlen](images/zufallszahlen.jpg)
 
 Offensichtlich kommen bei der Normalverteilung nur sehr wenige extrem hohe und niedrige Werte vor und die Mehrzahl der Werte liegt zwischen 35 und 65, während bei der Gleichverteilung  extrem hohe und niedrige Werte ebenso häufig vorkommen wie alle anderen Werte.
 
@@ -319,7 +323,8 @@ Simulieren Sie die Wahl des Fahrers für jeden der Monate, indem Sie einen Zufal
 
 Simulieren Sie anschließend die Wahl des Fahrers für jeden der Monate, indem Sie einen Zufallswert generieren und dabei nicht erlauben, dass ein Fahrer mehrmals im Jahr Fahrer des Monats werden kann. Lassen Sie sich die Liste der Fahrer ausgeben.
 
-Die Anzeige sollte hinterher wie folgt aussehen: ![Zufallswerte](images/zufallswerte.jpg)
+Die Anzeige sollte hinterher wie folgt aussehen:
+![Zufallswerte](images/zufallswerte.jpg)
 
 Offensichtlich werden in der zweiten Simulation Valtteri Bottas und Sebastian Vettel mehrfach zum Fahrer des Monats gewählt.
 
