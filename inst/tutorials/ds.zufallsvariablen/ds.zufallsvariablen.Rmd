@@ -1,7 +1,7 @@
 ---
 title: "Zufallsvariablen"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 16.11.2021"
+date: "Version vom 7.12.2021"
 output: 
   learnr::tutorial:
     progressive: true
@@ -62,7 +62,7 @@ wahrscheinlichkeit <- as.data.frame(table(zahl))$Freq/length(zahl)
 wahrscheinlichkeit
 ```
 
-Erzeugen Sie sich einen numerischen Vektor mit dem Namen "postion" und den Inhalten von 1 bis 18 für die Tabellenposition der 1. Bundesliga. Wenn alle Mannschaften gleich gut sind, was ist dann die Wahrscheinlichkeit, dass Ihr Lieblingsclub von den 18 Mannschaften nach dem 3. Spieltag auf einer der ersten 6 Tabellenpositionen steht? Ermitteln Sie die Wahrscheinlichkeiten für jede der ersten 6 Tabellenpositionen und lassen Sie sich diese anzeigen.
+Erzeugen Sie sich einen numerischen Vektor mit dem Namen "position" und den Inhalten von 1 bis 18 für die Tabellenposition der 1. Bundesliga. Wenn alle Mannschaften gleich gut sind, was ist dann die Wahrscheinlichkeit, dass Ihr Lieblingsclub von den 18 Mannschaften nach dem 3. Spieltag auf einer der ersten 6 Tabellenpositionen steht? Ermitteln Sie die Wahrscheinlichkeiten für jede der ersten 6 Tabellenpositionen und lassen Sie sich diese anzeigen.
 Lassen Sie sich auch anzeigen, wie hoch die Wahrscheinlichkeit ist, dass Ihr Lieblingsclub auf einer der ersten 4 Plätze ist.
 
 Die Anzeige sollte hinterher wie folgt aussehen: ![bundesliga](images/bundesliga.jpg)
@@ -313,7 +313,7 @@ ggplot(ergebnis)+
 
 ### 2.6 Übung
 
-In dem Vektor fahrer befinden sich die Namen von 15 Fahrern der Formel1. Jeden Monat soll der aus Sicht der Fans beliebteste Fahrer einen Auszeichnung erhalten, was durch ein Online-Voting entschieden wird. Simulieren Sie dieses Voting durch die Erzeugung von Zufallswerte, wobei Sie die Anweisung set.seed(123) vor jeder Erzeugung von Zufallswerten verwenden, so dass die Ergebnisse reproduzierbar sind.
+In dem Vektor fahrer befinden sich die Namen von 15 Fahrern der Formel1. Jeden Monat soll der aus Sicht der Fans beliebteste Fahrer eine Auszeichnung erhalten, was durch ein Online-Voting entschieden wird. Simulieren Sie dieses Voting durch die Erzeugung von Zufallswerte, wobei Sie die Anweisung set.seed(123) vor jeder Erzeugung von Zufallswerten verwenden, so dass die Ergebnisse reproduzierbar sind.
 
 Simulieren Sie die Wahl des Fahrers für jeden der Monate, indem Sie einen Zufallswert generieren. Erlauben Sie dabei, dass alle Fahrer jeden Monat erneut ausgewählt werden können. Lassen Sie sich die Liste der Fahrer ausgeben.
 
@@ -334,12 +334,12 @@ fahrer<-unique(formel1$Fahrer)[1:15]
 ```{r 2_6-hint-1}
 n<-12
 set.seed(123)
-fahrerdesmonats<-sample(fahrer,n, replace = FALSE)
+fahrerdesmonats<-sample(fahrer,n,replace = TRUE)
 fahrerdesmonats
 ```
 ```{r 2_6-hint-2}
 set.seed(123)
-fahrerdesmonats<-sample(fahrer,n,replace = TRUE)
+fahrerdesmonats<-sample(fahrer,n,replace = FALSE)
 fahrerdesmonats
 ```
 
