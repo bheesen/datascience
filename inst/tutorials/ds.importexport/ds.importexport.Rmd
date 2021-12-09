@@ -1,7 +1,7 @@
 ---
 title: "Import und Export von Daten"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 22.11.2021"
+date: "Version vom 9.12.2021"
 output: 
   learnr::tutorial:
     progressive: true
@@ -229,6 +229,7 @@ Auch das Speichern in der Cloud, z.B. auf Google Drive oder Dropbox wird durch R
 Auch das Schreiben eines Dataframes in XLS-Dateien ist mit der Funktion write.xlsx() aus dem Paket openxlsx möglich, z.B. write.xlsx(formel1,"formel1-kopie.xlsx").
 
 ```{r 3_1-setup, exercise=FALSE, echo=FALSE, include=FALSE}
+path<-getwd()
 load("data/studierende.RData")
 formel1 <- read_excel("data/formel1.xlsx")
 kfz <- read_delim("data/autos.csv",col_names =TRUE,delim=";", 
