@@ -402,8 +402,8 @@ Die Wahrscheinlichkeit für das Eintreten des Ereignisses wird mit p beschrieben
 Wenn man das Ereignis mehrfach ausführt und die Bedingungen identisch sind wie z.B. beim Wurf eines Würfels oder beim Ziehen eines Loses mit Zurücklegen des Loses, dann verbleiben die Wahrscheinlichkeiten unverändert bei p und 1-p. Wenn jedoch beim Ziehen eines Loses das Los anschließend nicht zurückgelegt wird und sich damit die Wahrscheinlichkeiten verändert haben, gilt dies nicht mehr als ein Bernoulli-Experiment!
 
 Wenn wir einen Würfel 3x werfen und das Ereignis prüfen wollen, dass entweder die Zahl 5 oder 6 gewürfelt wird, dann betrachten wir zunächst die Wahrscheinlichkeit bei einmaliger Ausführung. Es gilt die Wahrscheinlichkeit für das Eintreten des Ereignisses als 1/6 für den Wurf einer 5 und 1/6 für den Wurf einer 6 und somit die Wahrscheinlichkeit p=2/6 bzw. 1/3 für das Eintreten des Ereignisses, dass entweder eine 5 oder 6 gewürfelt wird. Demnach ergibt sich die Wahrscheinlichkeit 1-p oder 2/3 für das Nichteintreten des Ereignisses, dass entweder eine 5 oder 6 gewürfelt wird.
-
 ![Bernoulli](images/bernoulli.jpg)
+
 Der Faktor von 3 auf der rechten Seite der obigen Formeln für X=1 und X=2 ergibt sich, da es bei einer Abbildung der Permutationen in einem Baum drei Äste gibt, bei denen X diesen Wert erreicht. Verallgemeinert gilt, dass die Anzahl der Permutationen für ein X davon abhängt, wie viele Wiederholungen es gibt und wie häufig das Ereignis eintreten soll. Dieser Faktor wird auch als Binomialkoeffizient bezeichnet und gibt an, auf wie viele verschiedene Arten man k bestimmte Objekte aus einer Menge von n verschiedenen Objekten auswählen kann (ohne Zurücklegen und ohne Beachtung der Reihenfolge). In R lässt sich der Binomialkoeffizient mit der Funktion choose(n,k) berechnen. Die Binomialkoeffizienten lassen sich auch im Pascalschen Dreieck anzeigen (siehe nachfolgenden Code).
 
 ```{r 3_1, exercise=FALSE}
@@ -428,7 +428,6 @@ binomial
 ```
 
 Die Bernoulli-Formel, die sich zur Berechnung der Wahrscheinlichkeit für das Eintreten von Ereignissen bei Bernoulli-Experimenten anwenden lässt, lautet:
-
 ![](images/bernoulliformel.jpg)
 
 ```{r 3_2-setup, exercise=FALSE, echo=FALSE, include=FALSE}
@@ -450,18 +449,18 @@ bernoulli <- function (n,p) { # n=Anzahl Wiederholungen, p=Wahrscheinlichkeit
 n<-10   # Wiederholungen des Experiments
 binomialkoeffizienten<-pascaldreieck(n)
 for (i in 1:n+1) { print(binomialkoeffizienten[i,1:i]) }
-p<-0.75 # Wahrscheinlichkeit, dass Fertigungszeit länger als 63:43 Minuten
+p<-0.75 # Wahrscheinlichkeit, dass Fertigungszeit kürzer als 63:43 Minuten
 binomial<-bernoulli(n,p) # Für n von 10 Wiederholungen des Experiments
 binomial
 ## Berechnung der Wahrscheinlichkeit, dass die Fertigungszeit 
 ## bei 10 Wiederholungen 0 oder 1x > 63:43 Minuten
 # Wahrscheinlichkeit, dass 0x > 63:43 Minuten
-filter(binomial,Ereignis==0)$Wahrscheinlichkeit 
+filter(binomial,Ereignis==9)$Wahrscheinlichkeit 
 # Wahrscheinlichkeit, dass 1x > 63:43 Minuten
-filter(binomial,Ereignis==1)$Wahrscheinlichkeit
+filter(binomial,Ereignis==10)$Wahrscheinlichkeit
 # Wahrscheinlichkeit, dass 0x oder 1x > 63:43 Minuten
-ergebnis<- filter(binomial,Ereignis==0)$Wahrscheinlichkeit +       
-           filter(binomial,Ereignis==1)$Wahrscheinlichkeit
+ergebnis<- filter(binomial,Ereignis==9)$Wahrscheinlichkeit +       
+           filter(binomial,Ereignis==10)$Wahrscheinlichkeit
 ergebnis
 ```
 
