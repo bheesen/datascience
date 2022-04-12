@@ -365,7 +365,7 @@ quiz(
   question("Welche der folgenden Aussagen sind korrekt?", allow_retry = TRUE, random_answer_order = TRUE,
     answer('Numerische Variablen sollten als Faktorvariablen codiert werden.', message = 'Nein, Nominale und Ordinale Variablen sollten als Faktorvariablen codiert werden. Für numerische Variablen eignet sich dies nicht!'),
     answer('Metrische Variablen sollten entweder als Integer oder Numeric codiert werden.', correct = TRUE),
-    answer('Es ist emfpehlenswert für Objektnamen nur Kleinbuchstaben zu verwenden.', correct = TRUE),
+    answer('Es ist empfehlenswert für Objektnamen nur Kleinbuchstaben zu verwenden.', correct = TRUE),
     type = "multiple"
   ),
   question("Welche der folgenden Aussagen sind korrekt?", allow_retry = TRUE, random_answer_order = TRUE,
