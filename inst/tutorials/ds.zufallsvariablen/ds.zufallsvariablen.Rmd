@@ -354,8 +354,7 @@ Wahrscheinlichkeiten können auch von der Anzahl an Kombinationsmöglichkeiten a
 
 Die Anzahl der Kombinationen kann in Abhängigkeit davon berechnet werden, ob ein Objekt der Menge wiederholt (mit Zurücklegen) ausge-wählt werden kann (z.B. beim Würfeln) oder nicht (z.B. beim Ziehen der Lottozahlen) und ob die Reihenfolge, in welcher die Objekte ausgewählt werden, eine Rolle spielt (z.B. Buchstaben in einem Passwort) oder nicht (z.B. Fußballspieler in einer Mannschaftsaufstellung).
 
-Die nachfolgenden Formeln verwenden die Berechnungsmethoden der Fakultät und des Binomialkoeffizienten, deren Berechnung daher kurz vorgestellt werden soll:
-![Fakultät](images/fakultaet.jpg).
+Die nachfolgenden Formeln verwenden die Berechnungsmethoden der Fakultät und des Binomialkoeffizienten, deren Berechnung daher kurz vorgestellt werden soll: ![Fakultät](images/fakultaet.jpg)
 
 Die Formeln zur Berechnung der Kombinationsmöglichkeiten sind für Modell A+B: ![Kombinationen1](images/kombinationen1.jpg)
 
