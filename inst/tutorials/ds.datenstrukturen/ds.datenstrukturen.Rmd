@@ -1,11 +1,12 @@
 ---
 title: "Datenstrukturen"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 27.12.2021"
+date: "Version vom 19.10.2022"
 output: 
   learnr::tutorial:
-    progressive: true
-    allow_skip: true
+    progressive: TRUE
+    allow_skip: TRUE
+    language: de
 runtime: shiny_prerendered
 ---
 
@@ -33,7 +34,7 @@ b <- c("Ein", "Vektor", "vo", "Charaktervariablen") # Character Vektor
 ```
 
 
-```{r 0_2-setup, exercise=FALSE, exercise.setup="0_2", echo=FALSE, include=FALSE}
+```{r 0_2-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 a <- c(12,55,107,3,24)                              # Numerischer Vektor 
 b <- c("Ein", "Vektor", "vo", "Charaktervariablen") # Character Vektor
 ```
@@ -60,7 +61,7 @@ Auf einzelne Elemente eines Vektors kann durch Indizierung in eckigen Klammern z
 a <- c(1.2, -13, 46, 1880.12, -2.5)           # Vektor Typ numerisch
 ```
 
-```{r 1_2, exercise=FALSE}
+```{r 1_2, exercise=FALSE, exercise.setup="1_2-setup"}
 a[]                                           # Ausgabe 
 str(a)                                        # Ausgabe mit Typ und Länge
 a[2]                                          # Ausgabe 2. Element
@@ -72,22 +73,22 @@ a[c(1,3:4)]                                   # Ausgabe 1. & 3.-4. Element
 
 Die Ausgabe einer Reihenfolge von Elementen kann auch beliebig inklusive Wiederholungen einzelner Elemente kombiniert werden, z.B. um die Elemente 1, 3, 3, 1, 1, 5 auszugeben a[c(1,3,3,1,1,5)]. Die Angabe eines ungültigen Indizes bewirkt die Ausgabe NA, z.B. a[3:7] bewirkt für den Index 6 und 7 ein NA.
 
-```{r 1_3-setup, exercise=FALSE, exercise.setup="1_3", echo=FALSE, include=FALSE}
+```{r 1_3-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 a <- c(1.2, -13, 46, 1880.12, -2.5)           # Vektor Typ numerisch
 ```
 
-```{r 1_3, exercise=TRUE}
+```{r 1_3, exercise=TRUE, exercise.setup="1_3-setup"}
 a[c(1,3,3,1,1,5)]                             # Ausgabe beliebiger Elemente
 a[3:7]                                        # Ausgabe ungültiger Indizes 
 ```
 
 Auch eine Berechnung der Indizes ist möglich. Die Funktion length() gibt die Anzahl der Elemente eines Vektors zurück. Möchte man z.B. auf das vorletzte Element zugreifen, so kann man mit der Anweisung a[length(a)-1] arbeiten.
 
-```{r 1_4-setup, exercise=FALSE, exercise.setup="1_4", echo=FALSE, include=FALSE}
+```{r 1_4-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 a <- c(1.2, -13, 46, 1880.12, -2.5)           # Vektor Typ numerisch
 ```
 
-```{r 1_4, exercise=TRUE}
+```{r 1_4, exercise=TRUE, exercise.setup="1_4-setup"}
 length(a)                                     # Anzahl Elemente von Vektor
 a[length(a)-1]                                # Ausgabe vorletztes Element
 ```
@@ -108,11 +109,11 @@ b["rolf"]                                     # Ausgabe 2. Element```
 
 Auch ein logisches Indexing ist möglich, indem Bedingungen bestimmen, welche Elemente ausgewählt werden sollen, z.B. b[>2], b[b==1.3 | b>3] oder b[b<3.3 & b>2]. Eine weitere Option ist die Angabe von TRUE (soll ausgegeben werden) oder FALSE (soll nicht ausgegeben werden) für jedes Element, z.B. b[c(FALSE, TRUE, FALSE)], um nur das Element 2 auszugeben.
 
-```{r 1_6-setup, exercise=FALSE, exercise.setup="1_6", echo=FALSE, include=FALSE}
+```{r 1_6-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 b <- c(anna = 2.7, rolf = 1.3, heike = 4.0)   # Vektor mit Namen
 ```
 
-```{r 1_6, exercise=TRUE}
+```{r 1_6, exercise=TRUE, exercise.setup="1_6-setup"}
 b[b>2]                                        # Ausgabe wenn >2
 b[b==1.3 | b>3]                               # Ausgabe wenn 1.3 oder >3
 b[b<3.3 & b>2]                                # Ausgabe wenn <3.3 und >2
@@ -132,7 +133,7 @@ d                                             # Ausgabe
 
 ### 1.5 Übung
 
-```{r 1_9-setup, exercise=FALSE, exercise.setup="1_9", echo=FALSE, include=FALSE}
+```{r 1_9-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 x <- c(1, -23, 460, 18.12, -102.5)            # Vektor Typ numerisch
 ```
 
@@ -140,7 +141,7 @@ Lassen Sie sich zunächst das Objekt x anzeigen. Lassen Sie sich dann nur das zw
 
 Die Anzeige sollte hinterher wie folgt aussehen: ![Vektor](images/vektor1.jpg)
 
-```{r 1_9, exercise=TRUE}
+```{r 1_9, exercise=TRUE, exercise.setup="1_9-setup"}
 
 ```
 
@@ -155,11 +156,11 @@ Teilen Sie für alle Elemente von Objekt x, welche größer als 10 sind, den Wer
 
 Die Anzeige sollte hinterher wie folgt aussehen: ![Vektor](images/vektor2.jpg)
 
-```{r 1_10-setup, exercise=FALSE, exercise.setup="1_10", echo=FALSE, include=FALSE}
+```{r 1_10-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 x <- c(1, -23, 460, 18.12, -102.5)            # Vektor Typ numerisch
 ```
 
-```{r 1_10, exercise=TRUE}
+```{r 1_10, exercise=TRUE, , exercise.setup="1_10-setup"}
 
 ```
 
@@ -289,7 +290,7 @@ fct_inseq(f)
 
 ### 2.5 Übung
 
-```{r 2_5-setup, exercise=FALSE, exercise.setup="2_5", echo=FALSE, include=FALSE}
+```{r 2_5-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 noten<-c("3",NA,"5","1","3","1","3")
 ```
 
@@ -298,7 +299,7 @@ Um die Anzeige übersichtlicher zu gestalten, legen Sie eine neue Faktorvariable
 
 Folgendes sollte Ihnen angezeigt werden: ![Klausur](images/klausur.jpg)
 
-```{r 2_5, exercise=TRUE}
+```{r 2_5, exercise=TRUE, exercise.setup="2_5-setup"}
 
 ```
 
@@ -337,7 +338,7 @@ str(c)
 
 ### 3.1 Übung
 
-```{r 3_1-setup, exercise=FALSE, exercise.setup="3_1", echo=FALSE, include=FALSE}
+```{r 3_1-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 mitarbeiterdesmonats <- factor(c("Robert", "Timo", "Marco", "Timo", "Robert"))
 neukunden<-c(3,17,4,31,267,54,612,1050)
 marketing<-c("Facebook","YouTube")
@@ -350,7 +351,7 @@ Lassen Sie sich anschließend den Inhalt für marketing und zielwerte aus der Li
 
 Folgendes sollte Ihnen angezeigt werden: ![BurkinaFaso](images/burkinafaso.jpg)
 
-```{r 3_1, exercise=TRUE}
+```{r 3_1, exercise=TRUE, exercise.setup="3_1-setup"}
 
 ```
 
@@ -467,7 +468,7 @@ x3 <- c(53, 22, 31, 26)                  # Vektor X3 (Alter)
 df <- data.frame(Freund=x1, Facebook=x2, Alter=x3)  # Dataframe
 ```
 
-```{r 5_1, exercise=FALSE}
+```{r 5_1, exercise=FALSE, exercise.setup="5_1-setup"}
 dim(df)                            # Dimension (Zeilen,Spalten)
 nrow(df)                           # Zeilenanzahl
 ncol(df)                           # Spaltenanzahl
@@ -488,7 +489,7 @@ x3 <- c(53, 22, 31, 26)                  # Vektor X3 (Alter)
 df <- data.frame(Freund=x1, Facebook=x2, Alter=x3)  # Dataframe
 ```
 
-```{r 5_2, exercise=FALSE}
+```{r 5_2, exercise=FALSE, exercise.setup="5_2-setup"}
 a <- df[2]                         # Ausgabe Spalte 2 über Index erzeugt Dataframe
 str(a)
 b <- df$Facebook                   # Ausgabe Spalte 2 über Name erzeugt Vektor
@@ -516,7 +517,7 @@ df <- data.frame(Freund=x1, Facebook=x2, Alter=x3)  # Dataframe
 colnames(df)[names(df)=="Freund"] <- "Name"   # Spalte "Freund" umbenennen
 ```
 
-```{r 5_21, exercise=FALSE}
+```{r 5_21, exercise=FALSE, exercise.setup="5_21-setup"}
 df                                 # Ausgabe
 head(df)                           # Ausgabe der ersten Datensätze
 head(df, 3)                        # Ausgabe der ersten 3 Datensätze
@@ -559,7 +560,7 @@ x3 <- c(53, 22, 31, 26)                  # Vektor X3 (Alter)
 df2<- data.frame(Freund=x1, Facebook=x2, Alter=x3)  # Dataframe
 ```
 
-```{r 5_4, exercise=FALSE}
+```{r 5_4, exercise=FALSE, exercise.setup="5_4-setup"}
 tbl <- as_tibble(df2)              # Tibble
 tbl                                # Ausgabe
 class(tbl)                         # Datentyp
@@ -589,7 +590,7 @@ tbl2 <- tibble(Freund=x1, Facebook=x2, Alter=x3)  # Tibble
 colnames(tbl)[names(tbl)=="Freund"] <- "Name"   # Spalte "Freund" umbenennen
 ```
 
-```{r 5_41, exercise=FALSE}
+```{r 5_41, exercise=FALSE, exercise.setup="5_41-setup"}
 head(tbl)                          # Ausgabe der ersten Datensätze
 head(tbl, 3)                       # Ausgabe der ersten 3 Datensätze
 tail(tbl, 2)                       # Ausgabe der letzten 2 Datensätze
@@ -613,7 +614,7 @@ tbl <- as_tibble(df2)              # Tibble
 tbl2 <- tibble(Freund=x1, Facebook=x2, Alter=x3)  # Tibble
 ```
 
-```{r 5_5, exercise=FALSE}
+```{r 5_5, exercise=FALSE, exercise.setup="5_5-setup"}
 str(tbl)                           # Ausgabe mit Typ, Dimension und Länge
 a <- tbl[2]                        # Ausgabe Spalte 2 über Index erzeugt Tibble
 str(a)
@@ -633,7 +634,7 @@ tbl[tbl$Freund == "Silke",]        # Ausgabe Zeile 2 mit logischen index
 
 ### 5.6 Übung
 
-```{r 5_6-setup, exercise=FALSE, exercise.setup="5_6", echo=FALSE, include=FALSE}
+```{r 5_6-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 fussball <- as_tibble(bundesliga) 
 ```
 
@@ -641,7 +642,7 @@ Lassen Sie sich zunächst die Struktur des Tibble fussball anzeigen. Zeigen Sie 
 
 Folgendes sollte Ihnen angezeigt werden: ![Fußball](images/fussball.jpg)
 
-```{r 5_6, exercise=TRUE}
+```{r 5_6, exercise=TRUE, exercise.setup="5_6-setup"}
 
 ```
 
