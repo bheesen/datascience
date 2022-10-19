@@ -1,11 +1,12 @@
 ---
 title: "Syntax"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 11.01.2022"
+date: "Version vom 19.10.2022"
 output: 
   learnr::tutorial:
     progressive: TRUE
     allow_skip: TRUE
+    language: de
 runtime: shiny_prerendered
 ---
 
@@ -59,13 +60,13 @@ Weisen Sie der Variablen y den Wert 1 zu und lassen Sie sich anschließend den W
 Erstellen Sie die Variable mit dem Namen "klausurnoten", welche sich aus x und y zusammensetzt.
 Lassen Sie sich anschließend die Variable "klausurnoten" anzeigen, die 3 und 1 anzeigen sollte.
 
-```{r 1_4-setup, exercise=FALSE, exercise.setup="1_4", echo=FALSE, include=FALSE}
+```{r 1_4-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 x <- 3
 y <- 1 
 ```
 
 
-```{r 1_4, exercise=TRUE}
+```{r 1_4, exercise=TRUE, exercise.setup="1_4-setup"}
 klausurnoten <- ...
 
 ```
@@ -80,13 +81,13 @@ Codeblöcke von Schleifen oder Funktionen werden mit geschweiften Klammern umsch
 
 Führen Sie die for-Schleife aus, welche die ersten beiden Werte der Klausurnoten mit den Werten 3 und 1 ausgibt.
 
-```{r 2-setup, exercise=FALSE, exercise.setup="2", echo=FALSE, include=FALSE}
+```{r 2-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 x <- 3
 y <- 1 
 klausurnoten <- c(x,y)
 ```
 
-```{r 2, exercise=TRUE}
+```{r 2, exercise=TRUE, exercise.setup="2-setup"}
 for (i in 1:2) {         # For-Schleife von 1 bis 2
   print(klausurnoten[i]) # Gibt die Inhalte von klausurnoten mit Index i aus
 }
@@ -101,13 +102,13 @@ R-Befehle bestehen aus Ausdrücken, also aus Wertzuweisungen (arithmetische oder
 
 Rufen Sie die Funktion mean() auf und verwenden Sie als Parameter den Vektor klausurnoten. Als Ergebnis sollte 2 angezeigt werden.
 
-```{r 3_1-setup, exercise=FALSE, exercise.setup="3_1", echo=FALSE, include=FALSE}
+```{r 3_1-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 x <- 3
 y <- 1 
 klausurnoten <- c(x,y)
 ```
 
-```{r 3_1, exercise=TRUE}
+```{r 3_1, exercise=TRUE, exercise.setup="3_1-setup"}
 
 ```
 
