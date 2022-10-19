@@ -1,11 +1,12 @@
 ---
 title: "Bedingte Wahrscheinlichkeit"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 31.12.2021"
+date: "Version vom 19.10.2022"
 output: 
   learnr::tutorial:
-    progressive: true
-    allow_skip: true
+    progressive: TRUE
+    allow_skip: TRUE
+    language: de
 runtime: shiny_prerendered
 ---
 
@@ -35,7 +36,7 @@ bundesliga[c(3:6,8:9)]<-sapply(bundesliga[c(3:6,8:9)],      # Konvertierung num
                                as.numeric)                  # für Spalte 3-6 + 8-9 
 ```
 
-```{r 1_1, exercise=FALSE}
+```{r 1_1, exercise=FALSE, exercise.setup="1_1-setup"}
 head(bundesliga,18)                              # Anzeige 18 Zeilen
 #- Relative Wahrscheinlichkeit----------------------------------------------------
 abs.pkt <- table(bundesliga$Punkte)              # Absolute Häufigkeit
@@ -59,7 +60,7 @@ abs.sieg <- table(bundesliga$Siege)              # Absolute Häufigkeit
 abs.tor <- table(bundesliga$Tordifferenz)        # Absolute Häufigkeit
 ```
 
-```{r 1_2, exercise=FALSE}
+```{r 1_2, exercise=FALSE, exercise.setup="1_2-setup"}
 rel.sieg <- round(100*prop.table(abs.sieg),2)    # Relative Häufigkeit in %
 rel.sieg
 rel.tor <- round(100*prop.table(abs.tor),2)      # Relative Häufigkeit in %
@@ -117,7 +118,7 @@ bundesliga[c(3:6,8:9)]<-sapply(bundesliga[c(3:6,8:9)],      # Konvertierung num
                                as.numeric)                  # für Spalte 3-6 + 8-9
 ```
 
-```{r 1_4, exercise=TRUE}
+```{r 1_4, exercise=TRUE, exercise.setup="1_4-setup"}
 
 ```
 
@@ -176,7 +177,7 @@ bundesliga[c(3:6,8:9)]<-sapply(bundesliga[c(3:6,8:9)],      # Konvertierung num
                                as.numeric)                  # für Spalte 3-6 + 8-9
 ```
 
-```{r 2_2, exercise=TRUE}
+```{r 2_2, exercise=TRUE, exercise.setup="2_2-setup"}
 table(bundesliga$Siege)                              # Absolute Häufigkeit
 table(bundesliga$Niederlagen)                        # Absolute Häufigkeit
 ```
