@@ -1,11 +1,12 @@
 ---
 title: "Import und Export von Daten"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 9.12.2021"
+date: "Version vom 19.10.2022"
 output: 
   learnr::tutorial:
-    progressive: true
-    allow_skip: true
+    progressive: TRUE
+    allow_skip: TRUE
+    language: de
 runtime: shiny_prerendered
 ---
 
@@ -253,7 +254,7 @@ if (file.exists(datei)) {
 }
 ```
 
-```{r 3_1, exercise=FALSE}
+```{r 3_1, exercise=FALSE, exercise.setup="3_1-setup"}
 ls()                                              # Anzeige Objekte
 setwd(file.path(path, "/data"))                   # Arbeitsverzeichnis festlegen
 list.files()                                      # Anzeige Dateien
@@ -274,7 +275,7 @@ Das Ergebnis sollte wie folgt angezeigt werden:
 setwd(file.path(path, "/data"))                   # Arbeitsverzeichnis festlegen
 ```
 
-```{r 3_2, exercise=TRUE}
+```{r 3_2, exercise=TRUE, exercise.setup="3_2-setup"}
 
 ```
 
@@ -302,7 +303,7 @@ Das Ergebnis sollte wie folgt angezeigt werden:
 setwd(file.path(path, "/data"))                   # Arbeitsverzeichnis festlegen
 ```
 
-```{r 3_4, exercise=TRUE}
+```{r 3_4, exercise=TRUE, exercise.setup="3_4-setup"}
 
 ```
 
