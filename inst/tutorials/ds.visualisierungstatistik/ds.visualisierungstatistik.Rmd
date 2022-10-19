@@ -1,16 +1,20 @@
 ---
 title: "Visualisierungen in der Deskriptiven Statistik"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 16.11.2021"
+date: "Version vom 19.10.2022"
 output: 
   learnr::tutorial:
-    progressive: true
-    allow_skip: true
+    progressive: TRUE
+    allow_skip: TRUE
+    language: de
 runtime: shiny_prerendered
 ---
 
 ```{r setup, include=FALSE}
 library(datascience)
+colnames(studierende)[5]<-"Größe"
+colnames(studierende)[10]<-"Fußball"
+colnames(studierende)[13]<-"Attraktivität"
 library(tidyverse)
 library(learnr)
 library(datasauRus) 
@@ -59,7 +63,7 @@ In R wird das Geom geom_dotplot() in der Funktion ggplot() für die Darstellung 
 studierende.gruppe<-studierende[1:10,]            # Dataframe mit 10 Studierenden
 ```
 
-```{r 2_0, exercise=FALSE}
+```{r 2_0, exercise=FALSE, exercise.setup="2_0-setup"}
 studierende.gruppe$Größe                          # Größe der 10 Studierenden
 ggplot(studierende.gruppe,aes(x=Größe)) +         # Dataframe
   geom_dotplot(fill="White",stackdir="center",    # Dot-Plot
@@ -74,7 +78,7 @@ ggplot(studierende.gruppe,aes(x=Größe)) +         # Dataframe
 
 ### 2.1 Übung
 
-```{r 2_1-setup, exercise.setup="2_1", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 2_1-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 studierende.gruppe<-studierende[1:15,]            # Dataframe mit 10 Studierenden
 ```
 
@@ -82,7 +86,7 @@ Der Dataframe studierende.gruppe enthält Information zu 15 Studierenden. Lassen
 
 Die Anzeige sollte hinterher wie folgt aussehen: ![Dot-Plot](images/dotplot.jpg)
 
-```{r 2_1, exercise=TRUE}
+```{r 2_1, exercise=TRUE, exercise.setup="2_1-setup"}
 studierende.gruppe$DistanzEltern
 ```
 
@@ -151,7 +155,7 @@ grid.arrange(p1,p2,p3,ncol=3)                     # Ausgabe
 
 ### 3.1 Übung
 
-```{r 3_1-setup, exercise.setup="3_1", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 3_1-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 studierende.gruppe<-studierende[1:15,]            # Dataframe mit 10 Studierenden
 ```
 
@@ -159,7 +163,7 @@ Der Dataframe studierende.gruppe enthält Information zu 15 Studierenden. Lassen
 
 Die Anzeige sollte hinterher wie folgt aussehen: ![Histogramm](images/histogramm.jpg)
 
-```{r 3_1, exercise=TRUE}
+```{r 3_1, exercise=TRUE, exercise.setup="3_1-setup"}
 studierende.gruppe$Distanz
 ```
 
@@ -181,7 +185,7 @@ In R wird das Geom geom_bar() in der Funktion ggplot() für die Darstellung von 
 studierende.gruppe<-studierende[1:10,]            # Dataframe mit 10 Studierenden
 ```
 
-```{r 4_0, exercise=FALSE}
+```{r 4_0, exercise=FALSE, exercise.setup="4_0-setup"}
 studierende.gruppe$Distanz                        # Distanz der 10 Studierenden
 ggplot(studierende.gruppe,aes(x=1:10,y=Distanz))+ # Bar-Chart
   geom_bar(stat="identity",width=1,color="white",fill=c("gray","gray","gray",
@@ -194,7 +198,7 @@ ggplot(studierende.gruppe,aes(x=1:10,y=Distanz))+ # Bar-Chart
 
 ### 4.1 Übung
 
-```{r 4_1-setup, exercise.setup="4_1", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 4_1-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 studierende.gruppe<-studierende[1:15,] 
 ```
 
@@ -202,7 +206,7 @@ Der Dataframe studierende.gruppe enthält Information zu 15 Studierenden. Lassen
 
 Die Anzeige sollte hinterher wie folgt aussehen: ![Bar-Chart](images/barchart.jpg)
 
-```{r 4_1, exercise=TRUE}
+```{r 4_1, exercise=TRUE, exercise.setup="4_1-setup"}
 studierende.gruppe$Größe
 ```
 
@@ -287,7 +291,7 @@ ggplot(studierende)+                                             # Dataframe
 
 ### 6.1 Übung
 
-```{r 6_1-setup, exercise.setup="6_1", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 6_1-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 bundesliga$Gruppe <-                              # Zusätzliche Variable in df 
   case_when(as.numeric(bundesliga$R.) <= 6 ~ "Beste",
     between(as.numeric(bundesliga$R.), 7, 12) ~ "Mittlere",
@@ -300,7 +304,7 @@ Die Mannschaften sind basierend auf der Tabellenposition in der Variable "Gruppe
 
 Die Anzeige sollte hinterher wie folgt aussehen: ![Box-Plot](images/boxplot.jpg)
 
-```{r 6_1, exercise=TRUE}
+```{r 6_1, exercise=TRUE, exercise.setup="6_1-setup"}
 
 ```
 
