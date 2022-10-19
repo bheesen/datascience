@@ -1,11 +1,12 @@
 ---
 title: "Deskriptive Statistik"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 16.11.2021"
+date: "Version vom 19.10.2022"
 output: 
   learnr::tutorial:
-    progressive: true
-    allow_skip: true
+    progressive: TRUE
+    allow_skip: TRUE
+    language: de
 runtime: shiny_prerendered
 ---
 
@@ -92,7 +93,7 @@ sp2 <- as_tibble(studierende[70:85,5])                 # Stichprobe 2 (sp2)
 colnames(sp2) <- "Größe"
 ```
 
-```{r 3_2, exercise=FALSE}
+```{r 3_2, exercise=FALSE, exercise.setup="3_2-setup"}
 sort(sp1$Größe)                                        # Größe sortiert sp1
 median(sp1$Größe)                                      # Median sp1
 sort(sp2$Größe)                                        # Größe sortiert sp2
@@ -111,7 +112,7 @@ sp1 <- as_tibble(studierende[1:15,5])                  # Stichprobe 1 (sp1)
 colnames(sp1) <- "Größe"
 ```
 
-```{r 3_3, exercise=FALSE}
+```{r 3_3, exercise=FALSE, exercise.setup="3_3-setup"}
 table(sp1$Größe)                                       # Verteilung sp1
 stem(sp1$Größe)                                        # Stem-Plot sp1
 g <- as.data.frame(table(sp1$Größe))                   # table() -> Dataframe
@@ -120,7 +121,7 @@ filter(g, Freq == max(g$Freq))$Var1                    # Modus sp1
 
 ### 3.4 Übung
 
-```{r 3_4-setup, exercise.setup="3_4", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 3_4-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 sp3 <- studierende[1:15,"Note"]                        # Stichprobe 3 (sp3)
 ```
 
@@ -128,7 +129,7 @@ Der Vektor sp3 enthält 15 Noten. Lassen Sie sich die 15 Noten anzeigen und bere
 
 Die Anzeige sollte hinterher wie folgt aussehen: ![Lagemaße](images/lagemasse.jpg)
 
-```{r 3_4, exercise=TRUE}
+```{r 3_4, exercise=TRUE, exercise.setup="3_4-setup"}
 
 ```
 
@@ -166,7 +167,7 @@ sp2.modus <- filter(h, Freq == max(h$Freq))$Var1       # Modus sp2
 sp2.modus <- as.numeric(as.character(sp2.modus))       # Konvertierung numerisch
 ```
 
-```{r 4_1, exercise=FALSE}
+```{r 4_1, exercise=FALSE, exercise.setup="4_1-setup"}
 plot(sp2$Größe,rep(1,nrow(sp2)),ylab="Stichprobe 2",main="Scatterplot", # Plot sp2
      yaxt="n",xlab="Körpergröße in cm",xlim=c(150,210))
 abline(v=min(sp2$Größe),col="red",lwd=2)               # Minimun: rot
@@ -226,7 +227,7 @@ sp2 <- as_tibble(studierende[70:85,5])                 # Stichprobe 2 (sp2)
 colnames(sp2) <- "Größe"
 ```
 
-```{r 4_4, exercise=FALSE}
+```{r 4_4, exercise=FALSE, exercise.setup="4_4-setup"}
 sp1 <- arrange(sp1, sp1$Größe)                         # Tibble sp1 sortieren
 sp1meanGröße <- mean(sp1$Größe)                        # Mittelwert sp1
 sp1$no <- rep(1:nrow(sp1))                             # Spalte für Nummer
@@ -269,7 +270,7 @@ tab <- select(sp1, Größe, diffGröße)                   # Tibble tab anlegen
 colnames(tab) <- c("Größe","Abweichung")               # Spaltennamen festlegen
 ```
 
-```{r 4_5, exercise=FALSE}
+```{r 4_5, exercise=FALSE, exercise.setup="4_5-setup"}
 var(tab$Größe)                          # Stichprobenvarianz
 ```
 
@@ -284,13 +285,13 @@ sp1 <- as_tibble(studierende[1:15,5])                  # Stichprobe 1 (sp1)
 colnames(sp1) <- "Größe"
 ```
 
-```{r 4_6, exercise=FALSE}
+```{r 4_6, exercise=FALSE, exercise.setup="4_6-setup"}
 sd(sp1$Größe)                                    # Standardabweichung Stichprobe 1
 ```
 
 ### 4.7 Übung
 
-```{r 4_7-setup, exercise.setup="4_7", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 4_7-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 sp3 <- studierende[1:15,"Note"]                        # Stichprobe 3 (sp3)
 ```
 
@@ -298,7 +299,7 @@ Der Vektor sp3 enthält 15 Noten. Lassen Sie sich die 15 Noten anzeigen und bere
 
 Die Anzeige sollte hinterher wie folgt aussehen: ![Streuungsmaße](images/streuungsmasse.jpg)
 
-```{r 4_7, exercise=TRUE}
+```{r 4_7, exercise=TRUE, exercise.setup="4_7-setup"}
 
 ```
 
@@ -316,7 +317,7 @@ var(sp3)                     # Stichprobenvarianz
 sd(sp3)                      # Standardabweichung der Stichprobe
 ```
 
-```{r 4_8-setup, exercise.setup="4_8", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 4_8-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 sp3 <- studierende[1:15,"Note"]                        # Stichprobe 3 (sp3)
 ```
 
@@ -324,7 +325,7 @@ Lassen Sie sich auch den Box-Plot inkl. möglicher Ausreißer für den Vektor sp
 
 Die Anzeige sollte hinterher wie folgt aussehen: ![Box-Plot](images/boxplot.jpg)
 
-```{r 4_8, exercise=TRUE}
+```{r 4_8, exercise=TRUE, exercise.setup="4_8-setup"}
 
 ```
 
