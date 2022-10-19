@@ -1,11 +1,12 @@
 ---
 title: "Datentypen"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 01.12.2021"
+date: "Version vom 19.10.2022"
 output: 
   learnr::tutorial:
-    progressive: true
-    allow_skip: true
+    progressive: TRUE
+    allow_skip: TRUE
+    language: de
 runtime: shiny_prerendered
 ---
 
@@ -39,12 +40,12 @@ str(heute)               # Datentyp und Wert der Variable
 
 Die Funktion unclass() kann verwendet werden, um anzuzeigen wie eine Variable intern (uncodiert durch den Datentyp vom Typ raw/roh) betrachtet und gespeichert wird.
 
-```{r 0_2-setup, exercise=FALSE, exercise.setup="0_2", echo=FALSE, include=FALSE}
+```{r 0_2-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 a <-  12                 # Numerische Variable 
 heute <- Sys.Date()      # Datumsvariable mit aktuellem Datum
 ```
 
-```{r 0_2, exercise=FALSE}
+```{r 0_2, exercise=FALSE, exercise.setup="0_2-setup"}
 unclass(a)               # Uncodierte Variable vom Typ raw
 unclass(heute)
 ```
@@ -170,11 +171,11 @@ class(g)
 
 Konvertieren Sie die Variable g mit Hilfe der Funktion as.Date() in die Datumsvariable h. Lassen Sie sich anschließend den Datentyp und Wert anzeigen. Als Ergebnis sollte Date[1:1], format: "2022-01-01" angezeigt werden.
 
-```{r 3_21-setup, exercise=FALSE, exercise.setup="3_21", echo=FALSE, include=FALSE}
+```{r 3_21-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 g <- "2022-01-01"        # Character Variable 
 ```
 
-```{r 3_21, exercise=TRUE}
+```{r 3_21, exercise=TRUE, exercise.setup="3_21-setup"}
 
 ```
 
@@ -212,7 +213,7 @@ Das Paket lubridate bietet viele weitere Funktionen für Datums- und Zeitvariabl
 j<-Sys.time()            # Zeitvariable
 ```
 
-```{r 3_5, exercise=FALSE}
+```{r 3_5, exercise=FALSE, exercise.setup="3_5-setup"}
 lubridate::date(j)       # Datum
 year(j)                  # Jahr
 month(j)                 # Monat
@@ -263,7 +264,7 @@ i <- 'Erste Zeichenkette'# Character Variable in einfachen Anführungszeichen
 j <- "Statistik ist toll"# Character Variable in doppelten Anführungszeichen
 ```
 
-```{r 4_1, exercise=FALSE}
+```{r 4_1, exercise=FALSE, exercise.setup="4_1-setup"}
 str_detect(i,"toll")     # Prüfung, ob String enthalten ist
 str_detect(j,"toll")     # Prüfung, ob String enthalten ist
 str_locate(j,"toll")     # Start und Endeposition von String
@@ -291,7 +292,7 @@ Prüfen Sie, ob es sich bei der Variablen mit dem Namen feedback um eine Variabl
 
 Folgendes sollte Ihnen angezeigt werden: ![Zeichenkette](images/zeichenkette.jpg)
 
-```{r 4_3, exercise=TRUE}
+```{r 4_3, exercise=TRUE, exercise.setup="4_3-setup"}
 
 ```
 
