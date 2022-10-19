@@ -1,16 +1,20 @@
 ---
 title: "Induktive Statistik"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 13.12.2021"
+date: "Version vom 19.10.2022"
 output: 
   learnr::tutorial:
-    progressive: true
-    allow_skip: true
+    progressive: TRUE
+    allow_skip: TRUE
+    language: de
 runtime: shiny_prerendered
 ---
 
 ```{r setup, include=FALSE}
 library(datascience)
+colnames(studierende)[5]<-"Größe"
+colnames(studierende)[10]<-"Fußball"
+colnames(studierende)[13]<-"Attraktivität"
 library(tidyverse)
 library(learnr)
 library(moderndive)
@@ -98,7 +102,7 @@ mw.stichprobe <- function (data,n,mw) { # data=Vektor mit Daten, n=Stichprobengr
 }
 ```
 
-```{r 1_2, exercise=FALSE}
+```{r 1_2, exercise=FALSE, exercise.setup="1_2-setup"}
 #- Mittelwert der Körpergröße für Studierende mit Hobby Fußball
 fussball<-filter(studierende,studierende$Hobby      # Studierende Hobby Fußball
              %in% c("Fußball","fußball","fußball","fussball","Fussball"))
@@ -314,7 +318,7 @@ bs.n.mw.infer <-                           # Ziel-Dataframe
   calculate(stat="mean")                   # Mittelwert berechnen
 ```
 
-```{r 2_2, exercise=FALSE}
+```{r 2_2, exercise=FALSE, exercise.setup="2_2-setup"}
 #- Konfidenzintervall ohne das Paket infer
 mw <- mean(bs.n.mw.infer$stat)             # Mittelwert der Mittelwerte
 mw
