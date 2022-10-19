@@ -1,11 +1,12 @@
 ---
 title: "Wahrscheinlichkeits-verteilung"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 9.12.2021"
+date: "Version vom 19.10.2022"
 output: 
   learnr::tutorial:
-    progressive: true
-    allow_skip: true
+    progressive: TRUE
+    allow_skip: TRUE
+    language: de
 runtime: shiny_prerendered
 ---
 
@@ -271,7 +272,7 @@ airsafety$Tote<-airsafety$fatalities_85_99+airsafety$fatalities_00_14
 airsafety<-airsafety[,-c(2:5)]                # Unnötige Variablen entfernen
 ```
 
-```{r 2_1_11, exercise=FALSE}
+```{r 2_1_11, exercise=FALSE, exercise.setup="2_2_11-setup"}
 mw.Gefahr<-mean(airsafety$Gefahrensituationen)# Mittelwert
 mw.Gefahr
 sd.Gefahr<-sd(airsafety$Gefahrensituationen)  # Standardabweichung
@@ -319,7 +320,7 @@ mw.Tote<-mean(airsafety$Tote)                 # Mittelwert Tote
 sd.Tote<-sd(airsafety$Tote)                   # Standardabweichung 
 ```
 
-```{r 2_1_12, exercise=FALSE}
+```{r 2_1_12, exercise=FALSE, exercise.setup="2_2_12-setup"}
 pnorm(5, mean = mw.Gefahr, sd = sd.Gefahr)
 pnorm(25, mean = mw.Gefahr, sd = sd.Gefahr)
 pnorm(100, mean = mw.Tote, sd = sd.Tote)
@@ -343,7 +344,7 @@ mw.Tote<-mean(airsafety$Tote)                 # Mittelwert Tote
 sd.Tote<-sd(airsafety$Tote)                   # Standardabweichung 
 ```
 
-```{r 2_2_13, exercise=FALSE}
+```{r 2_2_13, exercise=FALSE, exercise.setup="2_2_13-setup"}
 p1<-xpnorm(5, mean = mw.Gefahr, sd = sd.Gefahr, return="plot") +
     labs(title="5 Gefahrensituationen",subtitle="32 % links, 68 % rechts")
 p2<-xpnorm(25, mean = mw.Gefahr, sd = sd.Gefahr, return="plot") +
@@ -368,7 +369,7 @@ mw.Tote<-mean(airsafety$Tote)                 # Mittelwert Tote
 sd.Tote<-sd(airsafety$Tote)                   # Standardabweichung 
 ```
 
-```{r 2_2_14, exercise=FALSE}
+```{r 2_2_14, exercise=FALSE, exercise.setup="2_2_14-setup"}
 xqnorm(0.95, mean = mw.Gefahr, sd = sd.Gefahr, return="plot") +
        labs(title="95 % Quantil",subtitle="95 % links, 5 % rechts")
 ```
@@ -444,7 +445,7 @@ bernoulli <- function (n,p) { # n=Anzahl Wiederholungen, p=Wahrscheinlichkeit
 }
 ```
 
-```{r 3_2, exercise=FALSE}
+```{r 3_2, exercise=FALSE, exercise.setup="3_2-setup"}
 #Bernoulli-Experiment-2 Fertigungszeit
 n<-10   # Wiederholungen des Experiments
 binomialkoeffizienten<-pascaldreieck(n)
