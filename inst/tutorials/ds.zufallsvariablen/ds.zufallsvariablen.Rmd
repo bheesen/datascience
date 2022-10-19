@@ -1,11 +1,12 @@
 ---
 title: "Zufallsvariablen"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 7.12.2021"
+date: "Version vom 19.10.2022"
 output: 
   learnr::tutorial:
-    progressive: true
-    allow_skip: true
+    progressive: TRUE
+    allow_skip: TRUE
+    language: de
 runtime: shiny_prerendered
 ---
 
@@ -217,7 +218,7 @@ Fügen Sie oberhalb der Funktion sample() in Ihrem Code die folgende Zeile ein: 
 
 Das Gesetz der Großen Zahlen gilt übrigens auch für diskrete Zufallsvariablen. Das nachfolgende Beispiel zeigt, dass sich die Verteilung der Würfelergebnisse für 15, 100, 10.000 und 100.000 Wiederholungen mit größerer Zahl der Wiederholungen dem Erwartungswert von 1/6 je Zahl immer mehr annähert (Details dazu in Kapitel 4.2.1 im Buch).
 
-```{r 2_4_12-setup, exercise.setup="2_4_12", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 2_4_12-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 experiment.diskret <- function (anzahl) {
   set.seed(1008)
   wuerfel <- sample(1:6,size=anzahl,replace=TRUE)
@@ -230,7 +231,7 @@ experiment.diskret <- function (anzahl) {
 }
 ```
 
-```{r 2_4_12, exercise=TRUE}
+```{r 2_4_12, exercise=TRUE, exercise.setup="2_4_12-setup"}
 experiment.diskret(15)
 experiment.diskret(100)
 experiment.diskret(10000)
@@ -328,11 +329,11 @@ Die Anzeige sollte hinterher wie folgt aussehen:
 
 Offensichtlich werden in der zweiten Simulation Valtteri Bottas und Sebastian Vettel mehrfach zum Fahrer des Monats gewählt.
 
-```{r 2_6-setup, exercise.setup="2_6", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 2_6-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 fahrer<-unique(formel1$Fahrer)[1:15]
 ```
 
-```{r 2_6, exercise=TRUE}
+```{r 2_6, exercise=TRUE, exercise.setup="2_6-setup"}
 
 ```
 
