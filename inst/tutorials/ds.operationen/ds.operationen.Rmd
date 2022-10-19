@@ -1,11 +1,12 @@
 ---
 title: "Operationen"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 16.11.2021"
+date: "Version vom 19.10.2022"
 output: 
   learnr::tutorial:
-    progressive: true
-    allow_skip: true
+    progressive: TRUE
+    allow_skip: TRUE
+    language: de
 runtime: shiny_prerendered
 ---
 
@@ -88,7 +89,7 @@ df <- data.frame(x= c(241,7,100), y=c(199,28,30)) # Dataframe
 df
 ```
 
-```{r 1_4-setup, exercise.setup="1_4", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 1_4-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 df <- data.frame(x= c(241,7,100), y=c(199,28,30)) # Dataframe
 ```
 
@@ -97,7 +98,7 @@ Berechnen Sie das Produkt der Elemente der Zeilen x und y aus dem Dataframe df.
 Die Anzeige sollte hinterher wie folgt aussehen: ![Produkt](images/produkt.jpg)
 
 
-```{r 1_4, exercise=TRUE}
+```{r 1_4, exercise=TRUE, exercise.setup="1_4-setup"}
 
 ```
 
@@ -158,7 +159,7 @@ df <- data.frame(x= c(53,2,100), y=c(299,20,30)) # Dataframe
 
 Wenn R eine logische Operation auf einem Vektor ausführt, so wird diese für jedes Element des Vektors einzeln ausgeführt und ein Ergebnis produziert, das so viele logische Werte erzeugt, wie Elemente in dem Vektor existieren. Die einzelnen Werte stellen bei TRUE dar, dass ein Element die Bedingung erfüllt und bei FALSE, dass die Bedingung für dieses Element nicht erfüllt ist.
 
-```{r 2_2, exercise=FALSE}
+```{r 2_2, exercise=FALSE, exercise.setup="2_2-setup"}
 i                                     # Ausgabe
 truefalse1 <- i > 0                   # Operator > auf Vektor
 truefalse1                            # Ausgabe
@@ -169,7 +170,7 @@ truefalse2                            # Ausgabe
 
 ### 2.3 Übung
 
-```{r 2_3-setup, exercise.setup="2_3", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 2_3-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 i <- c(3, -10, -20, 40)                          # vektor numerisch Länge 4
 df <- data.frame(x= c(53,2,100), y=c(299,20,30)) # Dataframe
 ```
@@ -178,7 +179,7 @@ Der Vektor i wurde durch die Anweisung c(3, -10, -20, 40) und der Dataframe df m
 
 Die Anzeige sollte hinterher wie folgt aussehen: ![LogischeOperation](images/logischeoperation.jpg)
 
-```{r 2_3, exercise=TRUE}
+```{r 2_3, exercise=TRUE, exercise.setup="2_3-setup"}
 
 ```
 
@@ -230,7 +231,7 @@ alter2[alter2 > 17]                           # Ausgabe wo FALSE & >17
 
 ### 3.3 Übung
 
-```{r 3_3-setup, exercise.setup="3_3", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 3_3-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 alter <- c(75, 67, NA, 50, NA, 99, 88, 81, 80, 57, 5) 
 ```
 
@@ -238,7 +239,7 @@ Der Vektor alter wurde durch die Anweisung alter <- c(75, 67, NA, 50, NA, 99, 88
 
 Die Anzeige sollte hinterher wie folgt aussehen: ![SelektiveOperation](images/selektiveoperation.jpg)
 
-```{r 3_3, exercise=TRUE}
+```{r 3_3, exercise=TRUE, exercise.setup="3_3-setup"}
 
 ```
 
@@ -293,7 +294,7 @@ str_replace_all(tweet, "[^[:alpha:]+]", "")   # Alle Leerzeichen entfernen
 
 ### 4.2 Übung
 
-```{r 4_3-setup, exercise.setup="4_3", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 4_3-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 text<-"R ist einfach eine beliebte Programmiersprache und daher lerne ich diese Programmiersprache auch besonders gerne. Mehr Details unter https://cran.r-project.org/index.html"
 ```
 
@@ -303,7 +304,7 @@ Zählen Sie, wie häufig das Wort "Programmiersprache" und das Wort "ist" im Vek
 
 Die Anzeige sollte hinterher wie folgt aussehen: ![TextOperation](images/textoperation.jpg)
 
-```{r 4_3, exercise=TRUE}
+```{r 4_3, exercise=TRUE, exercise.setup="4_3-setup"}
 
 ```
 
@@ -427,7 +428,7 @@ Das Paket lubridate erlaubt viele weitere essenzielle Operationen mit Datums- un
 heute <- Sys.Date()                           # Aktuelles Datum
 ```
 
-```{r 5_6, exercise=FALSE}
+```{r 5_6, exercise=FALSE, exercise.setup="5_6-setup"}
 heute                                         # Ausgabe
 weekdays(heute)                               # Wochentag
 übermorgen <- heute+2                         # Datumsberechnung mit +
@@ -450,7 +451,7 @@ difftime(e,d,units="secs")                    # Zeitdifferenz in Sekunden
 
 ### 5.6 Übung
 
-```{r 5_7-setup, exercise.setup="5_7", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 5_7-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 heute <- Sys.Date()                           # Aktuelles Datum
 ```
 
@@ -459,7 +460,7 @@ Berechnen Sie die in einem weiteren Schritt die Anzahl der Tage bis zum kommende
 
 Die Anzeige sollte hinterher ähnlich wie folgt aussehen, wobei der Wochentag und die Anzahl der Tage bis Heiligabend davon abhängt, an welchem Tag Sie diese Übung ausführen: ![DatumsOperation](images/datumsoperation.jpg)
 
-```{r 5_7, exercise=TRUE}
+```{r 5_7, exercise=TRUE, exercise.setup="5_7-setup"}
 
 ```
 
@@ -531,7 +532,7 @@ dim(m5)
 
 ### 6.2 Übung
 
-```{r 6_2-setup, exercise.setup="6_2", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 6_2-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 airlines <- data.frame(                      # Fluggesellschaften
     carrier = c("LH","DL","US","AF","FR"),
     name = c("Lufthansa","Delta Airlines","US Airlines","Air France","Ryan Air"),
@@ -545,12 +546,12 @@ flights <- data.frame(                       # Flüge
 
 Lassen Sie sich zunächst die Inhalte der Dataframes airlines und flights anzeigen.
 
-```{r 6_2, exercise=TRUE}
+```{r 6_2, exercise=TRUE, exercise.setup="6_2-setup"}
 airlines
 flights
 ```
 
-```{r 6_3-setup, exercise.setup="6_3", exercise=FALSE, echo=FALSE, include=FALSE}
+```{r 6_3-setup, exercise=FALSE, echo=FALSE, include=FALSE}
 airlines <- data.frame(                      # Fluggesellschaften
     carrier = c("LH","DL","US","AF","FR"),
     name = c("Lufthansa","Delta Airlines","US Airlines","Air France","Ryan Air"),
@@ -566,7 +567,7 @@ Führen Sie zuerst einen Inner Join und anschließend einen Outer Join über die
 
 Die Anzeige sollte hinterher wie folgt aussehen: ![Join](images/tablejoin.jpg)
 
-```{r 6_3, exercise=TRUE}
+```{r 6_3, exercise=TRUE, exercise.setup="6_3-setup"}
 
 ```
 
