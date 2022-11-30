@@ -76,4 +76,3 @@ function(variable, name="") {
     }
     return(var.gesamt)
 }
-ds.summary(studierende.wif$Größe,"Körpergröße")
