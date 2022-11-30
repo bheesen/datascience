@@ -18,7 +18,13 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of the package datascience is to support the readers of the book "Data Science und Statistik mit R" with samples, functions and tutorials as described in the book.
+The goal of the package datascience is to support the readers of the
+book “Data Science und Statistik mit R” with samples, functions and tutorials
+as described in the book.
+
+The function ds.summary() automatically evaluates the main descriptive statistical figures 
+for a variable and creates a histogram and box-plot for quantitative variables or a bar-chart
+for qualitative variables.
 
 ## Installation
 
@@ -34,7 +40,8 @@ library(datascience)
 What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
 
 ```{r studierende}
-datascience::ds.summary(studierende$Größe, "Körpergröße (in cm)")
+ds.summary(studierende$Größe, "Körpergröße der Studierenden","Körpergröße (in cm)")  # Quantitative Variable
+ds.summary(studierende$Geburtsmonat,"Geburtsmonat der Studierenden","Geburtsmonat")  # Qualitative Variable
 ```
 
 The `README.Rmd` file was used to create the `README.md` file using the function `devtools::build_readme()`.
