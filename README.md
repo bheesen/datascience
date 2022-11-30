@@ -11,6 +11,10 @@ The goal of the package datascience is to support the readers of the
 book “Data Science und Statistik mit R” with samples, functions and tutorials
 as described in the book.
 
+The function ds.summary() automatically evaluates the main descriptive statistical figures 
+for a variable and creates a histogram and box-plot for quantitative variables or a bar-chart
+for qualitative variables.
+
 ## Installation
 
 You can install the released version of datascience from
