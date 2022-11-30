@@ -55,7 +55,7 @@ ds.summary(studierende$Größe, "Körpergröße der Studierenden","Körpergröß
     #> sd           "9.09183035248706"               
 
 ``` r
-ds.summary(studierende$Geburtsmonat,"Geburtsmonat der Studierenden","Geburtsmonat")   # Qualitative Variable
+ds.summary(studierende$Geburtsmonat,"Geburtsmonat der Studierenden","Geburtsmonat")  # Qualitative Variable
 ```
 
 <img src="man/figures/README-studierende-3.png" width="100%"/>
