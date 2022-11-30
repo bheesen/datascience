@@ -34,7 +34,7 @@ Die Verteilungsfunktion bestimmt für eine Zufallsvariable X die Wahrscheinlichk
 
 Die Quantilsfunktion stellt die Inverse der Verteilungsfunktion dar und bestimmt für jede Wahrscheinlichkeit zwischen 0 und 1 (die Gesamtwahrscheinlichkeit ist immer 1) den Quantilswert für den Wert x, so dass p=P(X≤x) gilt. 
 
-Funktionen zu der normalverteilten Variable "Körpergröße von Frauen": ![Funktionen](images/funktionen.jpg)
+Funktionen zu der normalverteilten Variable "Körpergewicht von Frauen": ![Funktionen](images/funktionen.jpg)
 
 Aus den Abbildungen lassen sich Informationen ablesen. Aus der Verteilungsfunktion ist z.B. ablesbar, dass für x = 57,5kg gilt, dass etwa 80% aller Frauen weniger wiegen, weil die Schnittstelle der Verteilungsfunktion für 57,5 bei etwa 0,8 liegt. Aus der Quantilsfunktion ist  ablesbar, dass etwa 25% aller Frauen weniger als 53kg wiegen, weil die Schnittstelle der Quantilsfunktion für 0,25 bei etwa 53kg liegt. 
 
