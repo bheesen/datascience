@@ -1,13 +1,14 @@
 #' Function to calculate descriptive statistics for a variable
 #'
 #' @param variable is a vector of the variable
-#' @param name is the name of the variable
+#' @param name is the name of the variable to be used as title on diagrams
 #' @keywords descriptive, statistics, summary
 #' @return a vector with a list of descriptive statistics
 #' @example ds.summary(studierende$Größe, "Körpergroesse (in cm)")
 #' @export
 ds.summary <- 
-function(variable, name) {
+function(variable, name="") {
+    var.df    <- as.data.frame(variable)
     var       <- as.data.frame(table(variable))
     var.n     <- length(variable)
     var.na    <- sum(is.na(variable))
@@ -49,9 +50,24 @@ function(variable, name) {
     var.gesamt <- rbind(var.n,var.na,var.maxanzahl,var.modus,var.median,var.mean,var.skewness,var.skewness.txt,var.kurtosis, var.kurtosis.txt, var.spannweite,var.min,var.max,var.var,var.sd)
     rownames(var.gesamt)<-c("n","na","maxanzahl","modus","median","mean","skewness","skewness.txt","kurtosis","kurtosis.txt","spannweite","min","max","var","sd")
     if (is.numeric(variable)){
-            graphics::hist(variable, xlab="",ylab="Häufigkeit",main=name)
-      graphics::abline(v=c(var.mean,var.median,var.modus),col=(c("red","blue","darkgreen")), lwd=2)
-      graphics::boxplot(variable,data=variable,main=name,xlab="",ylab="")
+      var.modus<-as.numeric(var.modus)
+      ggplot2::ggplot(var.df) + ggplot2::aes(x=variable) +
+        ggplot2::labs(title="Histogramm",subtitle=name,x=NULL,y="Häufigkeit")+
+        ggplot2::geom_histogram(col="white")+
+        geom_vline(aes(xintercept=var.median,color="median",linetype="median"), 
+                   size=1)+
+        geom_vline(aes(xintercept=var.mean,color="mean",linetype="mean"), 
+                   size=2)+
+        geom_vline(aes(xintercept=var.modus,color="modus",linetype="modus"), 
+                   size=1)+
+        scale_color_manual(name="Kennzahl", 
+          values=c(mean="red",median="blue",mean="red",modus="darkgreen")) +
+        scale_linetype_manual(name="Kennzahl", 
+          values=c(mean="solid",median="dashed",modus="dotted"))
+      ggplot2::ggplot(var.df) + ggplot2::aes(x=variable) +                                
+        ggplot2::geom_boxplot()+ ggplot2::coord_flip()+                                
+        ggplot2::labs(title="Box-Plot",subtitle=name,x=NULL,y=NULL,ylab=NULL)+
+        ggplot2::theme(axis.ticks.x=element_blank(),axis.text.x=element_blank())
     } else {
       graphics::par(oma=c(2,0,0,0))                                 # Platz für Labels
       graphics::barplot(table(variable), space = 0,                 # Space zwischen Balken
@@ -60,3 +76,4 @@ function(variable, name) {
     }
     return(var.gesamt)
 }
+ds.summary(studierende.wif$Größe,"Körpergröße")
