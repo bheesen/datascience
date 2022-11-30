@@ -76,18 +76,18 @@ ds.summary<-function (variable,titel="",achse="")
                     x=achse,y="Häufigkeit") + 
       ggplot2::geom_histogram(col="white",bins=30) + 
       ggplot2::geom_vline(ggplot2::aes(xintercept = var.median, 
-                                       color = "median", linetype = "median"), linewidth = 1) + 
+                                       color = "Median", linetype = "Median"), linewidth = 1) + 
       ggplot2::geom_vline(ggplot2::aes(xintercept = var.mean, 
-                                       color = "mean", linetype = "mean"), linewidth = 2) + 
+                                       color = "Mittelwert", linetype = "Mittelwert"), linewidth = 2) + 
       ggplot2::geom_vline(ggplot2::aes(xintercept = var.modus, 
-                                       color = "modus", linetype = "modus"), linewidth = 1) + 
-      ggplot2::scale_color_manual(name = "Kennzahl", values = c(mean   = "red", 
-                                                                median = "blue",
-                                                                modus  = "darkgreen")) + 
+                                       color = "Modus", linetype = "Modus"), linewidth = 1) + 
+      ggplot2::scale_color_manual(name = "Kennzahl", values = c(Mittelwert   = "red", 
+                                                                Median = "blue",
+                                                                Modus  = "darkgreen")) + 
       ggplot2::scale_linetype_manual(name = "Kennzahl", 
-                                     values = c(mean   = "solid", 
-                                                median = "dashed", 
-                                                modus = "dotted"))
+                                     values = c(Mittelwert  = "solid", 
+                                                Median= "dashed", 
+                                                Modus = "dotted"))
     gridExtra::grid.arrange(p1, nrow = 1, ncol = 1)
     p1 <- ggplot2::ggplot(var.df) + ggplot2::aes(x = variable) + 
       ggplot2::geom_boxplot() + ggplot2::coord_flip() + 
