@@ -312,7 +312,7 @@ tapply(sp3$Größe,list(sp3$Geschlecht,sp3$Alter),mean) # 2 unabhängige Variabl
 kfz<-filter(kfz,Zulassung>2013 & Zulassung<2019 & Marke %in% c("audi","bmw","chrysler","ford","honda","jaguar","volkswagen"))
 ```
 
-Der Dataframe kfz enthält Daten zu 2.768 Gebrauchtwagen der Marken Audi, BMW, Chrysler, Ford, Honda, Jaguar und Volkswagen mit einer Zulassung zwischen dem Jahr 2014 und 2018. Lassen Sie sich eine Bivariate Kreuztabelle für Marke und Jahr der Zulassung anzeigen. Geben Sie die werte einmal als absolute Werte (Anzahl) und anschließend als Prozentwerte mit drei Nachkommastellen aus. Lassen Sie sich anschließend auch die Spalten- und Zeilensummen in die beiden Kreuztabellen anzeigen.
+Der Dataframe kfz enthält Daten zu 2.768 Gebrauchtwagen der Marken Audi, BMW, Chrysler, Ford, Honda, Jaguar und Volkswagen mit einer Zulassung zwischen dem Jahr 2014 und 2018. Lassen Sie sich eine Bivariate Kreuztabelle für Marke und Jahr der Zulassung anzeigen. Geben Sie die Werte einmal als absolute Werte (Anzahl) und anschließend als Prozentwerte mit drei Nachkommastellen aus. Lassen Sie sich anschließend auch die Spalten- und Zeilensummen in die beiden Kreuztabellen anzeigen.
 
 Die Anzeige sollte hinterher wie folgt aussehen: ![Kreuztabelle](images/kreuztabelle.jpg)
 
