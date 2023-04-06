@@ -28,18 +28,45 @@ for qualitative variables.
 
 ## Installation
 
-You can install the released version of datascience from [GitHub](https://github.com/) with:
+You can install the package datascience from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("bheesen/datascience")
 library(datascience)
 ```
+
+## Tutorials
+
+You can start the tutorials of the package with the following commands:
+
+``` r
+# R Grundlagen
+ds.tutorial(name = "ds.syntax")
+ds.tutorial(name = "ds.datentypen")
+ds.tutorial(name = "ds.datenstrukturen")
+ds.tutorial(name = "ds.operationen")
+ds.tutorial(name = "ds.importexport")
+ds.tutorial(name = "ds.transformation")
+ds.tutorial(name = "ds.visualisierung")
+ds.tutorial(name = "ds.visualisierungdynamisch")
+# Statistik
+ds.tutorial(name = "ds.deskriptiv")
+ds.tutorial(name = "ds.verteilung")
+ds.tutorial(name = "ds.visualisierungstatistik")
+ds.tutorial(name = "ds.zufallsvariablen")
+ds.tutorial(name = "ds.wahrscheinlichkeitsverteilung")
+ds.tutorial(name = "ds.bedingtewahrscheinlichkeit")
+ds.tutorial(name = "ds.induktiv")
+```
+
 ## Example
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+This is an example using some of the functions included in the package:
 
 ```{r studierende}
+library(datascience)
+colnames(studierende)[c(5,10,13)] <- c("Größe","Fußball","Attraktivität")            # Spalten umbenennen
 ds.summary(studierende$Größe, "Körpergröße der Studierenden","Körpergröße (in cm)")  # Quantitative Variable
 ds.summary(studierende$Geburtsmonat,"Geburtsmonat der Studierenden","Geburtsmonat")  # Qualitative Variable
 ```
