@@ -1,7 +1,7 @@
 ---
 title: "Deskriptive Statistik"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 19.10.2022"
+date: "Version vom 7.7.2023"
 output: 
   learnr::tutorial:
     progressive: TRUE
@@ -67,7 +67,6 @@ Das arithmetische Mittel, auch Mittelwert oder Durchschnitt genannt, ist das wic
 Um diesen Wert zu berechnen, summiert man zunächst alle Einzelwerte und teilt diese dann durch die Anzahl der Einzelwerte (siehe Abb. 4-5 im Buch). Der Mittelwert ist eine wertvolle Maßzahl, kann jedoch durch sogenannte Ausreißer, extrem niedrige oder hohe Werte, stark beeinflusst werden. In R kann die Funktion mean() zur Berechnung des Mittelwerts verwendet werden.
 
 ```{r 3_1, exercise=FALSE}
-head(studierende,3)
 sp1 <- as_tibble(studierende[1:15,5])                  # Stichprobe 1 (sp1)
 colnames(sp1) <- "Größe"
 sp2 <- as_tibble(studierende[70:85,5])                 # Stichprobe 2 (sp2)
