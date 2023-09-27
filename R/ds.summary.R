@@ -7,7 +7,7 @@
 #' @return a vector with a list of descriptive statistics
 #' @example ds.summary(studierende$Größe, "Körpergroesse (in cm)")
 #' @export
-ds.summary<-function (variable,titel="",achse="") 
+ds.summary<-function (variable,titel="Titel",achse="Achse") 
 {
   var.df      <- as.data.frame(variable)
   var         <- as.data.frame(table(variable))
@@ -79,7 +79,7 @@ ds.summary<-function (variable,titel="",achse="")
                                        color = "Median", linetype = "Median"), linewidth = 1) + 
       ggplot2::geom_vline(ggplot2::aes(xintercept = var.mean, 
                                        color = "Mittelwert", linetype = "Mittelwert"), linewidth = 2) + 
-      ggplot2::geom_vline(ggplot2::aes(xintercept = var.modus, 
+      ggplot2::geom_vline(ggplot2::aes(xintercept = var.modus[1], 
                                        color = "Modus", linetype = "Modus"), linewidth = 1) + 
       ggplot2::scale_color_manual(name = "Kennzahl", values = c(Mittelwert   = "red", 
                                                                 Median = "blue",
