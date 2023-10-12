@@ -103,11 +103,20 @@ ds.summary<-function (variable,titel="Titel",achse="Achse")
     tab.daten<-table(var.df$daten)
     var.df.x<-data.frame(x=tab.daten)
     colnames(var.df.x)<-c("y","x")
-    p.bar<-ggplot2::ggplot(var.df.x)+                          
-      ggplot2::aes(x=x,y=reorder(y,x),fill=y)+
-      ggplot2::geom_bar(position="dodge",stat="identity")+
-      ggplot2::labs(title="Bar-Chart",subtitle=titel,x="Anzahl",y=achse)+
-      ggplot2::theme(legend.position = "none")
+    if (is.factor(var.df.x$y) | is.ordered(var.df.x$y)) {
+      p.bar<-ggplot2::ggplot(var.df.x)+                          
+        ggplot2::aes(x=x,y=y,fill=y)+
+        ggplot2::geom_bar(position="dodge",stat="identity")+
+        ggplot2::labs(title="Bar-Chart",subtitle=titel,x="Anzahl",y=achse)+
+        ggplot2::theme(legend.position = "none")
+    }
+    else {
+      p.bar<-ggplot2::ggplot(df.x)+                          
+        ggplot2::aes(x=x,y=reorder(y,x),fill=y)+
+        ggplot2::geom_bar(position="dodge",stat="identity")+
+        ggplot2::labs(title="Bar-Chart",subtitle=titel,x="Anzahl",y=achse)+
+        ggplot2::theme(legend.position = "none")
+    }
     gridExtra::grid.arrange(p.bar,nrow=1,ncol=1)
   }
   return(var.gesamt)
