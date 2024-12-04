@@ -634,7 +634,7 @@ ggplot(mtcars,                                     # Dataframe
        x="Gewicht", y="Miles per Gallon")+
   geom_point(size=1.5)                             # Scatter-Plot
 cor(mtcars$wt,mtcars$mpg)                          # Pearson Korrelation
-stats::cor_test(mtcars$wt,mtcars$mpg)                     # Pearson Korrelation
+mosaic::cor_test(mtcars$wt,mtcars$mpg)                     # Pearson Korrelation
 ```
 
 ## 4. Regression
