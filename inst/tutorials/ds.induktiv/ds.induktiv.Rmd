@@ -1,7 +1,7 @@
 ---
 title: "Induktive Statistik"
 author: "Tutorial von [_Professor Bernd Heesen_](http://www.prescient.pro), dem Autor des Buches [_Data Science und Statistik mit R_](https://www.amazon.de/Data-Science-Statistik-mit-Anwendungsl%C3%B6sungen/dp/3658348240/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Data+Science+und+Statistik+mit+R&qid=1627898747&sr=8-1)"
-date: "Version vom 19.10.2022"
+date: "Version vom 04.12.2024"
 output: 
   learnr::tutorial:
     progressive: TRUE
@@ -597,17 +597,36 @@ ggplot(data)+                                      # Histogramm
   aes(x=x)+
   labs(title="Histogramm",subtitle="Zufallszahlen",x="Wert", y="Häufigkeit")+
   geom_histogram(binwidth=0.5)
+# Test für normalverteilte Zufallszahlen
 shapiro.test(data$x)                               # Normalverteilt, p>0,05
 #- Test auf Normalverteilung für Größe der Studierenden---------------------------
 ggplot(studierende)+                               # Histogramm
   aes(x=Größe)+
   labs(title="Histogramm",subtitle="Studierende",x="Größe in cm",y="Häufigkeit")+
   geom_histogram(binwidth=2)
+# Test für Größe der Studierenden
 shapiro.test(studierende$Größe)                    # Nicht normalverteilt, p<0,05
 #- Test auf Normalverteilung für mpg, wt, disp der Autos------------------------
+ggplot(mtcars)+                                    # Histogramm
+  aes(x=mpg)+
+  labs(title="Histogramm",subtitle="Autos",x="Meilen pro Gallone",y="Häufigkeit")+
+  geom_histogram(binwidth=2)
+# Test für Meilen pro Gallone
 shapiro.test(mtcars$mpg)                           # Normalverteilt, da p > 0,05
+ggplot(mtcars)+                                    # Histogramm
+  aes(x=wt)+
+  labs(title="Histogramm",subtitle="Autos",x="Gewicht in Pfund",y="Häufigkeit")+
+  geom_histogram(binwidth=2)
+# Test für Gewicht in Pfund
 shapiro.test(mtcars$wt)                            # Normalverteilt, da p > 0,05
+ggplot(mtcars)+                                    # Histogramm
+  aes(x=disp)+
+  labs(title="Histogramm",subtitle="Autos",x="Motorgröße",y="Häufigkeit")+
+  geom_histogram(binwidth=2)
+# Test für Motorgröße
 shapiro.test(mtcars$disp)                          # Nicht normalverteilt, da p < 0,05
+# Da sowohl wt als auch mpg normalverteilt sind, lässt sich auch die 
+# Pearson Korrelation für diese Variablen berechnen (Voraussetzung: Normalverteilung)
 ggplot(mtcars,                                     # Dataframe
   mapping = aes(x=wt,y=mpg))  +                    # x+y-Achsen
   labs(title="Scatter-Plot",
@@ -615,6 +634,7 @@ ggplot(mtcars,                                     # Dataframe
        x="Gewicht", y="Miles per Gallon")+
   geom_point(size=1.5)                             # Scatter-Plot
 cor(mtcars$wt,mtcars$mpg)                          # Pearson Korrelation
+cor_test(mtcars$wt,mtcars$mpg)                     # Pearson Korrelation
 ```
 
 ## 4. Regression
