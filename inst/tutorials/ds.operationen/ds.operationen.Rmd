@@ -278,7 +278,7 @@ Eine weitere wertvolle Funktion ist die Funktion str_count(), welche die Anzahl 
 tweet<-"Trotz #Corona-Beschränkungen sind für den morgigen #1Mai zahlreiche rechte \n                und/oder verachwörungsideologische Demos in #Sachsen geplant. Ein Übersichtsthread\n                mit den Top10 von @johannesgrunert: https://t.co/POtZkJRpJQ"
 str_detect(tweet, "[:digit:]")                # Frage, ob Ziffer enthalten ist
 str_locate(tweet, "[:digit:]")                # Frage, an welcher Position Ziffer
-str_extract(tweet, "[:digit:]")               # Ziffer extrahieren
+str_extract(tweet, "[[:digit:]]")               # Ziffer extrahieren
 str_extract_all(tweet, "[:digit:]")           # Ziffern extrahieren
 str_extract_all(tweet, "[:digit:]{2}")        # Ziffern extrahieren mit Länge 2
 hashtag<-str_extract_all(tweet, "#[:alnum:]+")# Hashtags # mit nachfolgenden alpha
